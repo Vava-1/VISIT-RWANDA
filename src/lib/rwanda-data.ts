@@ -45,6 +45,19 @@ export const IMAGES = {
   pharmacyAlt: "https://sfile.chatglm.cn/images-ppt/9a5540a189ff.jpg",
   clinic: "https://sfile.chatglm.cn/images-ppt/31c6aaf470f4.jpg",
   clinicAlt: "https://sfile.chatglm.cn/images-ppt/b42cf785deef.jpg",
+  // Distinct, real images per health facility (searched by name)
+  kingFaisal: "https://sfile.chatglm.cn/images-ppt/280baf0a46d8.jpg",
+  chuk: "https://sfile.chatglm.cn/images-ppt/68e5c0592b6d.jpg",
+  chub: "https://sfile.chatglm.cn/images-ppt/862045d93c7b.png",
+  ruhengeriHosp: "https://sfile.chatglm.cn/images-ppt/d992cda7eb5e.jpg",
+  kibungoHosp: "https://sfile.chatglm.cn/images-ppt/e3178aa3abe8.jpg",
+  militaryHosp: "https://sfile.chatglm.cn/images-ppt/37a11adaba51.jpg",
+  muhimaHosp: "https://sfile.chatglm.cn/images-ppt/c6ea7ad6a1e2.jpg",
+  clinic2: "https://sfile.chatglm.cn/images-ppt/e6d81bdb75f4.jpg",
+  clinic3: "https://sfile.chatglm.cn/images-ppt/abbf3c716907.jpg",
+  pharm2: "https://sfile.chatglm.cn/images-ppt/0f63508cdc43.jpg",
+  pharm3: "https://sfile.chatglm.cn/images-ppt/791316ba6eeb.jpg",
+  pharm4: "https://sfile.chatglm.cn/images-ppt/e736febfa69c.jpg",
   umuganda: "https://sfile.chatglm.cn/images-ppt/16d13ba6be5c.jpg",
   umugandaAlt: "https://sfile.chatglm.cn/images-ppt/d5f408b80bc6.jpg",
   carfree: "https://sfile.chatglm.cn/images-ppt/089b963b5b20.jpg",
@@ -1446,7 +1459,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Tertiary / Referral",
     location: "Kigali (Nyarugenge, Kigali Heights)",
     province: "Kigali City",
-    image: IMAGES.hospital,
+    image: IMAGES.kingFaisal,
     description:
       "Rwanda's leading private, tertiary referral hospital, opened in 1991 and named after King Faisal of Saudi Arabia who funded its construction. The most advanced facility in the country for complex surgery, cardiology, oncology and intensive care. Preferred by expats, diplomats and medical evacuations.",
     services: ["24/7 emergency", "ICU and critical care", "Cardiology and cardiac catheterisation", "Oncology", "Advanced surgery and orthopaedics", "Maternity and neonatal ICU", "Imaging (MRI, CT, ultrasound)"],
@@ -1461,7 +1474,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Tertiary / Public Referral",
     location: "Kigali (Nyarugenge, Nyarugenge)",
     province: "Kigali City",
-    image: IMAGES.hospitalAlt,
+    image: IMAGES.chuk,
     description:
       "The largest public referral and teaching hospital in Kigali, affiliated with the University of Rwanda's College of Medicine. Handles the highest volume of patients in the capital and trains most of Rwanda's doctors. A key facility for serious and complex cases in the public system.",
     services: ["24/7 emergency", "Surgery and trauma", "Internal medicine", "Paediatrics", "Maternity", "Teaching and research"],
@@ -1476,7 +1489,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Tertiary / Public Referral",
     location: "Huye (Southern Province)",
     province: "Southern Province",
-    image: IMAGES.hospitalAlt,
+    image: IMAGES.chub,
     description:
       "The referral and teaching hospital for Southern Province, affiliated with the University of Rwanda's Huye campus. Serves the south of the country with surgery, medicine, paediatrics and maternity, and is a major medical training site.",
     services: ["Emergency", "Surgery", "Internal medicine", "Paediatrics", "Maternity", "Teaching hospital"],
@@ -1491,7 +1504,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Referral",
     location: "Musanze (Northern Province)",
     province: "Northern Province",
-    image: IMAGES.hospital,
+    image: IMAGES.ruhengeriHosp,
     description:
       "The main referral hospital for Northern Province, serving Musanze and the surrounding districts near Volcanoes National Park. Important for tourists trekking gorillas to know, as it is the nearest major facility for emergencies in the north.",
     services: ["Emergency", "Surgery", "Maternity", "General medicine", "Trauma care"],
@@ -1506,7 +1519,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Referral",
     location: "Ngoma (Eastern Province)",
     province: "Eastern Province",
-    image: IMAGES.hospitalAlt,
+    image: IMAGES.kibungoHosp,
     description:
       "The referral hospital for Eastern Province, including the area around Akagera National Park. The key facility for emergencies arising from safaris or travel in the east of the country.",
     services: ["Emergency", "Surgery", "Maternity", "General medicine"],
@@ -1521,7 +1534,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Tertiary",
     location: "Kigali (Kanombe)",
     province: "Kigali City",
-    image: IMAGES.hospital,
+    image: IMAGES.militaryHosp,
     description:
       "A modern tertiary hospital operated by the Rwanda Defence Force, also open to civilians. Strong in trauma, orthopaedics and rehabilitation. Well equipped and a key option in Kanombe, near the airport.",
     services: ["Emergency", "Orthopaedics and trauma", "Surgery", "Rehabilitation", "Imaging"],
@@ -1536,7 +1549,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "District",
     location: "Kigali (Nyarugenge, Muhima)",
     province: "Kigali City",
-    image: IMAGES.hospitalAlt,
+    image: IMAGES.muhimaHosp,
     description:
       "A busy district hospital in Kigali serving Nyarugenge, with a strong maternity and paediatric service. A common first stop for routine and urgent care for residents in central Kigali.",
     services: ["Emergency", "Maternity (busy)", "Paediatrics", "General medicine", "Vaccinations"],
@@ -1566,7 +1579,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Private clinic",
     location: "Kigali (multiple branches)",
     province: "Kigali City",
-    image: IMAGES.clinicAlt,
+    image: IMAGES.clinic2,
     description:
       "A network of private clinics across Kigali offering general practice, paediatrics, gynaecology and laboratory services. Convenient for walk-in consultations and quick lab results.",
     services: ["General practice", "Paediatrics", "Gynaecology", "Laboratory", "Vaccinations"],
@@ -1580,7 +1593,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Private clinic",
     location: "Kigali (Kimihurura)",
     province: "Kigali City",
-    image: IMAGES.clinic,
+    image: IMAGES.clinic3,
     description:
       "A private clinic in Kimihurura offering family medicine, paediatrics, maternity care and a pharmacy. Known for attentive service and a good option for families in central Kigali.",
     services: ["Family medicine", "Maternity", "Paediatrics", "On-site pharmacy"],
@@ -1609,7 +1622,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Retail pharmacy",
     location: "Kigali (city centre)",
     province: "Kigali City",
-    image: IMAGES.pharmacyAlt,
+    image: IMAGES.pharm2,
     description:
       "A long established central pharmacy in downtown Kigali, dispensing prescription and over the counter medicines. A reliable stop for travellers staying in the city centre.",
     services: ["Prescription dispensing", "OTC medicines", "Health advice"],
@@ -1623,7 +1636,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Retail pharmacy",
     location: "Kigali (Remera and branches)",
     province: "Kigali City",
-    image: IMAGES.pharmacy,
+    image: IMAGES.pharm3,
     description:
       "A popular Kigali pharmacy chain with branches in Remera and elsewhere, stocking a broad range of medicines and health products. Often open late and used by expats and locals alike.",
     services: ["Prescription dispensing", "OTC medicines", "Baby and personal care"],
@@ -1637,7 +1650,7 @@ export const HEALTH_FACILITIES: HealthFacility[] = [
     level: "Retail pharmacy chain",
     location: "Kigali and provincial towns",
     province: "Multiple",
-    image: IMAGES.pharmacyAlt,
+    image: IMAGES.pharm4,
     description:
       "A nationwide pharmacy retail chain with outlets in Kigali and provincial towns, ensuring consistent access to quality medicines outside the capital. Useful for travellers heading to Akagera, Musanze or Lake Kivu.",
     services: ["Prescription dispensing", "OTC medicines", "Rural and provincial branches"],
