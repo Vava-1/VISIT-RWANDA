@@ -4,6 +4,7 @@ import * as React from "react";
 import { Navbar } from "@/components/visit-rwanda/navbar";
 import { Hero } from "@/components/visit-rwanda/hero";
 import { PersonaZone } from "@/components/visit-rwanda/persona-zone";
+import { PersonaHub } from "@/components/visit-rwanda/persona-hub";
 import { Destinations } from "@/components/visit-rwanda/destinations";
 import { Experiences } from "@/components/visit-rwanda/experiences";
 import { Invest } from "@/components/visit-rwanda/invest";
@@ -35,6 +36,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <PersonaZone />
+        <PersonaHub />
         <Destinations />
         <Experiences />
         <Invest />

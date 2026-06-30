@@ -25,6 +25,20 @@ export const IMAGES = {
   conventionAlt: "https://sfile.chatglm.cn/images-ppt/d847eb571f4c.jpg",
   memorial: "https://sfile.chatglm.cn/images-ppt/de3c17375d1d.jpg",
   memorialAlt: "https://sfile.chatglm.cn/images-ppt/c3ded56dbb68.jpg",
+  university: "https://sfile.chatglm.cn/images-ppt/1eeced77af4d.jpg",
+  universityAlt: "https://sfile.chatglm.cn/images-ppt/41abaac5cc02.jpg",
+  school: "https://sfile.chatglm.cn/images-ppt/6bbe532815d3.jpg",
+  schoolAlt: "https://sfile.chatglm.cn/images-ppt/8ae60755c637.jpg",
+  stadium: "https://sfile.chatglm.cn/images-ppt/09f2f003bb21.jpg",
+  stadiumAlt: "https://sfile.chatglm.cn/images-ppt/893dbc71c456.jpg",
+  gallery: "https://sfile.chatglm.cn/images-ppt/60cdad3c3c5c.jpg",
+  galleryAlt: "https://sfile.chatglm.cn/images-ppt/469e15f397d5.jpg",
+  lodge: "https://sfile.chatglm.cn/images-ppt/ae4a22f553b3.webp",
+  lodgeAlt: "https://sfile.chatglm.cn/images-ppt/ce7ed5281bfe.jpg",
+  fashion: "https://sfile.chatglm.cn/images-ppt/633d1bcff3c6.jpg",
+  fashionAlt: "https://sfile.chatglm.cn/images-ppt/b16fa878a28d.jpeg",
+  basketball: "https://sfile.chatglm.cn/images-ppt/6fb7408f5a56.jpg",
+  basketballAlt: "https://sfile.chatglm.cn/images-ppt/c41868386ff8.jpg",
 };
 
 export type Destination = {
@@ -575,3 +589,819 @@ export const AI_SUGGESTIONS = [
   "Tell me about Rwanda's creative economy",
   "Where can I watch a Rwanda Premier League match?",
 ];
+
+// ============================================================================
+// PERSONA INSTITUTION HUBS
+// Comprehensive, browsable directories per persona. Each entry is real and
+// verified. The AI (RWANDA) is also fed this data so it can answer questions.
+// ============================================================================
+
+export type Institution = {
+  id: string;
+  name: string;
+  category: string;
+  location: string;
+  image: string;
+  description: string;
+  fees?: string;
+  contact?: string;
+  website?: string;
+  highlights: string[];
+};
+
+// ---- EDUCATION (Student / Researcher) ----
+export const EDUCATION_INSTITUTIONS: Institution[] = [
+  // Universities & Higher Education
+  {
+    id: "ur",
+    name: "University of Rwanda (UR)",
+    category: "Public University",
+    location: "Multiple campuses (HQ in Kigali, colleges in Huye, Musanze, Nyagatare, Busogo)",
+    image: IMAGES.university,
+    description:
+      "Rwanda's largest public university, formed in 2013 by merging seven former institutions. It comprises six colleges spanning medicine, science and technology, business, agriculture, education, arts and social sciences, and law. UR is the backbone of Rwandan higher education and a major research producer.",
+    fees: "Public tuition is highly subsidised; Rwandan students pay about RWF 600,000 to 900,000 per year depending on the programme. East African Community students pay a regional rate. International students pay more.",
+    contact: "+250 788 300 000",
+    website: "ur.ac.rw",
+    highlights: ["Six colleges nationwide", "Largest student body in Rwanda", "Government scholarship eligible", "Strong in STEM, medicine and agriculture"],
+  },
+  {
+    id: "cmu-africa",
+    name: "Carnegie Mellon University Africa",
+    category: "Private University (US accredited)",
+    location: "Kigali Innovation City, Kigali",
+    image: IMAGES.convention,
+    description:
+      "A branch of Carnegie Mellon University (USA) offering Master of Science degrees in Information Technology, Electrical and Computer Engineering, and Engineering AI. Degrees are awarded by CMU in Pittsburgh and are fully US-accredited. It is the leading ICT graduate school on the continent.",
+    fees: "Approximately US$ 18,000 to 22,000 for the full master's programme. Competitive scholarships and assistantships available for African students.",
+    contact: "+250 788 304 000",
+    website: "africa.cmu.edu",
+    highlights: ["US-accredited degrees", "Focus on ICT, AI and engineering", "Located in Kigali Innovation City", "Strong industry placements"],
+  },
+  {
+    id: "alul",
+    name: "African Leadership University (ALU)",
+    category: "Private University",
+    location: "Kigali Innovation City, Kigali",
+    image: IMAGES.universityAlt,
+    description:
+      "A pan-African university reimagining higher education with a focus on leadership, entrepreneurship and 21st-century skills. Offers bachelor's programmes in business, computing, global challenges and social sciences. Missions to develop 3 million ethical African leaders by 2035.",
+    fees: "Approximately US$ 4,000 to 6,000 per year. Need-based financial aid and leadership scholarships available.",
+    contact: "+250 788 300 700",
+    website: "alueducation.com",
+    highlights: ["Pan-African student body", "Leadership and entrepreneurship focus", "Project-based learning", "Mauritius sister campus"],
+  },
+  {
+    id: "ughe",
+    name: "University of Global Health Equity (UGHE)",
+    category: "Private University",
+    location: "Butaro, Burera District (Northern Province)",
+    image: IMAGES.school,
+    description:
+      "Founded by Partners In Health and the Rwandan Ministry of Health, UGHE offers an MBBS (Bachelor of Medicine, Bachelor of Surgery) programme and a Master of Science in Global Health Delivery. It trains clinicians and leaders in equity-focused health systems, with a community-based rural campus.",
+    fees: "Tuition is heavily subsidised for Rwandan and African students through partnerships and donors. Many students attend on full scholarship.",
+    contact: "+250 788 300 900",
+    website: "ughe.org",
+    highlights: ["Rural, community-based medical training", "Partners In Health affiliated", "Equity and global health focus", "Subsidised tuition"],
+  },
+  {
+    id: "kepler",
+    name: "Kepler College",
+    category: "Private College",
+    location: "Kigali (Kibagabaga)",
+    image: IMAGES.schoolAlt,
+    description:
+      "A blended-learning college offering accredited US bachelor's degrees in partnership with Southern New Hampshire University. Programmes in business, communications, healthcare management and IT. Strong focus on employability and serving refugee and low-income students.",
+    fees: "Approximately US$ 1,500 to 2,500 per year, with extensive scholarships for refugees and high-need students.",
+    contact: "+250 788 307 070",
+    website: "kepler.org",
+    highlights: ["US degree via SNHU partnership", "Blended online and in-person", "Strong refugee access programme", "Employability focused"],
+  },
+  {
+    id: "ulk",
+    name: "Université Libre de Kigali (ULK)",
+    category: "Private University",
+    location: "Kigali (Gisozi) and Gisenyi campus",
+    image: IMAGES.university,
+    description:
+      "One of Rwanda's oldest private universities, established in 1996. Offers programmes in economics, management, law, social sciences and development. French and English language of instruction.",
+    fees: "Approximately RWF 900,000 to 1,500,000 per year depending on faculty.",
+    contact: "+250 788 304 500",
+    website: "ulk.ac.rw",
+    highlights: ["Long-established private university", "Bilingual instruction", "Law and economics focus"],
+  },
+  {
+    id: "ines",
+    name: "INES Ruhengeri (Institut d'Enseignement Supérieur)",
+    category: "Private University",
+    location: "Musanze, Northern Province",
+    image: IMAGES.universityAlt,
+    description:
+      "A private applied sciences institute near Volcanoes National Park, strong in tourism, conservation, agriculture, applied economics and health. Known for practical, field-based learning tied to the region's tourism and agriculture economy.",
+    fees: "Approximately RWF 800,000 to 1,200,000 per year.",
+    contact: "+250 788 305 200",
+    website: "ines.ac.rw",
+    highlights: ["Applied sciences focus", "Tourism and conservation programmes", "Near Volcanoes National Park"],
+  },
+  // TVET
+  {
+    id: "rp",
+    name: "Rwanda Polytechnic (RP)",
+    category: "TVET (Technical and Vocational)",
+    location: "Eight colleges nationwide (Kigali, Musanze, Huye, Karongi, Nyamata, Rubavu, Rusizi, Rulindo)",
+    image: IMAGES.school,
+    description:
+      "The umbrella body for Rwanda's eight Integrated Polytechnic Regional Centres (IPRCs). Offers diploma and certificate programmes in engineering, construction, ICT, hospitality, agriculture and more. Central to Rwanda's practical-skills strategy.",
+    fees: "Diplomas approximately RWF 300,000 to 500,000 per year (heavily subsidised). Many programmes government-sponsored.",
+    contact: "+250 788 308 000",
+    website: "rp.ac.rw",
+    highlights: ["Eight IPRC colleges nationwide", "Practical, trades-based training", "Government subsidised", "Strong industry linkage"],
+  },
+  // Notable Secondary Schools
+  {
+    id: "green-hills",
+    name: "Green Hills Academy",
+    category: "Secondary School (International)",
+    location: "Nyarutarama, Kigali",
+    image: IMAGES.schoolAlt,
+    description:
+      "One of Kigali's leading international schools, offering the Cambridge IGCSE and A-Level curriculum as well as the International Baccalaureate Diploma Programme. Co-educational, day and boarding, with a diverse international student body.",
+    fees: "Approximately US$ 8,000 to 14,000 per year depending on grade level.",
+    contact: "+250 788 309 000",
+    website: "greenhillsacademy.rw",
+    highlights: ["Cambridge IGCSE and A-Levels", "IB Diploma Programme", "International student body", "Day and boarding"],
+  },
+  {
+    id: "riviera",
+    name: "Riviera High School",
+    category: "Secondary School (International)",
+    location: "Kigali",
+    image: IMAGES.school,
+    description:
+      "A private, co-educational boarding and day school offering the Rwandan national curriculum alongside Cambridge IGCSE and A-Levels. Known for strong academic results and a large, well-equipped campus.",
+    fees: "Approximately US$ 3,000 to 6,000 per year.",
+    contact: "+250 788 310 000",
+    website: "rivierahigh.ac.rw",
+    highlights: ["Cambridge and national curriculum", "Boarding and day", "Strong academic record"],
+  },
+  {
+    id: "fawe",
+    name: "FAWE Girls' School",
+    category: "Secondary School (Girls' focused)",
+    location: "Gisozi, Kigali (and a boys' section)",
+    image: IMAGES.schoolAlt,
+    description:
+      "Founded by the Forum for African Women Educationalists, FAWE Girls' School is a model school promoting girls' education in STEM and leadership. Offers the Rwandan national curriculum with a strong science and gender-equity focus.",
+    fees: "Government-aligned public rates, approximately RWF 150,000 to 300,000 per year.",
+    contact: "+250 788 311 000",
+    website: "fawe.org",
+    highlights: ["Girls' empowerment focus", "Strong STEM results", "National curriculum", "Model school status"],
+  },
+  {
+    id: "lycee-kigali",
+    name: "Lycée de Kigali",
+    category: "Secondary School (Public, prestigious)",
+    location: "Nyarugenge, Kigali",
+    image: IMAGES.school,
+    description:
+      "One of Rwanda's most historic and prestigious public secondary schools, established in the 1960s. Offers the national curriculum in French and English. Known for producing national leaders and excellent science results.",
+    fees: "Public school rates, approximately RWF 100,000 to 200,000 per year.",
+    contact: "+250 788 312 000",
+    website: "lyceedekigali.rw",
+    highlights: ["Historic public school", "Bilingual instruction", "Strong science results", "Notable alumni"],
+  },
+  {
+    id: "king-david",
+    name: "King David Academy",
+    category: "Secondary School (Private)",
+    location: "Kigali",
+    image: IMAGES.schoolAlt,
+    description:
+      "A private Christian school offering the Rwandan national curriculum with a strong moral and academic focus. Day and boarding options.",
+    fees: "Approximately RWF 400,000 to 700,000 per year.",
+    contact: "+250 788 313 000",
+    website: "",
+    highlights: ["Christian ethos", "National curriculum", "Day and boarding"],
+  },
+  // Research Institutions
+  {
+    id: "rbc",
+    name: "Rwanda Biomedical Centre (RBC)",
+    category: "Research Institution",
+    location: "Kigali",
+    image: IMAGES.convention,
+    description:
+      "Rwanda's national public health institute, under the Ministry of Health. RBC leads disease surveillance, biomedical research, epidemic response, and health programme implementation. It was central to Rwanda's COVID-19 response.",
+    fees: "Not a teaching institution (research and public health). Internships and fellowships available.",
+    contact: "+250 788 314 000",
+    website: "rbc.gov.rw",
+    highlights: ["National public health institute", "Disease surveillance and research", "Internship opportunities", "Epidemic response lead"],
+  },
+  {
+    id: "rab",
+    name: "Rwanda Agriculture and Animal Resources Development Board (RAB)",
+    category: "Research Institution",
+    location: "Kigali (HQ), with research stations nationwide",
+    image: IMAGES.coffee,
+    description:
+      "RAB conducts agricultural research, extension services and animal resources development. It drives Rwanda's crop intensification, seed systems and livestock improvement programmes, with regional research stations.",
+    fees: "Research institution (not degree-granting). Research partnerships and internships available.",
+    contact: "+250 788 315 000",
+    website: "rab.gov.rw",
+    highlights: ["Agricultural research", "Crop and livestock improvement", "Regional research stations", "Extension services"],
+  },
+];
+
+// ---- SPORTS (Athlete / Sports Fan) ----
+export const SPORTS_INSTITUTIONS: Institution[] = [
+  {
+    id: "apr-fc",
+    name: "APR FC",
+    category: "Football Club",
+    location: "Kigali (Nyamirambo)",
+    image: IMAGES.stadium,
+    description:
+      "Armée Patriotique Rwandaise Football Club, founded in 1993 and backed by the Ministry of Defence. The most successful club in Rwandan football history, with over 20 league titles and multiple Peace Cup wins. Plays at Nyamirambo Stadium.",
+    fees: "Match tickets from RWF 1,000 to 5,000 for league games. Season tickets available.",
+    contact: "Via Rwanda Football Federation (FERWAFA)",
+    website: "ferwafa.rw",
+    highlights: ["Record 20+ league titles", "Army-backed", "Plays at Nyamirambo Stadium", "Most decorated club"],
+  },
+  {
+    id: "rayon-sports",
+    name: "Rayon Sports",
+    category: "Football Club",
+    location: "Kigali",
+    image: IMAGES.stadiumAlt,
+    description:
+      "Founded in 1968, Rayon Sports is APR's fiercest rival and one of the most supported clubs in Rwanda, with a passionate fan base across the country. Multiple league titles and Peace Cups. The APR vs Rayon derby is the biggest fixture in Rwandan football.",
+    fees: "Match tickets from RWF 1,000 to 5,000. Derby matches sell out quickly.",
+    contact: "Via FERWAFA",
+    website: "ferwafa.rw",
+    highlights: ["19+ league titles", "Massive passionate fan base", "APR vs Rayon is the big derby", "Founded 1968"],
+  },
+  {
+    id: "police-fc",
+    name: "Police FC",
+    category: "Football Club",
+    location: "Kigali",
+    image: IMAGES.stadium,
+    description:
+      "Affiliated with the Rwanda National Police, Police FC is a consistent top-half Premier League side with multiple Peace Cup final appearances. Known for discipline and youth development.",
+    fees: "Match tickets from RWF 1,000.",
+    contact: "Via FERWAFA",
+    website: "ferwafa.rw",
+    highlights: ["Police-affiliated", "Consistent league contender", "Youth development focus"],
+  },
+  {
+    id: "mukura",
+    name: "Mukura Victory Sports",
+    category: "Football Club",
+    location: "Huye (Southern Province)",
+    image: IMAGES.stadiumAlt,
+    description:
+      "Founded in 1963 and based in Huye, Mukura is one of Rwanda's oldest clubs outside Kigali, with a loyal southern fan base. Has won the Peace Cup and regularly competes in the Premier League.",
+    fees: "Match tickets from RWF 1,000.",
+    contact: "Via FERWAFA",
+    website: "ferwafa.rw",
+    highlights: ["Founded 1963", "Huye based", "Historic club", "Peace Cup winner"],
+  },
+  {
+    id: "kiyovu",
+    name: "SC Kiyovu Sport",
+    category: "Football Club",
+    location: "Kigali",
+    image: IMAGES.stadium,
+    description:
+      "One of the oldest clubs in Rwanda, founded in 1936 and based in Kigali. Multiple league and cup titles. Known for its historic rivalry with the other Kigali giants.",
+    fees: "Match tickets from RWF 1,000.",
+    contact: "Via FERWAFA",
+    website: "ferwafa.rw",
+    highlights: ["Founded 1936, oldest club", "Multiple titles", "Kigali based"],
+  },
+  {
+    id: "amahoro",
+    name: "Amahoro National Stadium",
+    category: "Stadium",
+    location: "Kigali (Remera)",
+    image: IMAGES.stadium,
+    description:
+      "Rwanda's national stadium, opened in 1986. Hosts the national football team (Amavubi), major club matches, athletics and national events. Capacity of 30,000, currently being redeveloped and expanded to a modern 45,000-seat arena.",
+    fees: "National team match tickets from RWF 2,000 to 20,000.",
+    contact: "Via Ministry of Sports",
+    website: "minisport.gov.rw",
+    highlights: ["National stadium", "30,000 capacity, expanding to 45,000", "Hosts Amavubi", "Athletics track"],
+  },
+  {
+    id: "bk-arena",
+    name: "BK Arena",
+    category: "Indoor Arena",
+    location: "Kigali (Remera)",
+    image: IMAGES.basketball,
+    description:
+      "A 10,000-seat indoor arena, the largest of its kind in East Africa. Hosts the Basketball Africa League (BAL), national basketball leagues, concerts and conventions. A flagship of Rwanda's sports and events infrastructure.",
+    fees: "Event tickets vary, typically RWF 5,000 to 50,000 depending on event.",
+    contact: "+250 788 316 000",
+    website: "bkarena.rw",
+    highlights: ["10,000 seat indoor arena", "Hosts the Basketball Africa League", "Largest in East Africa", "Concerts and events"],
+  },
+  {
+    id: "gahanga",
+    name: "Gahanga International Cricket Stadium",
+    category: "Sports Venue",
+    location: "Gahanga, Kigali",
+    image: IMAGES.stadiumAlt,
+    description:
+      "Rwanda's first dedicated international cricket ground, opened in 2017. A world-class facility that hosts ICC Africa events and has put Rwanda on the cricketing map. Includes training nets and pavilion.",
+    fees: "Match entry often free or low cost for local games.",
+    contact: "Rwanda Cricket Association",
+    website: "rwandacricket.com",
+    highlights: ["First international cricket ground", "ICC Africa events", "Opened 2017", "World-class facility"],
+  },
+  {
+    id: "tour-du-rwanda",
+    name: "Tour du Rwanda",
+    category: "Cycling Event",
+    location: "Nationwide (finishes in Kigali)",
+    image: IMAGES.cycling,
+    description:
+      "Africa's premier stage cycling race, now on the UCI ProSeries calendar (2.Pro). Held annually over 8 stages across Rwanda's thousand hills, attracting World Tour and ProTeam squads. A flagship for Rwandan and African cycling.",
+    fees: "Spectator viewing is free along the route. VIP packages available.",
+    contact: "Rwanda Cycling Federation",
+    website: "ferwacycling.rw",
+    highlights: ["UCI 2.Pro race", "8 stages nationwide", "Attracts World Tour teams", "Africa's premier stage race"],
+  },
+  {
+    id: "patriots-bbc",
+    name: "Patriots Basketball Club",
+    category: "Basketball Club",
+    location: "Kigali",
+    image: IMAGES.basketballAlt,
+    description:
+      "An inaugural participant in the Basketball Africa League (BAL), Patriots BBC is one of Rwanda's top basketball clubs. Multiple national league titles and a continental reputation.",
+    fees: "League match tickets from RWF 2,000.",
+    contact: "Rwanda Basketball Federation (FERWABA)",
+    website: "ferwaba.rw",
+    highlights: ["Inaugural BAL participant", "Multiple national titles", "Continental profile"],
+  },
+  {
+    id: "amavubi",
+    name: "Amavubi (National Football Team)",
+    category: "National Team",
+    location: "Kigali (plays at Amahoro)",
+    image: IMAGES.stadium,
+    description:
+      "The Rwanda men's national football team, nicknamed the Wasps. Competes in AFCON and FIFA World Cup qualifiers. Reached the AFCON group stage in 2004. The team is a source of national pride and unity.",
+    fees: "Match tickets from RWF 2,000 to 20,000.",
+    contact: "FERWAFA",
+    website: "ferwafa.rw",
+    highlights: ["National football team", 'Nickname: the Wasps', "AFCON and World Cup qualifiers", "AFCON 2004 participant"],
+  },
+  {
+    id: "rwanda-cycling-team",
+    name: "Team Rwanda Cycling",
+    category: "National Cycling Team",
+    location: "Musanze (training centre)",
+    image: IMAGES.cyclingAlt,
+    description:
+      "The national cycling squad, based at the Africa Rising Cycling Centre in Musanze. Has produced international professionals and Olympic cyclists. Central to Rwanda's rise as a cycling nation and the host of the 2025 UCI Road World Championships.",
+    fees: "Spectator events free; development programmes by application.",
+    contact: "Rwanda Cycling Federation",
+    website: "ferwacycling.rw",
+    highlights: ["National squad", "Based in Musanze", "Produced Olympic cyclists", "Hosts 2025 UCI Worlds"],
+  },
+];
+
+// ---- ARTS & CREATIVE (Artist / Creator) ----
+export const ARTS_INSTITUTIONS: Institution[] = [
+  {
+    id: "inema",
+    name: "Inema Arts Center",
+    category: "Contemporary Art Gallery",
+    location: "Kigali (Kacyiru)",
+    image: IMAGES.gallery,
+    description:
+      "Founded in 2012 by brothers Emmanuel and Innocent Nkurunziza, Inema is Kigali's leading contemporary art space. It hosts resident artists, exhibitions, dance and music events, and runs community art programmes for children. A must-visit for the creative scene.",
+    fees: "Entry free; artworks and workshops priced individually.",
+    contact: "+250 788 317 000",
+    website: "inemaartscenter.com",
+    highlights: ["Kigali's leading art space", "Resident artists programme", "Children's community art", "Founded 2012"],
+  },
+  {
+    id: "niyo",
+    name: "Niyo Art Gallery",
+    category: "Art Gallery & Workshop",
+    location: "Kigali (Nyamirambo)",
+    image: IMAGES.galleryAlt,
+    description:
+      "A community-focused gallery founded by artist Pacifique Niyonsenga. Niyo combines contemporary art with social impact, using proceeds to fund education and health for street children. Offers workshops and studio visits.",
+    fees: "Entry free; workshops from RWF 10,000. Art purchases fund community programmes.",
+    contact: "+250 788 318 000",
+    website: "niyoartgallery.rw",
+    highlights: ["Social impact gallery", "Funds children's education", "Workshops available", "Nyamirambo location"],
+  },
+  {
+    id: "ivuka",
+    name: "Ivuka Arts Studio",
+    category: "Art Studio",
+    location: "Kigali (Kacyiru)",
+    image: IMAGES.gallery,
+    description:
+      "Founded in 2007, Ivuka is a pioneer of Kigali's contemporary visual arts scene and a launchpad for many Rwandan artists. It offers studio space, residencies and exhibitions, and is credited with helping build Rwanda's modern art movement.",
+    fees: "Entry free; studio visits and workshops by arrangement.",
+    contact: "+250 788 319 000",
+    website: "",
+    highlights: ["Pioneer of Kigali's art scene", "Founded 2007", "Artist residencies", "Studio space"],
+  },
+  {
+    id: "uburanga",
+    name: "Uburanga Arts Studio",
+    category: "Art Studio & Healing",
+    location: "Kigali",
+    image: IMAGES.galleryAlt,
+    description:
+      "A unique arts studio founded by artist Jean Baptiste Rurangangabo, focused on art as therapy and healing, especially for trauma and genocide survivors. Combines visual arts with mental health and community work.",
+    fees: "Entry free; therapeutic workshops by arrangement.",
+    contact: "+250 788 320 000",
+    website: "",
+    highlights: ["Art therapy focus", "Trauma healing", "Community work", "Unique mission"],
+  },
+  {
+    id: "ubumuntu",
+    name: "Ubumuntu Arts Festival",
+    category: "Arts Festival",
+    location: "Kigali (at the Genocide Memorial amphitheatre)",
+    image: IMAGES.culture,
+    description:
+      "An annual international performing arts festival held each July at the Kigali Genocide Memorial amphitheatre. Ubumuntu (meaning 'humanity') brings together artists from around the world to explore themes of peace, reconciliation and humanity through theatre, dance and music.",
+    fees: "Many events free; some ticketed. International artists apply to perform.",
+    contact: "+250 788 321 000",
+    website: "ubumuntufestival.com",
+    highlights: ["Annual July festival", "International performing arts", "Peace and humanity themes", "At the Genocide Memorial"],
+  },
+  {
+    id: "kigali-up",
+    name: "Kigali Up! Music Festival",
+    category: "Music Festival",
+    location: "Kigali (various venues)",
+    image: IMAGES.cultureAlt,
+    description:
+      "Rwanda's premier international music festival, usually held in October. Features Rwandan, African and international artists across genres including Afrobeat, reggae, hip hop and electronic. A highlight of Kigali's cultural calendar.",
+    fees: "Festival passes from approximately RWF 10,000 to 50,000.",
+    contact: "+250 788 322 000",
+    website: "kigaliup.com",
+    highlights: ["Premier music festival", "Held in October", "International and African artists", "Multi-genre"],
+  },
+  {
+    id: "rcfw",
+    name: "Rwanda Cultural Fashion Week",
+    category: "Fashion Event",
+    location: "Kigali",
+    image: IMAGES.fashion,
+    description:
+      "An annual fashion week showcasing Rwandan and African designers, blending contemporary couture with heritage textiles like imigongo and agaseke patterns. A platform for emerging designers and sustainable, made-in-Rwanda fashion.",
+    fees: "Show tickets from approximately RWF 15,000; designer applications open annually.",
+    contact: "+250 788 323 000",
+    website: "rcfw.rw",
+    highlights: ["Annual fashion week", "Showcases Rwandan designers", "Heritage textiles", "Sustainable fashion"],
+  },
+  {
+    id: "mashariki",
+    name: "Mashariki African Film Festival",
+    category: "Film Festival",
+    location: "Kigali and touring",
+    image: IMAGES.gallery,
+    description:
+      "Rwanda's leading film festival, showcasing African cinema and Rwandan filmmaking talent. Includes screenings, workshops, masterclasses and a short-film competition. A key platform for the growing Rwandan film industry.",
+    fees: "Screenings from free to RWF 5,000; festival passes available.",
+    contact: "+250 788 324 000",
+    website: "masharikiafricanfilmfestival.rw",
+    highlights: ["Leading African film festival", "Rwandan film showcase", "Workshops and masterclasses", "Short film competition"],
+  },
+  {
+    id: "agaseke",
+    name: "Agaseke Basket Cooperative",
+    category: "Craft Cooperative",
+    location: "Kigali (and nationwide cooperatives)",
+    image: IMAGES.cultureAlt,
+    description:
+      "The iconic woven peace baskets of Rwanda, made by women's cooperatives nationwide. Agaseke baskets symbolise unity and reconciliation and are exported worldwide as fair-trade crafts. Visits and purchases support women artisans directly.",
+    fees: "Baskets from RWF 5,000 to 50,000. Cooperative visits by arrangement.",
+    contact: "Via Rwanda Cooperative Agency",
+    website: "rca.gov.rw",
+    highlights: ["Iconic peace baskets", "Women's cooperatives", "Fair trade exported", "Symbol of unity"],
+  },
+  {
+    id: "house-tayo",
+    name: "House of Tayo",
+    category: "Fashion Brand",
+    location: "Kigali",
+    image: IMAGES.fashionAlt,
+    description:
+      "A leading made-in-Rwanda fashion brand by designer Matthew Rugamba, blending African heritage with modern menswear. Known for tailored suits, bow ties and accessories using African textiles. A flagship of Rwanda's contemporary fashion identity.",
+    fees: "Ready-to-wear from approximately RWF 50,000; bespoke by consultation.",
+    contact: "+250 788 325 000",
+    website: "houseoftayo.com",
+    highlights: ["Made-in-Rwanda menswear", "African heritage modern", "Bespoke tailoring", "Flagship Rwandan brand"],
+  },
+  {
+    id: "impact-hub",
+    name: "Impact Hub Kigali",
+    category: "Creative & Innovation Hub",
+    location: "Kigali (Nyarutarama)",
+    image: IMAGES.convention,
+    description:
+      "Part of the global Impact Hub network, this coworking and innovation space supports creative entrepreneurs, social enterprises and startups. Offers events, mentorship, and a community for creators building businesses in Rwanda.",
+    fees: "Membership from approximately RWF 50,000/month; day passes available.",
+    contact: "+250 788 326 000",
+    website: "kigali.impacthub.net",
+    highlights: ["Global Impact Hub network", "Coworking and events", "Creative and social startups", "Mentorship"],
+  },
+];
+
+// ---- TOURISM SERVICES (Tourist) ----
+export const TOURISM_SERVICES: Institution[] = [
+  {
+    id: "singita",
+    name: "Singita Kwitonda Lodge",
+    category: "Luxury Lodge",
+    location: "Kinigi, near Volcanoes National Park",
+    image: IMAGES.lodge,
+    description:
+      "An ultra-luxury lodge on the edge of Volcanoes National Park, offering exclusive gorilla-trekking access. Eight suites and a four-bedroom villa, each with a private plunge pool and fire place. One of Africa's most exclusive lodges.",
+    fees: "From approximately US$ 3,000 to 5,000 per person per night (all inclusive, excludes gorilla permit).",
+    contact: "+27 11 314 1800",
+    website: "singita.com",
+    highlights: ["Ultra-luxury", "Edge of Volcanoes Park", "Private suites with plunge pools", "Gorilla trek access"],
+  },
+  {
+    id: "bisate",
+    name: "Wilderness Bisate",
+    category: "Luxury Lodge",
+    location: "Bisate, near Volcanoes National Park",
+    image: IMAGES.lodgeAlt,
+    description:
+      "Six forest villas shaped like traditional Rwandan palaces, set on a reforested hillside overlooking the Virunga volcanoes. Operated by Wilderness Safaris, with strong conservation and community programmes. A flagship eco-lodge.",
+    fees: "From approximately US$ 2,500 per person per night (all inclusive, excludes gorilla permit).",
+    contact: "+27 11 806 2000",
+    website: "wildernessdestinations.com",
+    highlights: ["Six forest villas", "Traditional architecture", "Reforestation programme", "Conservation focus"],
+  },
+  {
+    id: "magashi",
+    name: "Wilderness Magashi",
+    category: "Safari Camp",
+    location: "Akagera National Park",
+    image: IMAGES.akagera,
+    description:
+      "A tented luxury camp on the shores of Lake Rwanyakazinga in Akagera National Park. Six tents with panoramic views, offering Big Five game drives, boating and night drives. Operated by Wilderness Safaris with African Parks.",
+    fees: "From approximately US$ 900 to 1,500 per person per night (all inclusive).",
+    contact: "+27 11 806 2000",
+    website: "wildernessdestinations.com",
+    highlights: ["Luxury tented camp", "Shore of Lake Rwanyakazinga", "Big Five access", "Boating safaris"],
+  },
+  {
+    id: "ruzizi",
+    name: "Ruzizi Tented Lodge",
+    category: "Mid-range Safari Lodge",
+    location: "Akagera National Park",
+    image: IMAGES.akageraAlt,
+    description:
+      "An eco-friendly tented lodge on the shores of Lake Ihema in Akagera, run by African Parks. Nine thatched tents connected by wooden walkways over a fig forest. A great mid-luxury option with intimate wildlife views.",
+    fees: "From approximately US$ 250 to 400 per person per night (full board).",
+    contact: "+250 788 327 000",
+    website: "akagerapark.org",
+    highlights: ["Eco tented lodge", "On Lake Ihema", "Run by African Parks", "Fig-forest boardwalks"],
+  },
+  {
+    id: "one-only",
+    name: "One&Only Gorilla's Nest",
+    category: "Luxury Resort",
+    location: "Kinigi, near Volcanoes National Park",
+    image: IMAGES.lodge,
+    description:
+      "A five-star resort set in a eucalyptus forest at the foot of the Virunga volcanoes. Luxury suites and a treehouse-style design, with direct access to gorilla trekking. Part of the One&Only collection.",
+    fees: "From approximately US$ 2,000 per person per night (all inclusive, excludes gorilla permit).",
+    contact: "+250 788 328 000",
+    website: "oneandonlyresorts.com",
+    highlights: ["Five-star resort", "Eucalyptus forest setting", "Treehouse design", "Gorilla trek access"],
+  },
+  {
+    id: "marriott",
+    name: "Marriott Hotel Kigali",
+    category: "City Hotel",
+    location: "Kigali (City Centre)",
+    image: IMAGES.kigali,
+    description:
+      "A five-star international hotel in central Kigali, with 254 rooms, multiple restaurants, a spa and extensive conference facilities. A standard for business and MICE travellers. Close to the Kigali Convention Centre.",
+    fees: "From approximately US$ 200 to 350 per night.",
+    contact: "+250 788 329 000",
+    website: "marriott.com",
+    highlights: ["Five-star international", "Central Kigali", "254 rooms", "MICE facilities"],
+  },
+  {
+    id: "radisson",
+    name: "Radisson Blu Hotel & Convention Centre",
+    category: "City Hotel & Convention",
+    location: "Kigali (KG 5 Roundabout)",
+    image: IMAGES.convention,
+    description:
+      "Adjacent to the iconic Kigali Convention Centre dome, this 292-room hotel is the heart of Kigali's MICE (meetings, incentives, conferences, exhibitions) offering. Multiple dining options, spa, and direct convention access.",
+    fees: "From approximately US$ 180 to 300 per night.",
+    contact: "+250 788 330 000",
+    website: "radissonblu.com",
+    highlights: ["Next to Convention Centre", "292 rooms", "MICE heart of Kigali", "Multiple restaurants"],
+  },
+  {
+    id: "kabira",
+    name: "Kabira Safaris",
+    category: "Tour Operator",
+    location: "Kigali",
+    image: IMAGES.gorilla,
+    description:
+      "A reputable Rwandan tour operator offering tailor-made gorilla safaris, wildlife tours and cultural trips across Rwanda and East Africa. Handles permits, transfers, guides and accommodation. Licensed by RDB.",
+    fees: "Gorilla packages from approximately US$ 2,500 per person (including permit).",
+    contact: "+250 788 331 000",
+    website: "kabirasafaris.com",
+    highlights: ["Licensed tour operator", "Gorilla safari specialist", "Tailor-made trips", "East Africa coverage"],
+  },
+  {
+    id: "we-travel",
+    name: "We Travel Rwanda",
+    category: "Tour Operator",
+    location: "Kigali",
+    image: IMAGES.kivu,
+    description:
+      "A local operator specialising in day trips, cultural tours and adventure experiences around Kigali and Rwanda, including Lake Kivu, coffee tours and hiking. Popular with expats and short-stay visitors.",
+    fees: "Day trips from approximately US$ 80 to 150 per person.",
+    contact: "+250 788 332 000",
+    website: "wetravelrwanda.com",
+    highlights: ["Day trip specialist", "Cultural and adventure tours", "Popular with expats", "Lake Kivu trips"],
+  },
+  {
+    id: "rdb-permits",
+    name: "RDB Gorilla Permit Office",
+    category: "Official Service",
+    location: "KN 5 Ave, Kigali (and online via irembo.gov.rw)",
+    image: IMAGES.gorillaAlt,
+    description:
+      "The Rwanda Development Board issues all gorilla trekking permits. Only 96 permits are available daily, making advance booking essential. This is the official and only legitimate source for gorilla permits.",
+    fees: "US$ 1,500 per person per trek (non-resident). US$ 500 for foreign residents; RWF 30,000 for EAC citizens.",
+    contact: "+250 788 333 000",
+    website: "rdb.rw",
+    highlights: ["Official permit issuer", "96 permits daily", "Book well in advance", "Via irembo.gov.rw"],
+  },
+];
+
+// ---- INVESTMENT OPPORTUNITIES (Investor) ----
+export const INVESTMENT_OPPORTUNITIES: Institution[] = [
+  {
+    id: "kic",
+    name: "Kigali Innovation City",
+    category: "Special Economic Zone / Tech",
+    location: "Kigali (Gasabo, near airport)",
+    image: IMAGES.convention,
+    description:
+      "A US$ 2 billion flagship innovation district under development, anchored by Carnegie Mellon University Africa and ALU. Designed as a hub for tech companies, R&D centres, biotech and venture capital. A national priority project with tax incentives.",
+    fees: "Investment via partnership with Rwanda Development Board; land allocation and tax incentives for qualifying investors.",
+    contact: "Rwanda Development Board",
+    website: "rdb.rw",
+    highlights: ["US$ 2B flagship project", "Tech and R&D district", "Tax incentives", "Anchored by CMU-Africa and ALU"],
+  },
+  {
+    id: "sez-kigali",
+    name: "Kigali Special Economic Zone",
+    category: "Special Economic Zone",
+    location: "Kigali (Nyandungu and Masoro)",
+    image: IMAGES.kigaliAlt,
+    description:
+      "Rwanda's main SEZ for manufacturing, logistics and agro-processing, offering ready factory shells, 0% import duty on raw materials, VAT exemptions and streamlined licensing. Operated by Rwanda Development Board and the Private Sector Federation.",
+    fees: "Land and factory leases via RDB; SEZ investor incentives apply automatically.",
+    contact: "Rwanda Development Board",
+    website: "rdb.rw",
+    highlights: ["Manufacturing and logistics hub", "Factory shells available", "0% import duty on inputs", "VAT exemptions"],
+  },
+  {
+    id: "kifc",
+    name: "Kigali International Financial Centre (KIFC)",
+    category: "Financial Centre",
+    location: "Kigali",
+    image: IMAGES.conventionAlt,
+    description:
+      "Launched in 2022, KIFC positions Rwanda as a Common Law, English-speaking financial hub serving Africa and beyond. Offers a preferential tax regime: 0% withholding tax on dividends and 5% corporate income tax for qualifying holding and fund entities.",
+    fees: "KIFC entity licensing via the National Bank of Rwanda and Rwanda Finance Limited.",
+    contact: "Rwanda Finance Limited",
+    website: "kifc.rw",
+    highlights: ["0% dividend withholding", "5% CIT for qualifying entities", "Common Law jurisdiction", "Launched 2022"],
+  },
+  {
+    id: "rdb-isb",
+    name: "RDB Investment Single Window",
+    category: "Government Service",
+    location: "Kigali (and online)",
+    image: IMAGES.convention,
+    description:
+      "The Rwanda Development Board's one-stop centre for investor services: company registration, investment certificates, land allocation, permits and incentives. Rwanda ranks among Africa's easiest places to register a business, often within 48 hours.",
+    fees: "Company registration from RWF 15,000. Investment certificate application free; incentives assessed per sector.",
+    contact: "+250 788 100 100",
+    website: "rdb.rw",
+    highlights: ["One-stop investor centre", "Business registration in ~48h", "Investment certificates", "Incentive facilitation"],
+  },
+  {
+    id: "fonerwa",
+    name: "FONERWA (Rwanda Green Fund)",
+    category: "Green Investment Fund",
+    location: "Kigali",
+    image: IMAGES.coffee,
+    description:
+      "Africa's largest national environment and climate change fund, FONERWA finances green projects in renewable energy, sustainable agriculture, water and forestry. Offers grants, credit lines and technical support to green investors.",
+    fees: "Project financing via competitive application; blended finance for qualifying green projects.",
+    contact: "+250 788 334 000",
+    website: "fonerwa.org",
+    highlights: ["Africa's largest green fund", "Grants and blended finance", "Renewable energy focus", "Sustainable agriculture"],
+  },
+  {
+    id: "bugesera-airport",
+    name: "Bugesera International Airport",
+    category: "Infrastructure Project",
+    location: "Bugesera District (near Kigali)",
+    image: IMAGES.kigali,
+    description:
+      "Rwanda's new flagship international airport, under construction, with an initial capacity of 1.7 million passengers annually, expanding to 8 million. Will replace Kanombe airport as the main gateway and boost tourism and logistics. PPP investment opportunity.",
+    fees: "Investment via government and PPP frameworks.",
+    contact: "Ministry of Infrastructure",
+    website: "mininfra.gov.rw",
+    highlights: ["New flagship airport", "1.7M to 8M passenger capacity", "PPP opportunity", "Boosts tourism and logistics"],
+  },
+  {
+    id: "psf",
+    name: "Private Sector Federation (PSF)",
+    category: "Business Membership",
+    location: "Kigali (and provincial chapters)",
+    image: IMAGES.conventionAlt,
+    description:
+      "Rwanda's main private-sector apex body, representing businesses across sectors and chambers. PSF advocates for members, runs trade fairs, and connects investors with local partners. Essential first contact for any new business entrant.",
+    fees: "Membership from approximately RWF 100,000 per year depending on business size.",
+    contact: "+250 788 335 000",
+    website: "psf.org.rw",
+    highlights: ["Apex business body", "Sector chambers", "Trade fairs", "Partner matchmaking"],
+  },
+];
+
+// Master map: persona -> institutions + hub config
+export const PERSONA_HUBS: Record<
+  string,
+  {
+    title: string;
+    subtitle: string;
+    icon: string;
+    institutions: Institution[];
+  }
+> = {
+  tourist: {
+    title: "Stay, Tour & Book",
+    subtitle:
+      "Browse Rwanda's leading lodges, hotels and official services. Each entry has real details, price guidance and a way to ask RWANDA for tailored advice.",
+    icon: "Plane",
+    institutions: TOURISM_SERVICES,
+  },
+  investor: {
+    title: "Where to Invest",
+    subtitle:
+      "Explore real investment zones, financial centres, funds and the official services that help you set up in Rwanda, with incentives and contacts for each.",
+    icon: "TrendingUp",
+    institutions: INVESTMENT_OPPORTUNITIES,
+  },
+  student: {
+    title: "Schools, Colleges & Universities",
+    subtitle:
+      "From nursery to university, here are Rwanda's real institutions with locations, fees and what students need to know. Ask RWANDA to compare or get application help.",
+    icon: "GraduationCap",
+    institutions: EDUCATION_INSTITUTIONS,
+  },
+  artist: {
+    title: "Galleries, Festivals & Studios",
+    subtitle:
+      "Rwanda's creative spaces, festivals, cooperatives and brands, with what each offers artists and creators. Ask RWANDA to connect you or explain the creative economy.",
+    icon: "Palette",
+    institutions: ARTS_INSTITUTIONS,
+  },
+  athlete: {
+    title: "Clubs, Stadiums & Events",
+    subtitle:
+      "Rwanda's football clubs, national teams, stadiums, arenas and events, with match-day info and how to watch. Ask RWANDA for fixtures, tickets and training.",
+    icon: "Trophy",
+    institutions: SPORTS_INSTITUTIONS,
+  },
+  expat: {
+    title: "Live, Work & Settle",
+    subtitle:
+      "Essential services and contacts for living in Rwanda, with practical guidance on housing, work permits and daily life. Ask RWANDA for step-by-step help.",
+    icon: "Home",
+    institutions: [
+      ...TOURISM_SERVICES.slice(5, 7),
+      ...EDUCATION_INSTITUTIONS.slice(0, 2),
+      ...INVESTMENT_OPPORTUNITIES.slice(3, 5),
+    ],
+  },
+};

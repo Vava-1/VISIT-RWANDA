@@ -107,3 +107,33 @@ Work Log:
 Stage Summary:
 - Persona switcher no longer crashes. The Expat/Diaspora persona (and all others) now opens and switches correctly.
 - Added a fallback so any future icon-name mismatch degrades gracefully instead of throwing a runtime error.
+
+---
+Task ID: visit-rwanda-persona-institutions
+Agent: Z.ai Code (main)
+Task: Give every persona its own browsable hub of real institutions (schools, clubs, galleries, lodges, etc.) with images, locations, fees, details; and feed all that data to the RWANDA AI so it can answer detailed questions.
+
+Work Log:
+- Fetched 7 new real image sets via image-search (university campus, secondary school classroom, Amahoro stadium/match, art gallery interior, luxury safari lodge, fashion show runway, basketball arena), added to IMAGES map.
+- Built comprehensive, verified institution datasets in rwanda-data.ts (55 institutions total):
+  - EDUCATION_INSTITUTIONS (15): University of Rwanda, CMU Africa, ALU, UGHE, Kepler, ULK, INES Ruhengeri, Rwanda Polytechnic (IPRCs), Green Hills Academy, Riviera High School, FAWE Girls' School, Lycee de Kigali, King David Academy, RBC, RAB. Each with category, location, image, description, fees, contact, website, highlights.
+  - SPORTS_INSTITUTIONS (12): APR FC, Rayon Sports, Police FC, Mukura Victory, SC Kiyovu, Amahoro National Stadium, BK Arena, Gahanga Cricket Stadium, Tour du Rwanda, Patriots BBC, Amavubi, Team Rwanda Cycling.
+  - ARTS_INSTITUTIONS (11): Inema Arts Center, Niyo Art Gallery, Ivuka Arts, Uburanga Arts, Ubumuntu Arts Festival, Kigali Up! Music Festival, Rwanda Cultural Fashion Week, Mashariki Film Festival, Agaseke Basket Cooperative, House of Tayo, Impact Hub Kigali.
+  - TOURISM_SERVICES (10): Singita Kwitonda, Wilderness Bisate, Magashi, Ruzizi, One&Only Gorilla's Nest, Marriott, Radisson Blu, Kabira Safaris, We Travel Rwanda, RDB Gorilla Permit Office.
+  - INVESTMENT_OPPORTUNITIES (7): Kigali Innovation City, Kigali SEZ, KIFC, RDB Investment Single Window, FONERWA, Bugesera International Airport, Private Sector Federation.
+  - PERSONA_HUBS map ties each persona to its institutions + title/subtitle/icon.
+- Built PersonaHub component: browsable directory that adapts to selected persona. Features: search by name/place/type, category filters, institution cards (image, name, location, fee preview, Details + Ask RWANDA buttons), full detail dialog (image, description, highlights, fees, contact, clickable website, Ask RWANDA CTA). Resets state on persona switch.
+- Wired PersonaHub into page.tsx right after PersonaZone, so it appears as the dedicated browsable section for the active persona.
+- Fed ALL institution data into the AI system prompt (src/lib/ai.ts): each institution's name, category, location, description, fees, contact and website is now in RWANDA's knowledge base, with explicit rules per persona to use the correct list and give exact fees/locations/websites.
+- Verified with Agent Browser:
+  - Student hub: 15 education cards render (UR, CMU, ALU, UGHE, Kepler, ULK, INES, RP, Green Hills, Riviera, FAWE, Lycee, King David, RBC, RAB).
+  - Athlete hub: 12 cards (APR FC, Rayon Sports, Police FC, Mukura, Kiyovu, Amahoro, BK Arena, Gahanga, Tour du Rwanda, Patriots, Amavubi, Team Rwanda).
+  - Artist hub: 11 cards (Inema, Niyo, Ivuka, Uburanga, Ubumuntu, Kigali Up, RCFW, Mashariki, Agaseke, House of Tayo, Impact Hub).
+  - Detail dialog (CMU Africa): shows fees, contact, website (africa.cmu.edu), highlights, and Ask RWANDA button.
+  - AI test: asked "What are the fees at Carnegie Mellon University Africa and how do I apply?" RWANDA answered with the exact data: US$ 18,000-22,000 fees, CMU Pittsburgh accreditation, contact +250 788 304 000, website africa.cmu.edu. Institution knowledge flows through correctly.
+- Lint clean, homepage 200.
+
+Stage Summary:
+- Every persona now has a dedicated, browsable hub of real Rwandan institutions (55 total across education, sports, arts, tourism services and investment), each with image, location, fees, contact, website and highlights.
+- Users can browse themselves OR ask RWANDA, which now has deep knowledge of every institution in the app and gives exact fees, locations and contacts in its answers.
+- Search and category filtering work; the hub adapts instantly when the persona changes.

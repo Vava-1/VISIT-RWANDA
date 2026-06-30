@@ -1,5 +1,9 @@
 import ZAI from "z-ai-web-dev-sdk";
-import { ECONOMY_STATS, QUICK_FACTS, DESTINATIONS, INVESTMENT_SECTORS } from "./rwanda-data";
+import {
+  ECONOMY_STATS, QUICK_FACTS, DESTINATIONS, INVESTMENT_SECTORS,
+  EDUCATION_INSTITUTIONS, SPORTS_INSTITUTIONS, ARTS_INSTITUTIONS,
+  TOURISM_SERVICES, INVESTMENT_OPPORTUNITIES,
+} from "./rwanda-data";
 
 // Reuse a single ZAI instance across requests
 let zaiInstance: Awaited<ReturnType<typeof ZAI.create>> | null = null;
@@ -21,6 +25,22 @@ export function buildRwandaKnowledge(persona?: string): string {
     (s) => `- ${s.name}: ${s.whyRwanda}`
   ).join("\n");
 
+  // Detailed institution knowledge so RWANDA can answer specific questions.
+  const fmtInstitutions = (list: any[], label: string) =>
+    `${label}:\n` +
+    list
+      .map(
+        (i) =>
+          `- ${i.name} [${i.category}], ${i.location}. ${i.description} Fees: ${i.fees || "n/a"}. Contact: ${i.contact || "n/a"}. Web: ${i.website || "n/a"}.`
+      )
+      .join("\n");
+
+  const education = fmtInstitutions(EDUCATION_INSTITUTIONS, "EDUCATION INSTITUTIONS (nursery to university, TVET, research)");
+  const sports = fmtInstitutions(SPORTS_INSTITUTIONS, "SPORTS (clubs, stadiums, events, national teams)");
+  const arts = fmtInstitutions(ARTS_INSTITUTIONS, "ARTS & CREATIVE (galleries, festivals, studios, brands, hubs)");
+  const tourismSvc = fmtInstitutions(TOURISM_SERVICES, "TOURISM SERVICES (lodges, hotels, operators, official permits)");
+  const investOpps = fmtInstitutions(INVESTMENT_OPPORTUNITIES, "INVESTMENT OPPORTUNITIES (zones, funds, official services)");
+
   return `You are "RWANDA", the official AI concierge of the Visit Rwanda platform: an expert, warm and trustworthy digital guide to the Republic of Rwanda. If anyone asks your name, your name is RWANDA.
 
 ABOUT RWANDA (verified):
@@ -41,6 +61,16 @@ ${dest}
 INVESTMENT SECTORS:
 ${sectors}
 
+${education}
+
+${sports}
+
+${arts}
+
+${tourismSvc}
+
+${investOpps}
+
 TRAVEL ESSENTIALS:
 - Visa on arrival: US$50 / 30 days for most non-African nationals; African Union nationals visa-free.
 - Yellow fever certificate required if arriving from endemic zones.
@@ -54,9 +84,12 @@ BEHAVIOUR RULES:
 - Tailor every answer to the user's persona: ${persona || "general visitor"}.
 - For tourists: help plan, give realistic prices and seasons, respect Rwanda's premium, low volume tourism model.
 - For investors: cite sectors, incentives (KIFC, 7-year tax holidays, SEZs) and the Rwanda Development Board.
-- For students or researchers: mention UR, CMU Africa, UGHE, ALU and research centres.
-- For artists or creators: mention Inema, Niyo, Ubumuntu, Rwanda Arts Initiative, the creative economy policy.
-- For athletes or sports fans: mention APR vs Rayon Sports, Tour du Rwanda (UCI 2.Pro), BAL and BK Arena, Amavubi.
+- For students or researchers: use the EDUCATION INSTITUTIONS list. Give exact fees, locations, websites and how to apply for any school, college or university named (UR, CMU Africa, UGHE, ALU, Kepler, ULK, INES, Rwanda Polytechnic IPRCs, Green Hills, Riviera, FAWE, Lycée de Kigali, King David, RBC, RAB, etc.).
+- For artists or creators: use the ARTS & CREATIVE list. Give details for Inema, Niyo, Ivuka, Uburanga, Ubumuntu, Kigali Up, Rwanda Cultural Fashion Week, Mashariki Film Festival, Agaseke, House of Tayo, Impact Hub Kigali, etc.
+- For athletes or sports fans: use the SPORTS list. Give details for APR FC, Rayon Sports, Police FC, Mukura, SC Kiyovu, Amahoro Stadium, BK Arena, Gahanga Cricket, Tour du Rwanda, Patriots BBC, Amavubi, Team Rwanda Cycling, etc.
+- For tourists: use the TOURISM SERVICES list. Give details and price guidance for Singita Kwitonda, Wilderness Bisate, Magashi, Ruzizi, One&Only Gorilla's Nest, Marriott, Radisson Blu, Kabira Safaris, We Travel Rwanda, and the RDB Gorilla Permit Office (US$ 1,500 per permit).
+- For investors: use the INVESTMENT OPPORTUNITIES list. Give details for Kigali Innovation City, Kigali SEZ, KIFC, RDB Investment Single Window, FONERWA, Bugesera Airport, PSF, and the relevant incentives.
+- When a user asks about any specific institution in the lists above, answer with the real fees, location, contact and website you have. Do not guess. If an institution is not in your data, say so and suggest the official source.
 - For expats/diaspora: mention safety, cost of living, housing, work permits, community.
 - Never invent prices or permits that contradict the data above; clarify that gorilla permits are about US$ 1,500.
 - Keep replies focused and skimmable. Never produce walls of text.
