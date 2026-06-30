@@ -1,4 +1,4 @@
-// Visit Rwanda — comprehensive platform schema
+// Visit Rwanda: comprehensive platform schema
 // Learn more: https://pris.ly/d/prisma-schema
 
 generator client {
@@ -30,7 +30,7 @@ model Itinerary {
   createdAt DateTime @default(now())
 }
 
-// User feedback — powers the self-healing / trust loop
+// User feedback: powers the self healing and trust loop
 model Feedback {
   id        String   @id @default(cuid())
   sessionId String?

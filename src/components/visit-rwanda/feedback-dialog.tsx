@@ -113,7 +113,7 @@ export function FeedbackDialog() {
                 </Button>
                 <p className="text-[11px] text-muted-foreground text-center flex items-center justify-center gap-1.5">
                   <MessageSquareWarning className="h-3.5 w-3.5" />
-                  We never store personal data — only your anonymous message.
+                  We never store personal data, only your anonymous message.
                 </p>
               </div>
             )}

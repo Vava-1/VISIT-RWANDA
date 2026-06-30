@@ -34,7 +34,7 @@ export function LiveSection() {
             Culture, sport & <span className="gradient-text">learning</span>
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Rwanda pulses with creative energy, athletic ambition and a deep commitment to learning —
+            Rwanda pulses with creative energy, athletic ambition and a deep commitment to learning.
             for artists, athletes, students and everyone in between.
           </p>
         </div>
@@ -64,7 +64,7 @@ export function LiveSection() {
                 <img src={IMAGES.culture} alt="Rwandan culture" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-5 text-white">
-                  <div className="text-xs uppercase tracking-wide opacity-80">Intore — Dance of Heroes</div>
+                  <div className="text-xs uppercase tracking-wide opacity-80">Intore, Dance of Heroes</div>
                 </div>
               </motion.div>
               <div>
@@ -211,7 +211,7 @@ export function LiveSection() {
                         <span className="h-1.5 w-1.5 rounded-full bg-sky-500 mt-2 shrink-0" />
                         <span>
                           <strong className="text-foreground">{u.name}</strong>
-                          <span className="text-muted-foreground"> — {u.note}</span>
+                          <span className="text-muted-foreground">, {u.note}</span>
                         </span>
                       </li>
                     ))}
@@ -234,7 +234,7 @@ export function LiveSection() {
                     ))}
                   </ul>
                   <button
-                    onClick={() => ask("I'm a student/researcher. Tell me about studying and researching in Rwanda — universities, scholarships and how to apply.")}
+                    onClick={() => ask("I'm a student or researcher. Tell me about studying and researching in Rwanda: universities, scholarships and how to apply.")}
                     className="mt-4 text-sm font-medium text-primary hover:underline flex items-center gap-1"
                   >
                     Learn about studying in Rwanda <ArrowUpRight className="h-4 w-4" />

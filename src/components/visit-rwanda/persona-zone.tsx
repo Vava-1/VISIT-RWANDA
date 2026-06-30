@@ -59,7 +59,7 @@ const CONTENT: Record<string, PersonaContent> = {
   },
   artist: {
     greeting: "Join Rwanda's creative renaissance",
-    body: "From Inema Arts Center and Niyo Gallery to the Ubumuntu Arts Festival and Rwanda Cultural Fashion Week — Kigali is fast becoming an East African creative hub with real support.",
+    body: "From Inema Arts Center and Niyo Gallery to the Ubumuntu Arts Festival and Rwanda Cultural Fashion Week. Kigali is fast becoming an East African creative hub with real support.",
     quickLinks: [
       { label: "Culture & heritage", href: "#live" },
       { label: "Events", href: "#connect" },

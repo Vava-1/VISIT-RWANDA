@@ -17,7 +17,7 @@ const LINKS = [
     links: [
       { label: "Destinations", href: "#discover" },
       { label: "Experiences", href: "#experiences" },
-      { label: "Real-time Hub", href: "#connect" },
+      { label: "Live Hub", href: "#connect" },
       { label: "Culture & Sport", href: "#live" },
     ],
   },
@@ -71,9 +71,9 @@ export function Footer() {
       <div className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-background/80">
-            <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-400" /> Data-safe & trustworthy</span>
-            <span className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-amber-400" /> AI-personalised</span>
-            <span className="flex items-center gap-1.5"><Globe2 className="h-4 w-4 text-sky-400" /> Real-time data</span>
+            <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-400" /> Safe with your data</span>
+            <span className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-amber-400" /> Personalised for you</span>
+            <span className="flex items-center gap-1.5"><Globe2 className="h-4 w-4 text-sky-400" /> Always current</span>
           </div>
           <Button
             variant="outline"
@@ -102,8 +102,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-background/70 max-w-sm leading-relaxed">
-              The intelligent digital gateway to the Republic of Rwanda — uniting tourism,
-              investment, culture, sport and learning in one trustworthy, AI-powered platform.
+              The intelligent digital gateway to the Republic of Rwanda, uniting tourism,
+              investment, culture, sport and learning in one trustworthy, intelligent platform.
             </p>
 
             <div className="mt-5">

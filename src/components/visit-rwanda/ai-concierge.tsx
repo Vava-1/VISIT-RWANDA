@@ -158,7 +158,7 @@ export function AIConcierge() {
                     </div>
                     <h3 className="font-bold text-lg">Muraho! I'm Aiya 🇷🇼</h3>
                     <p className="text-sm text-muted-foreground mt-1.5 max-w-xs mx-auto">
-                      Your intelligent guide to Rwanda — tourism, investment, culture, sport and
+                      Your intelligent guide to Rwanda: tourism, investment, culture, sport and
                       everything in between. How can I help?
                     </p>
                     <div className="mt-5 grid gap-2 text-left">

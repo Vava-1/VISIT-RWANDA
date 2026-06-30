@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 
 export const runtime = "nodejs";
 
-// POST /api/analytics — anonymous engagement events for self-healing signals.
+// POST /api/analytics: anonymous engagement events for self healing signals.
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));

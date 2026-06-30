@@ -36,7 +36,7 @@ export function TravelEssentials() {
             Everything you need, <span className="gradient-text">before you go</span>
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Visas, health, safety, money, transport and culture — the practical intelligence for a
+            Visas, health, safety, money, transport and culture: the practical intelligence for a
             smooth Rwandan journey.
           </p>
         </div>

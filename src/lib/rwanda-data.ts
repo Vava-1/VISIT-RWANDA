@@ -1,4 +1,4 @@
-// Visit Rwanda — authoritative data layer
+// Visit Rwanda: authoritative data layer
 // Real, verified information about Rwanda's tourism, economy, culture & society.
 // Images are real web photos re-hosted on a stable CDN via the image-search service.
 
@@ -49,17 +49,17 @@ export const DESTINATIONS: Destination[] = [
     category: "National Park",
     region: "Northern Province",
     image: IMAGES.gorilla,
-    tagline: "Home of the mountain gorilla — Rwanda's iconic wilderness",
+    tagline: "Home of the mountain gorilla, and Rwanda's iconic wilderness",
     description:
-      "A 160km² sanctuary of bamboo forest and afro-alpine moorland on the Virunga Massif, protecting around a third of the world's remaining mountain gorillas. This is where Dian Fossey conducted her pioneering research and where Rwanda's gorilla-trekking experience was born. Five of the eight Virunga volcanoes rise here: Karisimbi, Bisoke, Sabyinyo, Gahinga and Muhabura.",
+      "A 160km² sanctuary of bamboo forest and afro alpine moorland on the Virunga Massif, protecting around a third of the world's remaining mountain gorillas. This is where Dian Fossey conducted her pioneering research and where Rwanda's gorilla trekking experience was born. Five of the eight Virunga volcanoes rise here: Karisimbi, Bisoke, Sabyinyo, Gahinga and Muhabura.",
     highlights: [
-      "Gorilla trekking — only ~96 permits issued daily",
+      "Gorilla trekking: only about 96 permits issued daily",
       "Golden monkey tracking",
       "Hike Mount Bisoke's crater lake",
       "Dian Fossey Grave & Karisoke Research Centre",
       "Cultural visits to Iby'Iwacu village",
     ],
-    bestTime: "June–September & December–February (dry seasons)",
+    bestTime: "June to September & December to February (dry seasons)",
     coordinates: { lat: -1.4667, lng: 29.5 },
     permitFrom: "$1,500 per person (park entry + gorilla permit)",
     unesco: true,
@@ -72,15 +72,15 @@ export const DESTINATIONS: Destination[] = [
     image: IMAGES.akagera,
     tagline: "Big Five savanna safari in the land of a thousand hills",
     description:
-      "Rwanda's largest protected wetland and only savanna park, spanning 1,122km² along the Tanzanian border. A remarkable conservation comeback story: lions were reintroduced in 2015 and black rhinos in 2017, restoring the park to full Big Five status. Managed by African Parks with the Rwanda Development Board since 2010.",
+      "Rwanda's largest protected wetland and only savanna park, spanning 1,122km² along the Tanzanian border. It is a remarkable conservation comeback story: lions were reintroduced in 2015 and black rhinos in 2017, restoring the park to full Big Five status. It is managed by African Parks with the Rwanda Development Board since 2010.",
     highlights: [
       "Big Five: lion, leopard, elephant, buffalo & rhino",
-      "Boat safari on Lake Ihema — hippos & crocodiles",
+      "Boat safari on Lake Ihema (hippos and crocodiles)",
       "Over 480 bird species",
       "Night drives & walk-the-line experiences",
       "Luxury & fly-camping at Magashi & Ruzizi",
     ],
-    bestTime: "June–September (dry season; easier game viewing)",
+    bestTime: "June to September (dry season; easier game viewing)",
     coordinates: { lat: -1.8, lng: 30.5 },
     permitFrom: "Park entry from $50 (foreign non-resident adult)",
   },
@@ -92,15 +92,15 @@ export const DESTINATIONS: Destination[] = [
     image: IMAGES.nyungwe,
     tagline: "Africa's oldest & most biodiverse montane rainforest",
     description:
-      "One of Africa's best-preserved montane rainforests, covering 1,019km² and home to 13 primate species, 325 bird species and over 1,000 plant types. The 160m East Africa's only canopy walkway suspends you 60m above the forest floor. Newly inscribed as a UNESCO World Heritage site (2023).",
+      "One of Africa's best preserved montane rainforests, covering 1,019km² and home to 13 primate species, 325 bird species and over 1,000 plant types. The 160m East Africa's only canopy walkway suspends you 60m above the forest floor. Newly inscribed as a UNESCO World Heritage site (2023).",
     highlights: [
-      "Canopy walkway — 200m suspended 60m up",
+      "Canopy walkway: 200m long, suspended 60m up",
       "Chimpanzee & colobus monkey tracking",
       "Source of the Nile watershead & Congo-Nile divide",
       "Birding: 27 Albertine Rift endemics",
       "Hiking network: Igishigishigi, Isumo waterfall",
     ],
-    bestTime: "June–September & December–February",
+    bestTime: "June to September & December to February",
     coordinates: { lat: -2.4833, lng: 29.2 },
     permitFrom: "Canopy walk $60; chimp trek $90",
     unesco: true,
@@ -111,16 +111,16 @@ export const DESTINATIONS: Destination[] = [
     category: "Forest",
     region: "Western Province",
     image: IMAGES.nyungweAlt,
-    tagline: "Rwanda's newest park — forest restoration in action",
+    tagline: "Rwanda's newest park, where forest restoration is in action",
     description:
-      "Established in 2015 and Rwanda's fourth national park, Gishwati-Mukura is a living laboratory of forest restoration. Home to chimpanzees, golden monkeys, L'Hoest's monkeys and 232 bird species. The park pioneered a landscape restoration approach that pairs conservation with community livelihoods.",
+      "Established in 2015 and Rwanda's fourth national park, Gishwati Mukura is a living laboratory of forest restoration. It is home to chimpanzees, golden monkeys, L'Hoest's monkeys and 232 bird species. The park pioneered a landscape restoration approach that pairs conservation with community livelihoods.",
     highlights: [
       "Chimpanzee & primate tracking",
       "Community tea-plantation tours",
       "Waterfall hikes",
       "Birdwatching (60+ species recorded)",
     ],
-    bestTime: "June–September",
+    bestTime: "June to September",
     coordinates: { lat: -1.65, lng: 29.35 },
     permitFrom: "Primate trek from $70",
   },
@@ -132,15 +132,15 @@ export const DESTINATIONS: Destination[] = [
     image: IMAGES.kigali,
     tagline: "Africa's cleanest, safest & greenest capital",
     description:
-      "Rwanda's vibrant capital sprawls across four hills at ~1,567m altitude. Repeatedly ranked among Africa's cleanest and safest cities, Kigali blends modern skyline (Kigali Heights, Kigali Convention Centre), leafy boulevards, a thriving art scene and the moving Kigali Genocide Memorial. It's the natural gateway to every Rwandan journey.",
+      "Rwanda's vibrant capital sprawls across four hills at about 1,567m altitude. Repeatedly ranked among Africa's cleanest and safest cities, Kigali blends a modern skyline (Kigali Heights, Kigali Convention Centre), leafy boulevards, a thriving art scene and the moving Kigali Genocide Memorial. It is the natural gateway to every Rwandan journey.",
     highlights: [
       "Kigali Genocide Memorial at Gisozi",
-      "Kigali Convention Centre — iconic dome",
+      "Kigali Convention Centre and its iconic dome",
       "Kimironko Market & Nyarutarama art galleries",
       "Niyo Art Gallery & Inema Arts Center",
       "Umuganda community work (last Saturday monthly)",
     ],
-    bestTime: "Year-round; driest June–September",
+    bestTime: "Year-round; driest June to September",
     coordinates: { lat: -1.9706, lng: 30.1044 },
   },
   {
@@ -151,7 +151,7 @@ export const DESTINATIONS: Destination[] = [
     image: IMAGES.kivu,
     tagline: "Rwanda's inland sea of sparkling waters",
     description:
-      "One of Africa's Great Lakes, Kivu covers 2,700km² along the Congolese border at 1,460m altitude. Its resort towns — Rubavu (Gisenyi), Karongi (Kibuye) and Rusizi (Cyangugu) — offer sandy beaches, boat trips to idyllic islands (Napoleon Island with its fruit bats), and some of the continent's most beautiful sunsets.",
+      "One of Africa's Great Lakes, Kivu covers 2,700km² along the Congolese border at 1,460m altitude. Its resort towns (Rubavu/Gisenyi, Karongi/Kibuye and Rusizi/Cyangugu) offer sandy beaches, boat trips to idyllic islands such as Napoleon Island with its fruit bats, and some of the continent's most beautiful sunsets.",
     highlights: [
       "Boat cruises to Amahoro & Napoleon Islands",
       "Ride the Congo Nile Trail (227km) by bike",
@@ -159,7 +159,7 @@ export const DESTINATIONS: Destination[] = [
       "Kayaking & stand-up paddleboarding",
       "Beachfront resorts in Rubavu",
     ],
-    bestTime: "June–September & December–February",
+    bestTime: "June to September & December to February",
     coordinates: { lat: -2.0, lng: 29.2 },
   },
   {
@@ -184,18 +184,18 @@ export const DESTINATIONS: Destination[] = [
     id: "genocide-memorial",
     name: "Kigali Genocide Memorial",
     category: "Memorial",
-    region: "Kigali — Gisozi",
+    region: "Kigali, Gisozi",
     image: IMAGES.memorial,
     tagline: "A place of remembrance, learning & renewal",
     description:
-      "The final resting place of over 250,000 victims of the 1994 Genocide against the Tutsi, this memorial is also an education centre and peace-building institute. It honours the dead while teaching about the causes of genocide and Rwanda's remarkable journey of unity and reconciliation.",
+      "The final resting place of over 250,000 victims of the 1994 Genocide against the Tutsi, this memorial is also an education centre and peace building institute. It honours the dead while teaching about the causes of genocide and Rwanda's remarkable journey of unity and reconciliation.",
     highlights: [
       "Three permanent exhibitions",
       "Mass graves & memorial gardens",
       "Children's memorial section",
       "Peace-building & education programmes",
     ],
-    bestTime: "Year-round; allow 2–3 hours",
+    bestTime: "Year-round; allow 2 to 3 hours",
     coordinates: { lat: -1.9536, lng: 30.0606 },
   },
 ];
@@ -219,13 +219,13 @@ export const EXPERIENCES: Experience[] = [
     priceFrom: "$1,500",
     category: "Wildlife",
     description:
-      "Spend a strictly limited, magical hour with a habituated mountain gorilla family in Volcanoes National Park — one of the planet's most profound wildlife encounters.",
+      "Spend a strictly limited, magical hour with a habituated mountain gorilla family in Volcanoes National Park. It is one of the planet's most profound wildlife encounters.",
   },
   {
     id: "big5-safari",
     title: "Big Five Safari",
     image: IMAGES.akagera,
-    duration: "2–3 days",
+    duration: "2 to 3 days",
     priceFrom: "$650",
     category: "Safari",
     description:
@@ -245,7 +245,7 @@ export const EXPERIENCES: Experience[] = [
     id: "congo-nile-trail",
     title: "Congo Nile Trail",
     image: IMAGES.cycling,
-    duration: "3–5 days",
+    duration: "3 to 5 days",
     priceFrom: "$400",
     category: "Adventure",
     description:
@@ -259,7 +259,7 @@ export const EXPERIENCES: Experience[] = [
     priceFrom: "$80",
     category: "Culture",
     description:
-      "Visit Inema Arts Center, Niyo Art Gallery, Kimironko Market and the Genocide Memorial — the cultural pulse of the capital.",
+      "Visit Inema Arts Center, Niyo Art Gallery, Kimironko Market and the Genocide Memorial to feel the cultural pulse of the capital.",
   },
   {
     id: "coffee-tour",
@@ -269,7 +269,7 @@ export const EXPERIENCES: Experience[] = [
     priceFrom: "$45",
     category: "Culinary",
     description:
-      "Trace Rwanda's award-winning specialty coffee from cherry to cup at a lakeside washing station near Lake Kivu.",
+      "Trace Rwanda's celebrated specialty coffee from cherry to cup at a lakeside washing station near Lake Kivu.",
   },
 ];
 
@@ -308,14 +308,14 @@ export const INVESTMENT_SECTORS: Sector[] = [
     whyRwanda:
       "Rwanda aims to become a knowledge-based economy and a regional ICT hub. Kigali Innovation City and the national fibre backbone anchor a fast-growing tech ecosystem.",
     incentives: ["7-year corporate income tax holiday", "VAT exemption on ICT equipment", "Special Economic Zone benefits"],
-    keyFacts: ["Vision 2050 targets upper-middle income", "Kigali Innovation City — $2B tech district", "Rwanda's smartphone penetration rising rapidly"],
+    keyFacts: ["Vision 2050 targets upper middle income", "Kigali Innovation City, a $2B tech district", "Rwanda's smartphone penetration rising rapidly"],
   },
   {
     id: "tourism",
     name: "Tourism & Hospitality",
     icon: "Mountain",
     whyRwanda:
-      "Tourism is Rwanda's leading forex earner, contributing ~9.8% of GDP in 2024. The high-value, low-volume model rewards premium experiences.",
+      "Tourism is Rwanda's leading forex earner, contributing about 9.8% of GDP in 2024. The premium, low volume model rewards high quality experiences.",
     incentives: ["15% CIT concession for hotels above 4-star", "Duty-free import of hospitality equipment", "Investment certificate fast-track"],
     keyFacts: ["Record Fr1.9 trillion contribution in 2024", "~386,000 tourism-supported jobs", "MICE strategy: Kigali Convention Centre"],
   },
@@ -353,22 +353,22 @@ export const INVESTMENT_SECTORS: Sector[] = [
     whyRwanda:
       "Rwanda targets universal electricity access and is committed to carbon neutrality. Lake Kivu's unique methane gas and solar offer distinctive opportunities.",
     incentives: ["Power Purchase Agreements (PPAs)", "VAT exemption on renewable energy equipment", "Feed-in tariff for mini-grids"],
-    keyFacts: ["Lake Kivu methane-to-power extraction", "Rwanda Energy Group (REG) utility", "Green Fund (FONERWA) — Africa's largest"],
+    keyFacts: ["Lake Kivu methane to power extraction", "Rwanda Energy Group (REG) utility", "Green Fund (FONERWA), Africa's largest"],
   },
 ];
 
 export const ECONOMY_STATS = {
   gdp2024: "US$ 14.3 billion",
-  gdpGrowth: "8.9% (2024 estimate)",
-  gdpPerCapita: "US$ ~1,040",
-  tourismGdp: "9.8% of GDP (2024)",
-  tourismRevenue: "Frw 1.9 trillion (2024)",
+  gdpGrowth: "8.9% in 2024 (estimate)",
+  gdpPerCapita: "about US$ 1,040",
+  tourismGdp: "9.8% of GDP in 2024",
+  tourismRevenue: "RWF 1.9 trillion (2024)",
   tourismJobs: "~386,000",
-  inflation: "~5% (target band)",
+  inflation: "about 5% (target band)",
   currency: "Rwandan Franc (RWF)",
-  doingBusiness: "2nd easiest place to do business in Africa (historical)",
+  doingBusiness: "2nd easiest place to do business in Africa (historical ranking)",
   corruptionRank: "Least corrupt country in East Africa (TI CPI)",
-  vision: "Vision 2050 → upper-middle income by 2035, high-income by 2050",
+  vision: "Vision 2050: upper middle income by 2035, high income by 2050",
 };
 
 export const ECONOMY_CHART = [
@@ -418,7 +418,7 @@ export const TRAVEL_ESSENTIALS = [
       "Kigali is widely regarded as Africa's safest capital.",
       "Exercise normal precautions; avoid border areas with DRC at night.",
       "Check official travel advisories before remote trips.",
-      "Umuganda (community work) happens the last Saturday morning monthly — businesses close until noon.",
+      "Umuganda (community work) happens the last Saturday morning of each month; businesses close until noon.",
     ],
   },
   {
@@ -440,7 +440,7 @@ export const TRAVEL_ESSENTIALS = [
     icon: "Bus",
     summary: "Kigali has clean, metered public transport; the country is connected by paved highways.",
     details: [
-      "Yego ride-hailing (app) — the local equivalent of Uber, plus moto-taxis.",
+      "Yego is the local ride hailing app (similar to Uber), and there are also moto taxis.",
       "City bus network in Kigali: cash or tap-and-go Yego cards.",
       "Rwanda Air connects Kigali to 25+ African & global destinations.",
       "Akagera Aviation offers domestic helicopter & charter flights.",
@@ -456,7 +456,7 @@ export const TRAVEL_ESSENTIALS = [
       "Greetings matter: 'Muraho' (hello), 'Amahoro' (peace), 'Murakoze' (thank you).",
       "Dress modestly in rural areas and at memorial sites.",
       "Photography: ask permission; avoid photographing military/government buildings.",
-      "Plastic bags are banned — declare & surrender at the border.",
+      "Plastic bags are banned; declare and surrender any you carry at the border.",
       "Tipping is appreciated but not obligatory (~10% in restaurants).",
     ],
   },
@@ -465,18 +465,18 @@ export const TRAVEL_ESSENTIALS = [
 // ---- Culture, Arts & Creative Economy ----
 export const CULTURE = {
   heritage: [
-    { title: "Intore Dance", text: "The 'Dance of Heroes' — warrior ballet with headdresses and spears, recognised on UNESCO's intangible heritage list." },
-    { title: "Imigongo Art", text: "Geometric art form made from cow dung, dating to the royal court — a distinctive black, white and red craft." },
+    { title: "Intore Dance", text: "The 'Dance of Heroes': a warrior ballet with headdresses and spears, recognised on UNESCO's intangible heritage list." },
+    { title: "Imigongo Art", text: "A geometric art form made from cow dung, dating to the royal court. It is a distinctive black, white and red craft." },
     { title: "Agaseke Baskets", text: "Woven peace baskets symbolising unity and reconciliation, exported worldwide as fair-trade crafts." },
-    { title: "Urugori Crown", text: "The traditional crown bestowed on mothers — emblem of womanhood, revived as a cultural symbol." },
+    { title: "Urugori Crown", text: "The traditional crown bestowed on mothers. It is an emblem of womanhood, revived as a cultural symbol." },
   ],
   institutions: [
-    "Inema Arts Center — Kigali's leading contemporary art space",
-    "Niyo Art Gallery — community-funded gallery & workshop",
-    "Ivuka Arts Studio — pioneer of Kigali's art scene",
+    "Inema Arts Center, Kigali's leading contemporary art space",
+    "Niyo Art Gallery, a community funded gallery and workshop",
+    "Ivuka Arts Studio, pioneer of Kigali's art scene",
     "Rwanda Cultural Fashion Week",
     "Kigali Up! music festival",
-    "Ubumuntu Arts Festival — annual international theatre for humanity",
+    "Ubumuntu Arts Festival, annual international theatre for humanity",
   ],
   creativeEconomy:
     "Rwanda's creative and cultural industries are a national priority, supported by the Rwanda Arts Initiative and the new Creative Industry Policy. The sector spans visual arts, fashion, film, music and digital content, with Kigali fast becoming an East African creative hub.",
@@ -493,15 +493,15 @@ export const SPORTS = {
       { name: "Police FC", city: "Kigali", titles: "Multiple cups", note: "Police-affiliated" },
       { name: "Mukura Victory Sports", city: "Huye", titles: "Historic club", note: "Founded 1963" },
     ],
-    national: "Amavubi (Wasps) — the national team, competing in AFCON & World Cup qualifiers. Amahoro Stadium is being rebuilt to 45,000 seats.",
+    national: "Amavubi (the Wasps) are the national team, competing in AFCON and World Cup qualifiers. Amahoro Stadium is being rebuilt to 45,000 seats.",
   },
   cycling: {
     overview:
       "Cycling is Rwanda's second passion. The Tour du Rwanda is Africa's premier stage race, now on the UCI ProSeries calendar.",
     facts: [
-      "Tour du Rwanda — 8 stages, UCI 2.Pro, attracts World Tour teams",
-      "Team Rwanda Cycling — national squad producing international pros",
-      "Adrien Niyonshuti — first Rwandan Olympian cyclist (London 2012)",
+      "Tour du Rwanda: 8 stages, UCI 2.Pro, attracting World Tour teams",
+      "Team Rwanda Cycling, the national squad producing international pros",
+      "Adrien Niyonshuti, the first Rwandan Olympian cyclist (London 2012)",
       "Cycling centre of excellence in Musanze",
     ],
   },
@@ -509,16 +509,16 @@ export const SPORTS = {
     overview:
       "Basketball's popularity is surging. APR Basketball Club and Patriots Basketball Club represent Rwanda in the Basketball Africa League (BAL).",
     facts: [
-      "Patriots BBC — inaugural BAL (Basketball Africa League) participant",
-      "BK Arena — 10,000-seat indoor arena in Kigali (hosts BAL)",
-      "National team: Swallows — AfroBasket contenders",
+      "Patriots BBC, an inaugural BAL (Basketball Africa League) participant",
+      "BK Arena, a 10,000 seat indoor arena in Kigali (hosts BAL)",
+      "National team: the Swallows, AfroBasket contenders",
     ],
   },
   other: [
-    "Volleyball — strong national team tradition",
-    "Athletics & cross-country — growing medal prospects",
-    "Cricket — Rwanda hosted ICC Africa events; Gahanga International Stadium",
-    "E-sports & skateboarding — emerging youth scenes",
+    "Volleyball, with a strong national team tradition",
+    "Athletics and cross country, with growing medal prospects",
+    "Cricket: Rwanda hosted ICC Africa events; Gahanga International Stadium",
+    "E sports and skateboarding, emerging youth scenes",
   ],
 };
 
@@ -532,9 +532,9 @@ export const EDUCATION = {
     { name: "Rwanda Polytechnic", note: "TVET network for practical skills" },
   ],
   research: [
-    "Rwanda Biomedical Centre — national public health institute",
-    "Rwanda Agriculture Board (RAB) — agronomic research",
-    "ICT Chamber & Rwanda Innovation Fund — tech R&D",
+    "Rwanda Biomedical Centre, the national public health institute",
+    "Rwanda Agriculture Board (RAB), for agronomic research",
+    "ICT Chamber and Rwanda Innovation Fund, for tech R&D",
     "Karongi & Musanze research stations",
   ],
   facts:
@@ -543,8 +543,8 @@ export const EDUCATION = {
 
 // ---- Events (curated; live feed via /api/search) ----
 export const FEATURED_EVENTS = [
-  { name: "Kwita Izina — Gorilla Naming Ceremony", month: "September", place: "Kinigi, Musanze", note: "Rwanda's flagship conservation & cultural event; infant gorillas are named." },
-  { name: "Umuganura Day", month: "August", place: "Nationwide", note: "National Thanksgiving / harvest day — a public holiday." },
+  { name: "Kwita Izina Gorilla Naming Ceremony", month: "September", place: "Kinigi, Musanze", note: "Rwanda's flagship conservation and cultural event, where infant gorillas are named." },
+  { name: "Umuganura Day", month: "August", place: "Nationwide", note: "National Thanksgiving and harvest day, a public holiday." },
   { name: "Tour du Rwanda", month: "February", place: "Nationwide", note: "UCI 2.Pro stage race cycling across the country." },
   { name: "Ubumuntu Arts Festival", month: "July", place: "Kigali", note: "International theatre & performance for humanity." },
   { name: "Kigali Up! Music Festival", month: "October", place: "Kigali", note: "Rwanda's premier international music festival." },
@@ -563,7 +563,7 @@ export const QUICK_FACTS = {
   electricity: "230V / 50Hz (Type C & J plugs)",
   government: "Republic; President + Prime Minister & bicameral parliament",
   independence: "1 July 1962 (from Belgium)",
-  motto: "Ubumwe, Umurimo, Gukunda Igihugu — Unity, Work, Patriotism",
+  motto: "Ubumwe, Umurimo, Gukunda Igihugu (Unity, Work, Patriotism)",
   nickname: "Land of a Thousand Hills",
 };
 

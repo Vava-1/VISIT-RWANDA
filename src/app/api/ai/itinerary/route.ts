@@ -22,18 +22,18 @@ Interests: ${interests}.
 Budget level: ${budget}.
 
 Return STRICT markdown with this structure:
-## Day 1 — <Title>
+## Day 1: <Title>
 **Morning:** ...
 **Afternoon:** ...
 **Evening:** ...
 **Stay:** suggested accommodation area
 
-Include 1 realistic highlight per day, mention travel times between locations, and respect Rwanda's geography (Kigali → Musanze/Volcanoes is ~2.5h; Kigali → Akagera is ~2.5h; Kigali → Nyungwe is ~5-6h; Lake Kivu towns along the west). End with a "## Practical Tips" section with visa, currency and seasonal notes. Keep it skimmable and inspiring.`;
+Include 1 realistic highlight per day, mention travel times between locations, and respect Rwanda's geography (Kigali to Musanze/Volcanoes is about 2.5h; Kigali to Akagera is about 2.5h; Kigali to Nyungwe is about 5 to 6h; Lake Kivu towns along the west). End with a "## Practical Tips" section with visa, currency and seasonal notes. Keep it skimmable and inspiring. Do not use em dashes. Write like a real Rwandan trip planner.`;
 
     const completion = await zai.chat.completions.create({
       messages: [
         { role: "assistant", content: system },
-        { role: "assistant", content: "You are also an expert trip planner for Rwanda. Produce realistic, well-paced itineraries." },
+        { role: "assistant", content: "You are also an expert trip planner for Rwanda. Produce realistic, well paced itineraries." },
         { role: "user", content: prompt },
       ] as any,
       thinking: { type: "disabled" },
@@ -43,7 +43,7 @@ Include 1 realistic highlight per day, mention travel times between locations, a
       completion?.choices?.[0]?.message?.content?.trim() ||
       "Sorry, I couldn't build that itinerary right now. Please try again.";
 
-    const title = `${days}-Day Rwanda Journey — ${persona}`;
+    const title = `${days}-Day Rwanda Journey: ${persona}`;
     try {
       await db.itinerary.create({
         data: { sessionId, title, days, content: itinerary },

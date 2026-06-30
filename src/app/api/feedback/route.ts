@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 
 export const runtime = "nodejs";
 
-// POST /api/feedback — powers the self-healing & trust loop.
+// POST /api/feedback: powers the self healing and trust loop.
 // Users report issues, suggest features, correct data, or praise.
 export async function POST(req: NextRequest) {
   try {

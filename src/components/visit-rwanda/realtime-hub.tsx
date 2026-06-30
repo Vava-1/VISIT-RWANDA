@@ -94,13 +94,13 @@ export function RealtimeHub() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              Real-time Hub
+              Live Hub
             </Badge>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
               Rwanda, <span className="gradient-text">live</span>
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl">
-              Always current — news, tourism updates, business intelligence and official travel
+              Always current: news, tourism updates, business intelligence and official travel
               advisories, refreshed on demand from across the web.
             </p>
           </div>

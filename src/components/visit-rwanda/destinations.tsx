@@ -31,7 +31,7 @@ export function Destinations() {
   const filtered = filter === "All" ? DESTINATIONS : DESTINATIONS.filter((d) => d.category === filter);
 
   const askAbout = (d: Destination) => {
-    setAiSeed(`Tell me more about ${d.name} — how to visit, best time, costs and tips.`);
+    setAiSeed(`Tell me more about ${d.name}: how to visit, best time, costs and tips.`);
     setAiOpen(true);
   };
 
@@ -48,7 +48,7 @@ export function Destinations() {
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl">
               From mist-wrapped volcanoes and Big-Five savanna to Africa's cleanest capital and a
-              lake of a thousand sunsets — explore every corner of Rwanda.
+              lake of a thousand sunsets. Explore every corner of Rwanda.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">

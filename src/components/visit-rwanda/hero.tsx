@@ -38,7 +38,7 @@ export function Hero() {
       <div className="absolute inset-0">
         <img
           src={IMAGES.hero}
-          alt="Rwanda — Land of a Thousand Hills"
+          alt="Rwanda, Land of a Thousand Hills"
           className="h-full w-full object-cover"
           fetchPriority="high"
         />
@@ -80,7 +80,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed"
           >
-            Your intelligent gateway to Rwanda — for tourists, investors, students,
+            Your intelligent gateway to Rwanda, for tourists, investors, students,
             artists, athletes and diaspora. Discover destinations, plan trips,
             explore opportunities and connect with a nation on the rise.
           </motion.p>
@@ -98,7 +98,7 @@ export function Hero() {
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Ask anything about Rwanda — visas, gorillas, investing…"
+                placeholder="Ask anything about Rwanda: visas, gorillas, investing…"
                 className="pl-12 h-14 text-base rounded-2xl glass border-white/20 text-white placeholder:text-white/60"
               />
             </div>

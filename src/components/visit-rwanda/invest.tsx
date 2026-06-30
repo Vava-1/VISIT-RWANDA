@@ -53,7 +53,7 @@ export function Invest() {
           </h2>
           <p className="mt-3 text-muted-foreground">
             One of the continent's fastest-growing economies, the easiest place to do business in
-            East Africa, and the least corrupt — backed by the Kigali International Financial Centre
+            East Africa, and the least corrupt. It is backed by the Kigali International Financial Centre
             and Vision 2050.
           </p>
         </div>
@@ -195,7 +195,7 @@ export function Invest() {
             <div className="flex-1">
               <h3 className="text-xl font-bold">Kigali International Financial Centre (KIFC)</h3>
               <p className="text-sm text-muted-foreground mt-1">
-                A Common Law, English-speaking financial hub serving the region — with a 0% withholding
+                A Common Law, English speaking financial hub serving the region, with a 0% withholding
                 tax on dividends and a 5% corporate income tax for qualifying entities.
               </p>
             </div>

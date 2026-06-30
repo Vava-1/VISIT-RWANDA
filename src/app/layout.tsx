@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Visit Rwanda — Land of a Thousand Hills | The Official Digital Gateway",
+  title: "Visit Rwanda, Land of a Thousand Hills | The Official Digital Gateway",
   description:
-    "Rwanda's intelligent digital gateway for tourists, investors, students, artists, athletes and diaspora. Discover destinations, plan trips, explore investment opportunities and connect with the heart of Africa — powered by AI.",
+    "Rwanda's intelligent digital gateway for tourists, investors, students, artists, athletes and diaspora. Discover destinations, plan trips, explore investment opportunities and connect with the heart of Africa, powered by AI.",
   keywords: [
     "Visit Rwanda", "Rwanda tourism", "gorilla trekking Rwanda", "Kigali",
     "invest in Rwanda", "Rwanda economy", "Akagera", "Nyungwe", "Lake Kivu",
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Visit Rwanda Platform" }],
   openGraph: {
-    title: "Visit Rwanda — Land of a Thousand Hills",
-    description: "The intelligent digital gateway to Rwanda. Tourism, investment, culture & more.",
+    title: "Visit Rwanda, Land of a Thousand Hills",
+    description: "The intelligent digital gateway to Rwanda. Tourism, investment, culture and more.",
     siteName: "Visit Rwanda",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Visit Rwanda — Land of a Thousand Hills",
+    title: "Visit Rwanda, Land of a Thousand Hills",
     description: "The intelligent digital gateway to Rwanda.",
   },
 };

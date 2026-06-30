@@ -23,3 +23,26 @@ Stage Summary:
 - All personas (tourist/investor/student/artist/athlete/expat) get tailored content.
 - Self-healing loop via feedback + analytics endpoints.
 - Sticky footer, responsive design, dark mode support.
+
+---
+Task ID: visit-rwanda-dehyphenate
+Agent: Z.ai Code (main)
+Task: Remove all hyphens (em-dashes, en-dashes, AI-tell compound adjectives) that make the app look AI-generated.
+
+Work Log:
+- Swept entire src/ + prisma/ for em-dashes (—) and en-dashes (–).
+- rwanda-data.ts: replaced ~40 em-dashes with commas, colons, periods or parentheses; converted en-dash date/duration ranges ("June–September") to "June to September"; removed tildes (~) in favour of "about"; rewrote "high-value, low-volume" to "premium, low volume"; "award-winning" to "celebrated".
+- All 12 visit-rwanda components: replaced every em-dash in headings, taglines, descriptions, placeholders, AI seed prompts and footer copy with natural punctuation.
+- ai.ts system prompt: removed em-dashes AND added an explicit rule instructing the model to never use em dashes and to avoid over-hyphenated compound adjectives (world-class, award-winning, game-changing, state-of-the-art), writing like a real Rwandan travel expert.
+- itinerary API prompt: replaced em-dash in "Day 1 — Title" with colon; removed arrow chars and ~ approximations.
+- layout.tsx metadata: replaced em-dashes in title/description/OG/Twitter cards.
+- footer trust banner: "Data-safe & trustworthy" → "Safe with your data"; "AI-personalised" → "Personalised for you"; "Real-time data" → "Always current"; "AI-powered platform" → "intelligent platform".
+- Renamed "Real-time Hub" → "Live Hub" across footer nav and section badge.
+- Cleaned em-dashes from Prisma schema comments and API route comments.
+- Verified: lint clean, homepage 200, browser audit confirms 0 em-dashes + 0 en-dashes + none of the AI-tell compounds in rendered page text; AI concierge reply now contains 0 em-dashes.
+
+Stage Summary:
+- Every em-dash and en-dash removed from user-facing text across the whole app.
+- AI concierge re-trained via system prompt to write em-dash-free, human-style prose.
+- All AI-tell compound adjectives (self-healing, AI-powered, AI-personalised, data-safe, award-winning, high-value/low-volume, etc.) replaced with plain language.
+- App reads like it was written by a real Rwandan team, not an AI.

@@ -27,7 +27,7 @@ export function Experiences() {
               Moments that <span className="gradient-text">stay with you</span>
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl">
-              Curated, once-in-a-lifetime Rwandan experiences — from gorilla encounters to canopy walks
+              Curated, once in a lifetime Rwandan experiences: from gorilla encounters to canopy walks
               and lakeside coffee trails.
             </p>
           </div>
