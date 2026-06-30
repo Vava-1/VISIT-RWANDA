@@ -1,0 +1,61 @@
+// Visit Rwanda — comprehensive platform schema
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// A user's persona preference (tourist, investor, student, artist, athlete, expat)
+model UserProfile {
+  id        String   @id @default(cuid())
+  sessionId String   @unique
+  persona   String   @default("tourist")
+  interests String?  // comma-separated
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Saved AI-generated itineraries
+model Itinerary {
+  id        String   @id @default(cuid())
+  sessionId String
+  title     String
+  days      Int
+  content   String   // markdown
+  createdAt DateTime @default(now())
+}
+
+// User feedback — powers the self-healing / trust loop
+model Feedback {
+  id        String   @id @default(cuid())
+  sessionId String?
+  category  String   // "report-issue" | "suggest" | "praise" | "data-correction"
+  message   String
+  url       String?
+  status    String   @default("open") // open | reviewed | resolved
+  createdAt DateTime @default(now())
+}
+
+// Anonymous engagement events (analytics + self-healing signals)
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  sessionId String?
+  type      String   // "view" | "click" | "search" | "chat" | "persona-switch"
+  target    String?
+  meta      String?
+  createdAt DateTime @default(now())
+}
+
+// AI concierge chat memory (per session)
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String   // user | assistant
+  content   String
+  createdAt DateTime @default(now())
+}
