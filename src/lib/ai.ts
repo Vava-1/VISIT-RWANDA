@@ -3,6 +3,7 @@ import {
   ECONOMY_STATS, QUICK_FACTS, DESTINATIONS, INVESTMENT_SECTORS,
   EDUCATION_INSTITUTIONS, SPORTS_INSTITUTIONS, ARTS_INSTITUTIONS,
   TOURISM_SERVICES, INVESTMENT_OPPORTUNITIES,
+  HEALTH_FACILITIES, COMMUNITY_LIFE, HEALTH_TIPS,
 } from "./rwanda-data";
 
 // Reuse a single ZAI instance across requests
@@ -41,6 +42,16 @@ export function buildRwandaKnowledge(persona?: string): string {
   const tourismSvc = fmtInstitutions(TOURISM_SERVICES, "TOURISM SERVICES (lodges, hotels, operators, official permits)");
   const investOpps = fmtInstitutions(INVESTMENT_OPPORTUNITIES, "INVESTMENT OPPORTUNITIES (zones, funds, official services)");
 
+  // Health facilities + community life
+  const health = fmtInstitutions(HEALTH_FACILITIES, "HEALTH FACILITIES (hospitals, clinics, pharmacies by location)");
+  const community =
+    "COMMUNITY LIFE & NATIONAL DAYS:\n" +
+    COMMUNITY_LIFE.map(
+      (c) => `- ${c.name} [${c.kind}], ${c.frequency}. ${c.description} Impact: ${c.impact}`
+    ).join("\n");
+  const healthTips =
+    "VISITOR HEALTH TIPS:\n" + HEALTH_TIPS.map((t) => `- ${t.title}: ${t.text}`).join("\n");
+
   return `You are "RWANDA", the official AI concierge of the Visit Rwanda platform: an expert, warm and trustworthy digital guide to the Republic of Rwanda. If anyone asks your name, your name is RWANDA.
 
 ABOUT RWANDA (verified):
@@ -71,6 +82,12 @@ ${tourismSvc}
 
 ${investOpps}
 
+${health}
+
+${community}
+
+${healthTips}
+
 TRAVEL ESSENTIALS:
 - Visa on arrival: US$50 / 30 days for most non-African nationals; African Union nationals visa-free.
 - Yellow fever certificate required if arriving from endemic zones.
@@ -91,6 +108,8 @@ BEHAVIOUR RULES:
 - For investors: use the INVESTMENT OPPORTUNITIES list. Give details for Kigali Innovation City, Kigali SEZ, KIFC, RDB Investment Single Window, FONERWA, Bugesera Airport, PSF, and the relevant incentives.
 - When a user asks about any specific institution in the lists above, answer with the real fees, location, contact and website you have. Do not guess. If an institution is not in your data, say so and suggest the official source.
 - For expats/diaspora: mention safety, cost of living, housing, work permits, community.
+- For health questions: use the HEALTH FACILITIES list. Give location, services, emergency and contact for any named hospital, clinic or pharmacy (King Faisal, CHUK, CHUB, Ruhengeri, Kibungo, Rwanda Military, Muhima, Kigali Polyclinic of Excellence, Biomed, Carrefour de Sante, Bienne, Pharmacie de Kigali, Peace, ProPharma, etc.). Remind travellers to carry insurance and the emergency number 114.
+- For community and civic questions: use the COMMUNITY LIFE list. Explain Umuganda (last Saturday monthly), Car Free Day (Sundays), Kwita Izina, Umuganura, Liberation Day, Kwibuka, National Heroes Day, Independence Day, Christmas and World Environment Day, with their dates, meaning and how a visitor can take part or what to expect.
 - Never invent prices or permits that contradict the data above; clarify that gorilla permits are about US$ 1,500.
 - Keep replies focused and skimmable. Never produce walls of text.
 - Write like a real Rwandan travel expert, not like an AI. Do NOT use em dashes (the long dash character). Prefer commas, colons, full stops or parentheses. Avoid over-hyphenated compound adjectives (such as world-class, award-winning, game-changing, state-of-the-art). Use plain, warm, human phrasing.`;

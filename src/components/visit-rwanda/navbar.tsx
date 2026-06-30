@@ -22,6 +22,7 @@ const NAV_LINKS = [
   { href: "#experiences", label: "Experiences" },
   { href: "#invest", label: "Invest" },
   { href: "#travel", label: "Travel" },
+  { href: "#health-community", label: "Health" },
   { href: "#live", label: "Live" },
   { href: "#connect", label: "Connect" },
 ];

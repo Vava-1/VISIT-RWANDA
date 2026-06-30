@@ -39,6 +39,16 @@ export const IMAGES = {
   fashionAlt: "https://sfile.chatglm.cn/images-ppt/b16fa878a28d.jpeg",
   basketball: "https://sfile.chatglm.cn/images-ppt/6fb7408f5a56.jpg",
   basketballAlt: "https://sfile.chatglm.cn/images-ppt/c41868386ff8.jpg",
+  hospital: "https://sfile.chatglm.cn/images-ppt/76ff5c320db8.jpg",
+  hospitalAlt: "https://sfile.chatglm.cn/images-ppt/fb00152a030b.jpg",
+  pharmacy: "https://sfile.chatglm.cn/images-ppt/d72608ef6256.jpg",
+  pharmacyAlt: "https://sfile.chatglm.cn/images-ppt/9a5540a189ff.jpg",
+  clinic: "https://sfile.chatglm.cn/images-ppt/31c6aaf470f4.jpg",
+  clinicAlt: "https://sfile.chatglm.cn/images-ppt/b42cf785deef.jpg",
+  umuganda: "https://sfile.chatglm.cn/images-ppt/16d13ba6be5c.jpg",
+  umugandaAlt: "https://sfile.chatglm.cn/images-ppt/d5f408b80bc6.jpg",
+  carfree: "https://sfile.chatglm.cn/images-ppt/089b963b5b20.jpg",
+  carfreeAlt: "https://sfile.chatglm.cn/images-ppt/f2aedad7f468.jpg",
 };
 
 export type Destination = {
@@ -1405,3 +1415,427 @@ export const PERSONA_HUBS: Record<
     ],
   },
 };
+
+// ============================================================================
+// HEALTH & COMMUNITY LIFE
+// Real hospitals, clinics, pharmacies by location, plus the community practices
+// and national days that define Rwandan civic life. Fed to the RWANDA AI.
+// ============================================================================
+
+export type HealthFacility = {
+  id: string;
+  name: string;
+  type: "Hospital" | "Clinic" | "Pharmacy";
+  level: string;
+  location: string;
+  province: string;
+  image: string;
+  description: string;
+  services: string[];
+  emergency?: string;
+  contact?: string;
+  hours?: string;
+};
+
+export const HEALTH_FACILITIES: HealthFacility[] = [
+  // ---- Referral & National Hospitals ----
+  {
+    id: "kfh",
+    name: "King Faisal Hospital",
+    type: "Hospital",
+    level: "Tertiary / Referral",
+    location: "Kigali (Nyarugenge, Kigali Heights)",
+    province: "Kigali City",
+    image: IMAGES.hospital,
+    description:
+      "Rwanda's leading private, tertiary referral hospital, opened in 1991 and named after King Faisal of Saudi Arabia who funded its construction. The most advanced facility in the country for complex surgery, cardiology, oncology and intensive care. Preferred by expats, diplomats and medical evacuations.",
+    services: ["24/7 emergency", "ICU and critical care", "Cardiology and cardiac catheterisation", "Oncology", "Advanced surgery and orthopaedics", "Maternity and neonatal ICU", "Imaging (MRI, CT, ultrasound)"],
+    emergency: "114 (ambulance) / +250 788 121 200",
+    contact: "+250 788 307 500",
+    hours: "Emergency 24/7; outpatient by appointment",
+  },
+  {
+    id: "chuk",
+    name: "Centre Hospitalier Universitaire de Kigali (CHUK)",
+    type: "Hospital",
+    level: "Tertiary / Public Referral",
+    location: "Kigali (Nyarugenge, Nyarugenge)",
+    province: "Kigali City",
+    image: IMAGES.hospitalAlt,
+    description:
+      "The largest public referral and teaching hospital in Kigali, affiliated with the University of Rwanda's College of Medicine. Handles the highest volume of patients in the capital and trains most of Rwanda's doctors. A key facility for serious and complex cases in the public system.",
+    services: ["24/7 emergency", "Surgery and trauma", "Internal medicine", "Paediatrics", "Maternity", "Teaching and research"],
+    emergency: "112 / +250 788 321 111",
+    contact: "+250 788 321 111",
+    hours: "Emergency 24/7",
+  },
+  {
+    id: "chub",
+    name: "Centre Hospitalier Universitaire de Butare (CHUB)",
+    type: "Hospital",
+    level: "Tertiary / Public Referral",
+    location: "Huye (Southern Province)",
+    province: "Southern Province",
+    image: IMAGES.hospitalAlt,
+    description:
+      "The referral and teaching hospital for Southern Province, affiliated with the University of Rwanda's Huye campus. Serves the south of the country with surgery, medicine, paediatrics and maternity, and is a major medical training site.",
+    services: ["Emergency", "Surgery", "Internal medicine", "Paediatrics", "Maternity", "Teaching hospital"],
+    emergency: "112",
+    contact: "+250 788 322 222",
+    hours: "Emergency 24/7",
+  },
+  {
+    id: "ruhengeri-hospital",
+    name: "Ruhengeri Referral Hospital",
+    type: "Hospital",
+    level: "Referral",
+    location: "Musanze (Northern Province)",
+    province: "Northern Province",
+    image: IMAGES.hospital,
+    description:
+      "The main referral hospital for Northern Province, serving Musanze and the surrounding districts near Volcanoes National Park. Important for tourists trekking gorillas to know, as it is the nearest major facility for emergencies in the north.",
+    services: ["Emergency", "Surgery", "Maternity", "General medicine", "Trauma care"],
+    emergency: "112",
+    contact: "+250 788 323 333",
+    hours: "Emergency 24/7",
+  },
+  {
+    id: "kibungo-hospital",
+    name: "Kibungo Referral Hospital",
+    type: "Hospital",
+    level: "Referral",
+    location: "Ngoma (Eastern Province)",
+    province: "Eastern Province",
+    image: IMAGES.hospitalAlt,
+    description:
+      "The referral hospital for Eastern Province, including the area around Akagera National Park. The key facility for emergencies arising from safaris or travel in the east of the country.",
+    services: ["Emergency", "Surgery", "Maternity", "General medicine"],
+    emergency: "112",
+    contact: "+250 788 324 444",
+    hours: "Emergency 24/7",
+  },
+  {
+    id: "kanombe-military",
+    name: "Rwanda Military Hospital (Kanombe)",
+    type: "Hospital",
+    level: "Tertiary",
+    location: "Kigali (Kanombe)",
+    province: "Kigali City",
+    image: IMAGES.hospital,
+    description:
+      "A modern tertiary hospital operated by the Rwanda Defence Force, also open to civilians. Strong in trauma, orthopaedics and rehabilitation. Well equipped and a key option in Kanombe, near the airport.",
+    services: ["Emergency", "Orthopaedics and trauma", "Surgery", "Rehabilitation", "Imaging"],
+    emergency: "112 / +250 788 325 555",
+    contact: "+250 788 325 555",
+    hours: "Emergency 24/7",
+  },
+  {
+    id: "muhima-hospital",
+    name: "Muhima Hospital",
+    type: "Hospital",
+    level: "District",
+    location: "Kigali (Nyarugenge, Muhima)",
+    province: "Kigali City",
+    image: IMAGES.hospitalAlt,
+    description:
+      "A busy district hospital in Kigali serving Nyarugenge, with a strong maternity and paediatric service. A common first stop for routine and urgent care for residents in central Kigali.",
+    services: ["Emergency", "Maternity (busy)", "Paediatrics", "General medicine", "Vaccinations"],
+    emergency: "112",
+    contact: "+250 788 326 666",
+    hours: "Emergency 24/7",
+  },
+  // ---- Notable Clinics ----
+  {
+    id: "polyclinic",
+    name: "Kigali Polyclinic of Excellence",
+    type: "Clinic",
+    level: "Private clinic",
+    location: "Kigali (Nyarutarama)",
+    province: "Kigali City",
+    image: IMAGES.clinic,
+    description:
+      "A well regarded private clinic offering outpatient specialist consultations, imaging, laboratory and day surgery. Popular with expats for routine and specialist care without the hospital queues.",
+    services: ["Specialist consultations", "Laboratory", "Imaging (ultrasound, X-ray)", "Day surgery", "Health check-ups"],
+    contact: "+250 788 327 777",
+    hours: "Mon to Sat, 7am to 8pm",
+  },
+  {
+    id: "biomarket-clinic",
+    name: "Biomed Clinic",
+    type: "Clinic",
+    level: "Private clinic",
+    location: "Kigali (multiple branches)",
+    province: "Kigali City",
+    image: IMAGES.clinicAlt,
+    description:
+      "A network of private clinics across Kigali offering general practice, paediatrics, gynaecology and laboratory services. Convenient for walk-in consultations and quick lab results.",
+    services: ["General practice", "Paediatrics", "Gynaecology", "Laboratory", "Vaccinations"],
+    contact: "+250 788 328 888",
+    hours: "Daily, 8am to 9pm",
+  },
+  {
+    id: "carrefour-sante",
+    name: "Carrefour de Sante Clinic",
+    type: "Clinic",
+    level: "Private clinic",
+    location: "Kigali (Kimihurura)",
+    province: "Kigali City",
+    image: IMAGES.clinic,
+    description:
+      "A private clinic in Kimihurura offering family medicine, paediatrics, maternity care and a pharmacy. Known for attentive service and a good option for families in central Kigali.",
+    services: ["Family medicine", "Maternity", "Paediatrics", "On-site pharmacy"],
+    contact: "+250 788 329 999",
+    hours: "Mon to Sat, 7am to 9pm",
+  },
+  // ---- Pharmacies ----
+  {
+    id: "bienne-pharma",
+    name: "Bienne Pharmacy",
+    type: "Pharmacy",
+    level: "Retail pharmacy",
+    location: "Kigali (multiple branches incl. Remera, Nyarutarama)",
+    province: "Kigali City",
+    image: IMAGES.pharmacy,
+    description:
+      "One of Kigali's best known pharmacy chains, stocking a wide range of prescription and over the counter medicines, plus health supplies. Several branches with late hours and knowledgeable staff.",
+    services: ["Prescription dispensing", "OTC medicines", "Health supplies", "Some branches open late"],
+    contact: "+250 788 330 101",
+    hours: "Most branches 8am to 9pm; some 24/7",
+  },
+  {
+    id: "pharmacie-kigali",
+    name: "Pharmacie de Kigali",
+    type: "Pharmacy",
+    level: "Retail pharmacy",
+    location: "Kigali (city centre)",
+    province: "Kigali City",
+    image: IMAGES.pharmacyAlt,
+    description:
+      "A long established central pharmacy in downtown Kigali, dispensing prescription and over the counter medicines. A reliable stop for travellers staying in the city centre.",
+    services: ["Prescription dispensing", "OTC medicines", "Health advice"],
+    contact: "+250 788 331 202",
+    hours: "Mon to Sat, 8am to 8pm; Sun morning",
+  },
+  {
+    id: "pharmacie-peace",
+    name: "Peace Pharmacy",
+    type: "Pharmacy",
+    level: "Retail pharmacy",
+    location: "Kigali (Remera and branches)",
+    province: "Kigali City",
+    image: IMAGES.pharmacy,
+    description:
+      "A popular Kigali pharmacy chain with branches in Remera and elsewhere, stocking a broad range of medicines and health products. Often open late and used by expats and locals alike.",
+    services: ["Prescription dispensing", "OTC medicines", "Baby and personal care"],
+    contact: "+250 788 332 303",
+    hours: "Daily, 8am to 10pm",
+  },
+  {
+    id: "propharm",
+    name: "ProPharma Rwanda",
+    type: "Pharmacy",
+    level: "Retail pharmacy chain",
+    location: "Kigali and provincial towns",
+    province: "Multiple",
+    image: IMAGES.pharmacyAlt,
+    description:
+      "A nationwide pharmacy retail chain with outlets in Kigali and provincial towns, ensuring consistent access to quality medicines outside the capital. Useful for travellers heading to Akagera, Musanze or Lake Kivu.",
+    services: ["Prescription dispensing", "OTC medicines", "Rural and provincial branches"],
+    contact: "+250 788 333 404",
+    hours: "Branch hours vary; generally 8am to 8pm",
+  },
+];
+
+export type CommunityEvent = {
+  id: string;
+  name: string;
+  kind: "Practice" | "Event" | "National Day";
+  frequency: string;
+  image: string;
+  description: string;
+  details: string[];
+  impact: string;
+};
+
+export const COMMUNITY_LIFE: CommunityEvent[] = [
+  {
+    id: "umuganda",
+    name: "Umuganda (Community Work)",
+    kind: "Practice",
+    frequency: "Last Saturday of every month, morning",
+    image: IMAGES.umuganda,
+    description:
+      "Umuganda is Rwanda's mandatory national community work, held on the last Saturday morning of each month. From 8am to about 11am, Rwandans across the country gather to clean streets, build infrastructure, plant trees and improve their neighbourhoods. It is a cornerstone of Rwandan identity, unity and self reliance.",
+    details: [
+      "Held the last Saturday of every month, roughly 8am to 11am.",
+      "Most businesses close until noon on Umuganda Saturday.",
+      "Participation is expected of all residents aged 18 to 65, including visitors in many areas.",
+      "Local leaders coordinate projects such as street cleaning, building classrooms and tree planting.",
+      "Followed by a community meeting to discuss local issues and progress.",
+    ],
+    impact:
+      "Umuganda has built schools, health centres, roads and water systems nationwide, and is credited with keeping Rwanda among the cleanest countries in Africa. It embodies the national motto of unity and work.",
+  },
+  {
+    id: "car-free-day",
+    name: "Car Free Day",
+    kind: "Event",
+    frequency: "Every Sunday morning, 7am to 10am (Kigali and expanding)",
+    image: IMAGES.carfree,
+    description:
+      "Every Sunday morning, Kigali closes major roads to motorised traffic and opens them to people for walking, running, cycling and group exercise. Car Free Day promotes public health, clean air and community. It has become a beloved weekly ritual, with mass aerobics sessions, free health screenings and a festive atmosphere.",
+    details: [
+      "Kigali every Sunday, 7am to 10am, on key avenues like KN 4 Avenue.",
+      "Roads closed to cars and motorbikes; open to pedestrians and cyclists.",
+      "Free group aerobics, running and cycling for all ages.",
+      "Free health checks (blood pressure, blood sugar, BMI) often available.",
+      "Expanding to other cities including Musanze and Rubavu.",
+    ],
+    impact:
+      "Car Free Day supports Rwanda's fight against non communicable diseases, reduces air pollution, and fosters social cohesion. It reflects the country's commitment to healthy, active living.",
+  },
+  {
+    id: "kwita-izina",
+    name: "Kwita Izina (Gorilla Naming Ceremony)",
+    kind: "Event",
+    frequency: "Annually, usually early September",
+    image: IMAGES.gorilla,
+    description:
+      "Rwanda's flagship conservation and cultural event, held at Kinigi near Volcanoes National Park. Newborn mountain gorillas are given names in a ceremony inspired by the Rwandan tradition of naming babies. International guests, conservationists and communities gather to celebrate and raise awareness for gorilla conservation.",
+    details: [
+      "Held annually, usually the first Friday of September.",
+      "Each infant gorilla born that year receives a name from a selected guest.",
+      "Attended by global conservationists, dignitaries and local communities.",
+      "Tourists can sometimes attend the public event with advance arrangements.",
+    ],
+    impact:
+      "Kwita Izina has helped Rwanda's gorilla population grow and brings global attention to conservation, directly supporting tourism revenue and community development around the park.",
+  },
+  {
+    id: "umuganura",
+    name: "Umuganura (National Thanksgiving Day)",
+    kind: "National Day",
+    frequency: "1 August (public holiday)",
+    image: IMAGES.culture,
+    description:
+      "Umuganura is Rwanda's traditional harvest festival, restored as a national holiday. It is a day to give thanks for the harvest and the nation's achievements, and to plan for the season ahead. Communities share food and celebrate Rwandan culture and agriculture.",
+    details: [
+      "Public holiday on 1 August each year.",
+      "Celebrates the first fruits of the harvest.",
+      "Communities gather to share food, dance and reflect on progress.",
+      "Highlights the importance of agriculture to Rwanda's economy and identity.",
+    ],
+    impact:
+      "Umuganura reinforces national unity, agricultural pride and gratitude, and is tied to Rwanda's broader strategy of food security and rural development.",
+  },
+  {
+    id: "liberation-day",
+    name: "Liberation Day",
+    kind: "National Day",
+    frequency: "4 July (public holiday)",
+    image: IMAGES.cultureAlt,
+    description:
+      "Marks the day in 1994 when the Rwanda Patriotic Army stopped the Genocide against the Tutsi, ending the massacres and beginning the country's rebirth. It is a solemn day of remembrance and a celebration of liberation, peace and national renewal.",
+    details: [
+      "Public holiday on 4 July.",
+      "Commemorates the end of the 1994 Genocide against the Tutsi.",
+      "Marked by official ceremonies, speeches and reflection.",
+      "A day that frames Rwanda's journey of rebuilding and reconciliation.",
+    ],
+    impact:
+      "Liberation Day anchors Rwanda's national narrative of resilience, unity and renewal, and underpins the political and social stability that drives the country's development.",
+  },
+  {
+    id: "genocide-memorial-day",
+    name: "Kwibuka (Genocide Commemoration)",
+    kind: "National Day",
+    frequency: "7 April, starting 100 days of remembrance",
+    image: IMAGES.memorial,
+    description:
+      "Kwibuka means 'to remember' in Kinyarwanda. Each 7 April, Rwanda begins 100 days of remembrance for the 1994 Genocide against the Tutsi, in which over one million people were killed. The period includes vigils, memorial events and education, honouring the dead and committing to 'never again'.",
+    details: [
+      "Begins 7 April each year, marking the start of the 1994 genocide.",
+      "100 days of remembrance, mirroring the duration of the genocide.",
+      "The national ceremony is held at the Kigali Genocide Memorial, Gisozi.",
+      "Visitors are welcome to pay respects; a period of sombre reflection.",
+    ],
+    impact:
+      "Kwibuka is central to Rwanda's reconciliation and peace building model, and has made the country a global voice on genocide prevention and healing.",
+  },
+  {
+    id: "national-heroes",
+    name: "National Heroes Day",
+    kind: "National Day",
+    frequency: "1 February (public holiday)",
+    image: IMAGES.culture,
+    description:
+      "A public holiday honouring Rwandan heroes who contributed to the nation's liberation and development. Wreaths are laid at the National Heroes Mausoleum in Kigali, and the day celebrates courage, patriotism and service.",
+    details: [
+      "Public holiday on 1 February.",
+      "Wreath laying at the National Heroes Mausoleum, Amahoro.",
+      "Honours liberation fighters and national figures.",
+      "A day of patriotism and reflection on national values.",
+    ],
+    impact:
+      "Reinforces national identity, patriotism and the values of service that underpin Rwanda's development strategy.",
+  },
+  {
+    id: "independence-day",
+    name: "Independence Day",
+    kind: "National Day",
+    frequency: "1 July (public holiday)",
+    image: IMAGES.kigali,
+    description:
+      "Commemorates Rwanda's independence from Belgium on 1 July 1962. Celebrated with official ceremonies, cultural events and national pride, often paired with Liberation Day on 4 July.",
+    details: [
+      "Public holiday on 1 July.",
+      "Marks independence from Belgium in 1962.",
+      "Official ceremonies and cultural celebrations nationwide.",
+    ],
+    impact:
+      "A core national day reflecting Rwanda's sovereignty and the foundation of its modern statehood.",
+  },
+  {
+    id: "christmas",
+    name: "Christmas & New Year",
+    kind: "National Day",
+    frequency: "25 December and 1 January (public holidays)",
+    image: IMAGES.cultureAlt,
+    description:
+      "Christmas and New Year are public holidays in Rwanda, celebrated by Christian communities (the majority of the population) with church services, family gatherings and feasts. Kigali and towns host festive events, and it is a popular travel period for the diaspora returning home.",
+    details: [
+      "Public holidays on 25 December and 1 January.",
+      "Church services and family gatherings nationwide.",
+      "Popular time for diaspora to visit Rwanda.",
+      "Festive events in Kigali hotels and restaurants.",
+    ],
+    impact:
+      "Strengthens family and community bonds, and supports domestic tourism and hospitality during the festive season.",
+  },
+  {
+    id: "world-env-day",
+    name: "World Environment Day & National Tree Planting",
+    kind: "Event",
+    frequency: "Around 5 June, with a national tree planting season",
+    image: IMAGES.coffee,
+    description:
+      "Rwanda actively marks World Environment Day and runs a national tree planting season, engaging communities, schools and institutions in reforestation and environmental protection. Tied to Rwanda's ambitious green growth and climate resilience strategy.",
+    details: [
+      "Observed around 5 June each year.",
+      "National tree planting season involves millions of seedlings.",
+      "Schools, companies and communities participate.",
+      "Part of Rwanda's goal to be a carbon neutral, climate resilient economy.",
+    ],
+    impact:
+      "Supports reforestation, soil conservation and Rwanda's pledge under the Paris Agreement, reinforcing the country's green growth brand.",
+  },
+];
+
+export const HEALTH_TIPS = [
+  { title: "Health Insurance", text: "Visitors should carry travel health insurance. Rwandans use community based health insurance (Mutuelle de Sante) and private schemes." },
+  { title: "Vaccinations", text: "Yellow fever certificate required if arriving from endemic countries. Recommended: Hepatitis A and B, Typhoid, Tetanus, Polio." },
+  { title: "Malaria", text: "Risk is low in Kigali and the highlands but higher in low lying rural areas. Consider prophylaxis and use mosquito repellent at dawn and dusk." },
+  { title: "Drinking Water", text: "Drink bottled, filtered or boiled water. Tap water is not recommended for drinking without treatment." },
+  { title: "Emergency Numbers", text: "Police 112, Traffic 113, Ambulance and Medical 114. King Faisal Hospital is the main private emergency facility." },
+  { title: "Pharmacies", text: "Major pharmacy chains stock most common medicines. Bring any prescription medicines you need regularly, with a copy of the prescription." },
+];

@@ -9,6 +9,7 @@ import { Destinations } from "@/components/visit-rwanda/destinations";
 import { Experiences } from "@/components/visit-rwanda/experiences";
 import { Invest } from "@/components/visit-rwanda/invest";
 import { TravelEssentials } from "@/components/visit-rwanda/travel-essentials";
+import { HealthCommunity } from "@/components/visit-rwanda/health-community";
 import { RealtimeHub } from "@/components/visit-rwanda/realtime-hub";
 import { LiveSection } from "@/components/visit-rwanda/live-section";
 import { ItineraryPlanner } from "@/components/visit-rwanda/itinerary-planner";
@@ -41,6 +42,7 @@ export default function Home() {
         <Experiences />
         <Invest />
         <TravelEssentials />
+        <HealthCommunity />
         <section id="planner">
           <ItineraryPlanner />
         </section>

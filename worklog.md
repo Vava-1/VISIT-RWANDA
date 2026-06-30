@@ -137,3 +137,31 @@ Stage Summary:
 - Every persona now has a dedicated, browsable hub of real Rwandan institutions (55 total across education, sports, arts, tourism services and investment), each with image, location, fees, contact, website and highlights.
 - Users can browse themselves OR ask RWANDA, which now has deep knowledge of every institution in the app and gives exact fees, locations and contacts in its answers.
 - Search and category filtering work; the hub adapts instantly when the persona changes.
+
+---
+Task ID: visit-rwanda-health-community
+Agent: Z.ai Code (main)
+Task: Add healthcare for visitors (hospitals, clinics, pharmacies by location) and Rwandan community life (Umuganda, Car Free Day, national days, common days) to the app, and feed all of it to the RWANDA AI.
+
+Work Log:
+- Fetched 5 new real image sets via image-search (hospital building, pharmacy counter, Umuganda community work, Kigali Car Free Day, rural clinic), added to IMAGES map.
+- Built HEALTH_FACILITIES dataset (14 real facilities across Rwanda):
+  - Hospitals (7): King Faisal Hospital (leading private tertiary), CHUK (Kigali public referral), CHUB (Butare referral), Ruhengeri Referral (Northern, near gorillas), Kibungo Referral (Eastern, near Akagera), Rwanda Military Hospital (Kanombe), Muhima Hospital (Kigali district). Each with type, level, location, province, image, description, services list, emergency number, contact, hours.
+  - Clinics (3): Kigali Polyclinic of Excellence, Biomed Clinic, Carrefour de Sante Clinic.
+  - Pharmacies (4): Bienne Pharmacy, Pharmacie de Kigali, Peace Pharmacy, ProPharma Rwanda (nationwide chain).
+- Built COMMUNITY_LIFE dataset (10 entries): Umuganda (monthly community work), Car Free Day (weekly), Kwita Izina (gorilla naming), Umuganura (harvest thanksgiving, 1 Aug), Liberation Day (4 July), Kwibuka (genocide commemoration, 7 April), National Heroes Day (1 Feb), Independence Day (1 July), Christmas and New Year, World Environment Day and tree planting. Each with kind, frequency, image, description, practical details list, and national impact.
+- Built HEALTH_TIPS strip (6): insurance, vaccinations, malaria, drinking water, emergency numbers, pharmacies.
+- Built HealthCommunity component with two tabs: "Health Facilities" (searchable, filterable by type Hospital/Clinic/Pharmacy, cards with detail dialog showing services/emergency/contact/hours) and "Community & Days" (cards with detail dialog showing description, What to know, Why it matters). Both have "Ask RWANDA" buttons per card.
+- Wired the section into page.tsx after TravelEssentials, with a new #health-community anchor. Added a "Health" nav link in the navbar and a "Hospitals & Community" link in the footer.
+- Fed ALL health and community data into the AI system prompt (src/lib/ai.ts): every facility's name, type, location, services, emergency, contact; every community event's kind, frequency, description and impact; and the health tips. Added explicit behaviour rules for RWANDA to use these lists for health questions (citing King Faisal, CHUK, emergency 114, etc.) and community questions (Umuganda, Car Free Day, Kwibuka, etc.).
+- Verified with Agent Browser:
+  - Health section renders 14 facility cards (King Faisal, CHUK, CHUB, Ruhengeri, Kibungo, Rwanda Military, Muhima, Polyclinic, Biomed, Carrefour, Bienne, Pharmacie de Kigali, Peace, ProPharma).
+  - Community tab shows all 10 events (Umuganda, Car Free Day, Kwita Izina, Umuganura, Liberation Day, Kwibuka, National Heroes, Independence, Christmas, World Environment Day).
+  - Detail dialog (Umuganda) shows title, What to know details, Why it matters impact, Ask RWANDA button.
+  - AI test: asked "Which hospital should I go to in Kigali for an emergency, and what is the emergency number?" RWANDA answered citing King Faisal Hospital, CHUK (with contact +250 788 321 111), emergency number 114, and private clinic alternatives. Health data flows through correctly.
+- Lint clean, homepage 200.
+
+Stage Summary:
+- Visitors now get a full healthcare directory: 14 real hospitals, clinics and pharmacies across Kigali and the provinces, searchable and filterable, each with services, emergency numbers, contacts and hours.
+- A Community & National Days hub explains Umuganda, Car Free Day, Kwita Izina, Kwibuka, Liberation, Umuganura, Heroes Day, Independence, Christmas and World Environment Day, with practical details and national impact.
+- RWANDA AI now has deep knowledge of all health facilities and community life, and answers with real contacts, emergency numbers and how to take part.

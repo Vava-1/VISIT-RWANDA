@@ -27,6 +27,7 @@ const LINKS = [
     links: [
       { label: "Visa & Entry", href: "#travel" },
       { label: "Health & Safety", href: "#travel" },
+      { label: "Hospitals & Community", href: "#health-community" },
       { label: "Itinerary Planner", href: "#planner" },
       { label: "Ask RWANDA", href: "#" },
     ],
