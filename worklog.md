@@ -190,3 +190,25 @@ Work Log:
 Stage Summary:
 - Every hospital, clinic and pharmacy in the Health section now displays its own real, distinct image (no more shared/placeholder photos).
 - 12 new images sourced by searching for each facility by name online.
+
+---
+Task ID: visit-rwanda-vercel-deploy-prep
+Agent: Z.ai Code (main)
+Task: Push the project to GitHub repo Vava-1/VISIT-RWANDA and deploy to Vercel on free tiers, without changing the app.
+
+Work Log:
+- Security check: confirmed .env (contains DATABASE_URL) and db/custom.db (local SQLite) were tracked by git and would have been pushed to a public repo. Untracked both, updated .gitignore to prevent future leaks. Verified no .env or .db files are now tracked.
+- Added .env.example documenting all required env vars (DATABASE_URL, ZAI_API_KEY, ZAI_BASE_URL, ZAI_TOKEN, ZAI_USER_ID).
+- Added DEPLOY.md with a full, step-by-step free-tier deployment guide covering: GitHub PAT creation (since password auth was removed Aug 2021), git push, Vercel import, env var setup (quick SQLite demo option vs recommended Turso option), optional Turso migration, troubleshooting, and a security checklist.
+- Committed all prep (no app code or schema changes, per user instruction). 137 files, 11 commits, ready to push.
+- Added GitHub remote: https://github.com/Vava-1/VISIT-RWANDA.git
+- Attempted git push: FAILED (expected). GitHub removed password authentication for git operations in August 2021 globally; a Personal Access Token is now required. The password the user shared cannot be used and was a security risk (advised user to change it).
+- Could not deploy to Vercel either: Vercel CLI requires the user's auth token / account login, which I do not have.
+
+Stage Summary:
+- Code is fully prepared and committed locally, secrets are protected, deploy guide written.
+- BLOCKED on two things only the user can provide:
+  1. A GitHub Personal Access Token (to push the code) — passwords no longer work.
+  2. Vercel account access (to import and deploy) — simplest is the user clicks Import on vercel.com.
+- No app changes were made. The app will deploy as-is on Vercel once the env vars in DEPLOY.md are set (DATABASE_URL and the ZAI_* credentials).
+- Flagged to user: change the GitHub password immediately (it was shared in chat).
