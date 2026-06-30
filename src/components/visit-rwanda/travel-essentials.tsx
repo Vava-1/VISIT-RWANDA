@@ -78,7 +78,7 @@ export function TravelEssentials() {
                               onClick={() => ask(`Give me detailed, current advice about ${item.title} for travelling to Rwanda.`)}
                               className="text-xs font-medium text-primary hover:underline"
                             >
-                              Ask Aiya for personalised help →
+                              Ask RWANDA for personalised help →
                             </button>
                           </li>
                         </motion.ul>

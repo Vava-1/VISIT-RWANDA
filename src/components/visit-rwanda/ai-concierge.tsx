@@ -92,7 +92,7 @@ export function AIConcierge() {
             <Sparkles className="h-6 w-6" />
             <span className="absolute inset-0 rounded-full ring-2 ring-primary/30 animate-ping" />
             <span className="absolute right-full mr-3 whitespace-nowrap rounded-lg bg-foreground text-background px-3 py-1.5 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block">
-              Ask Aiya anything
+              Ask RWANDA anything
             </span>
           </motion.button>
         )}
@@ -123,8 +123,8 @@ export function AIConcierge() {
                     <Bot className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="font-bold leading-tight">Aiya</div>
-                    <div className="text-xs opacity-90">Rwanda AI Concierge · {personaLabel}</div>
+                    <div className="font-bold leading-tight">RWANDA</div>
+                    <div className="text-xs opacity-90">AI Concierge · {personaLabel}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
@@ -156,7 +156,7 @@ export function AIConcierge() {
                     <div className="h-16 w-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
                       <Sparkles className="h-8 w-8" />
                     </div>
-                    <h3 className="font-bold text-lg">Muraho! I'm Aiya 🇷🇼</h3>
+                    <h3 className="font-bold text-lg">Muraho! I'm RWANDA 🇷🇼</h3>
                     <p className="text-sm text-muted-foreground mt-1.5 max-w-xs mx-auto">
                       Your intelligent guide to Rwanda: tourism, investment, culture, sport and
                       everything in between. How can I help?
@@ -253,7 +253,7 @@ export function AIConcierge() {
                   </Button>
                 </form>
                 <p className="text-[10px] text-muted-foreground text-center mt-2">
-                  Aiya can make mistakes. Verify critical info via official sources.
+                  RWANDA can make mistakes. Verify critical info via official sources.
                 </p>
               </div>
             </motion.div>

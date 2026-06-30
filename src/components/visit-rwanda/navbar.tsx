@@ -14,6 +14,7 @@ import {
 import { useTheme } from "next-themes";
 import { useApp } from "@/lib/store";
 import { PERSONAS } from "@/lib/rwanda-data";
+import { FlagRwanda } from "@/components/visit-rwanda/flag-rwanda";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -60,15 +61,12 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between gap-3">
           {/* Logo */}
           <Link href="#top" className="flex items-center gap-2.5 shrink-0 group">
-            <div className="relative h-9 w-9 rounded-xl overflow-hidden shadow-md ring-1 ring-black/5">
-              <div className="absolute inset-0 rwanda-flag-bar" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white font-black text-sm drop-shadow">R</span>
-              </div>
+            <div className="relative h-9 w-12 overflow-hidden shadow-md ring-1 ring-black/5">
+              <FlagRwanda />
             </div>
             <div className="leading-tight">
-              <div className="font-black tracking-tight text-base sm:text-lg">
-                Visit<span className="gradient-text"> Rwanda</span>
+              <div className="font-black tracking-tight text-base sm:text-lg text-emerald-500">
+                Visit Rwanda
               </div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground hidden sm:block">
                 Land of a Thousand Hills
@@ -146,7 +144,7 @@ export function Navbar() {
               onClick={() => setAiOpen(true)}
             >
               <Sparkles className="h-4 w-4" />
-              <span className="hidden sm:inline">Ask Aiya</span>
+              <span className="hidden sm:inline">Ask RWANDA</span>
             </Button>
 
             {/* Mobile menu */}

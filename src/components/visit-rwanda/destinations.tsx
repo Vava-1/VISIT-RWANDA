@@ -188,7 +188,7 @@ export function Destinations() {
 
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
                     <Button className="flex-1 gap-2" onClick={() => askAbout(active)}>
-                      <Sparkles className="h-4 w-4" /> Ask Aiya about {active.name}
+                      <Sparkles className="h-4 w-4" /> Ask RWANDA about {active.name}
                     </Button>
                     <Button
                       variant="outline"

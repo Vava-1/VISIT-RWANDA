@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useApp } from "@/lib/store";
 import { QUICK_FACTS } from "@/lib/rwanda-data";
+import { FlagRwanda } from "@/components/visit-rwanda/flag-rwanda";
 
 const LINKS = [
   {
@@ -27,7 +28,7 @@ const LINKS = [
       { label: "Visa & Entry", href: "#travel" },
       { label: "Health & Safety", href: "#travel" },
       { label: "Itinerary Planner", href: "#planner" },
-      { label: "Ask Aiya", href: "#" },
+      { label: "Ask RWANDA", href: "#" },
     ],
   },
   {
@@ -92,12 +93,11 @@ export function Footer() {
           {/* Brand + newsletter */}
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="relative h-10 w-10 rounded-xl overflow-hidden ring-1 ring-white/20">
-                <div className="absolute inset-0 rwanda-flag-bar" />
-                <div className="absolute inset-0 flex items-center justify-center text-white font-black">R</div>
+              <div className="relative h-10 w-14 overflow-hidden ring-1 ring-white/20">
+                <FlagRwanda />
               </div>
               <div>
-                <div className="font-black text-lg">Visit Rwanda</div>
+                <div className="font-black text-lg text-emerald-400">Visit Rwanda</div>
                 <div className="text-xs text-background/60 uppercase tracking-wide">Land of a Thousand Hills</div>
               </div>
             </div>
@@ -181,7 +181,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <span>"{QUICK_FACTS.motto}"</span>
             <button onClick={() => setAiOpen(true)} className="hover:text-background flex items-center gap-1">
-              <Sparkles className="h-3 w-3" /> Ask Aiya
+              <Sparkles className="h-3 w-3" /> Ask RWANDA
             </button>
           </div>
         </div>

@@ -46,3 +46,20 @@ Stage Summary:
 - AI concierge re-trained via system prompt to write em-dash-free, human-style prose.
 - All AI-tell compound adjectives (self-healing, AI-powered, AI-personalised, data-safe, award-winning, high-value/low-volume, etc.) replaced with plain language.
 - App reads like it was written by a real Rwandan team, not an AI.
+
+---
+Task ID: visit-rwanda-flag-green-rename
+Agent: Z.ai Code (main)
+Task: Make the app logo Rwanda's national flag, make the "Visit Rwanda" name (top-left) green, and rename the AI concierge "Aiya" to "RWANDA".
+
+Work Log:
+- Created an accurate SVG FlagRwanda component (src/components/visit-rwanda/flag-rwanda.tsx) rendering the official Rwanda flag per Law No. 34/2001: blue (top half), yellow (middle quarter), green (bottom quarter) bands, plus a golden 24-ray sun (procedurally generated) in the upper fly corner. Uses official hex colors #00A1DE / #FAD201 / #20603D.
+- Navbar: replaced the old "R in a flag-bar square" logo with the FlagRwanda SVG (h-9 w-12 container). Changed "Visit Rwanda" text from gradient to solid green (text-emerald-500) for readability over the dark hero.
+- Footer: replaced the old logo box with the FlagRwanda SVG (h-10 w-14). Made "Visit Rwanda" text green (text-emerald-400, brighter for the dark footer background).
+- Renamed "Aiya" to "RWANDA" everywhere: AI concierge panel header, intro heading, disclaimer, floating button tooltip, navbar button, hero button, persona-zone CTA, destinations modal CTA, travel-essentials CTA, itinerary-planner copy, footer link + bottom bar. Updated the AI system prompt (src/lib/ai.ts) so the model identifies itself as "RWANDA" when asked its name.
+- Verified with Agent Browser + VLM: flag renders correctly in both navbar and footer (3 stripes + sun confirmed), "Visit Rwanda" text is bright green, AI panel header reads "RWANDA", intro "Muraho! I'm RWANDA", button "Ask RWANDA". Lint clean, homepage 200.
+
+Stage Summary:
+- App logo is now the authentic Rwanda national flag (SVG, crisp at any size).
+- "Visit Rwanda" wordmark is green in the top-left navbar and in the footer.
+- The AI concierge is now named "RWANDA" throughout the UI and in its own system prompt.

@@ -104,7 +104,7 @@ export function Hero() {
             </div>
             <Button type="submit" size="lg" className="h-14 px-6 rounded-2xl gap-2 shadow-xl">
               <Sparkles className="h-5 w-5" />
-              Ask Aiya
+              Ask RWANDA
             </Button>
           </motion.form>
 

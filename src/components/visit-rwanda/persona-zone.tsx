@@ -142,7 +142,7 @@ export function PersonaZone() {
                   onClick={ask}
                   className="bg-white text-gray-900 hover:bg-white/90 gap-2 shadow-lg"
                 >
-                  <Sparkles className="h-4 w-4" /> Ask Aiya for help
+                  <Sparkles className="h-4 w-4" /> Ask RWANDA for help
                 </Button>
               </div>
             </div>

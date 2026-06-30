@@ -68,7 +68,7 @@ export function ItineraryPlanner() {
             Build your trip in <span className="gradient-text">seconds</span>
           </h2>
           <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-            Tell Aiya how long you have and what you love, and get a realistic, day by day Rwandan
+            Tell RWANDA how long you have and what you love, and get a realistic, day by day Rwandan
             itinerary with travel times, stays and practical tips.
           </p>
         </div>
