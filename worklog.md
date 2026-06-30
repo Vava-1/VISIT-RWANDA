@@ -91,3 +91,19 @@ Work Log:
 Stage Summary:
 - The entire header/navigation bar now represents the Rwandan flag: solid blue background, yellow + green accent bands at the bottom, a green "Rwanda" wordmark, a gold "Ask RWANDA" button, and the Rwanda flag as the logo.
 - Full visibility over the hero image is restored in both desktop and mobile, at the top and when scrolled.
+
+---
+Task ID: visit-rwanda-fix-persona-crash
+Agent: Z.ai Code (main)
+Task: Fix runtime error "Element type is invalid: expected a string... but got: undefined" when clicking the persona switcher (Tourist/Expat) in the navbar.
+
+Work Log:
+- Root cause: icon-name mismatch. PERSONA_ICONS used JS shorthand object syntax { Plane, TrendingUp, ..., HomeIcon }, which creates a key "HomeIcon" (from the import alias `Home as HomeIcon`). But the persona data (rwanda-data.ts) defines the expat persona with icon: "Home". So PERSONA_ICONS["Home"] returned undefined, and rendering <Icon /> crashed the dropdown the moment it opened (when mapping all personas including Expat).
+- Fix: rewrote PERSONA_ICONS with explicit string keys matching the persona data values, mapping "Home" to the HomeIcon component:
+    Plane: Plane, TrendingUp: TrendingUp, GraduationCap: GraduationCap, Palette: Palette, Trophy: Trophy, Home: HomeIcon
+- Added a defensive fallback (PERSONA_ICONS[p.icon] ?? Sparkles) for both the dropdown items and the trigger button's CurrentIcon, so a missing icon name can never crash the app again.
+- Verified with Agent Browser: dropdown opens fully showing all 6 personas (Tourist, Investor, Student, Artist, Athlete, Expat); selecting Expat then Investor updates the trigger label and the PersonaZone heading ("Make Rwanda home" / "Welcome to Africa's rising investment star"); zero console errors. Lint clean, homepage 200.
+
+Stage Summary:
+- Persona switcher no longer crashes. The Expat/Diaspora persona (and all others) now opens and switches correctly.
+- Added a fallback so any future icon-name mismatch degrades gracefully instead of throwing a runtime error.

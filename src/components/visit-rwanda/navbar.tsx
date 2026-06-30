@@ -27,7 +27,12 @@ const NAV_LINKS = [
 ];
 
 const PERSONA_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  Plane, TrendingUp, GraduationCap, Palette, Trophy, HomeIcon,
+  Plane: Plane,
+  TrendingUp: TrendingUp,
+  GraduationCap: GraduationCap,
+  Palette: Palette,
+  Trophy: Trophy,
+  Home: HomeIcon,
 };
 
 export function Navbar() {
@@ -47,7 +52,7 @@ export function Navbar() {
   }, []);
 
   const currentPersona = PERSONAS.find((p) => p.id === persona) ?? PERSONAS[0];
-  const CurrentIcon = PERSONA_ICONS[currentPersona.icon];
+  const CurrentIcon = PERSONA_ICONS[currentPersona.icon] ?? Sparkles;
 
   return (
     <header
@@ -103,7 +108,7 @@ export function Navbar() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {PERSONAS.map((p) => {
-                  const Icon = PERSONA_ICONS[p.icon];
+                  const Icon = PERSONA_ICONS[p.icon] ?? Sparkles;
                   return (
                     <DropdownMenuItem
                       key={p.id}
