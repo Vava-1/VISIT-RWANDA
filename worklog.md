@@ -63,3 +63,31 @@ Stage Summary:
 - App logo is now the authentic Rwanda national flag (SVG, crisp at any size).
 - "Visit Rwanda" wordmark is green in the top-left navbar and in the footer.
 - The AI concierge is now named "RWANDA" throughout the UI and in its own system prompt.
+
+---
+Task ID: visit-rwanda-flag-header
+Agent: Z.ai Code (main)
+Task: Fix header/navbar visibility over hero image and make the whole header represent the Rwandan flag colours.
+
+Work Log:
+- Root cause: navbar was transparent at top (bg-transparent) and only became glass on scroll, so the flag logo, green wordmark and links clashed with the dark hero image and were hard to see.
+- Redesigned the header to represent the Rwandan flag using all three official colours (blue #00A1DE, yellow #FAD201, green #20603D):
+  - Header background: always solid flag blue (bg-[#00A1DE]) with white text; shadow deepens on scroll (removed the transparent/glass states entirely).
+  - Bottom edge accent: a thin yellow band (3px) + thin green band (3px) echo the lower half of the flag, so the bar reads top to bottom as blue, yellow, green.
+  - Wordmark: "Visit" in white, "Rwanda" in emerald-400 (clearly green and readable on blue).
+  - Subtitle "Land of a Thousand Hills": white/70.
+  - Nav links: white/90, hover white on white/15.
+  - Persona switcher button: white outline on white/10.
+  - Theme toggle + mobile menu button: white.
+  - "Ask RWANDA" CTA: flag yellow (#FAD201) with dark green text, bringing the flag's gold into the header.
+  - Mobile menu panel: blue background with white links.
+- Verified with Agent Browser + VLM:
+  - Background confirmed bright flag blue (rgb 0,161,222) in both top and scrolled states.
+  - Yellow + green accent bands confirmed at the bottom edge (pixels: 250,210,1 then 32,96,61).
+  - VLM: "Visit is white, Rwanda is clearly green, bar background is bright blue, yellow Ask RWANDA button with dark text, everything clearly visible and readable."
+  - Mobile view: flag logo visible, white "Visit" + green "Rwanda", yellow button, all readable on blue.
+- Lint clean, homepage 200.
+
+Stage Summary:
+- The entire header/navigation bar now represents the Rwandan flag: solid blue background, yellow + green accent bands at the bottom, a green "Rwanda" wordmark, a gold "Ask RWANDA" button, and the Rwanda flag as the logo.
+- Full visibility over the hero image is restored in both desktop and mobile, at the top and when scrolled.

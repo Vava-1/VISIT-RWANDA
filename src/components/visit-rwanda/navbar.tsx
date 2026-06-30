@@ -52,11 +52,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled ? "glass border-b border-border/60 shadow-sm" : "bg-transparent"
+        "fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-[#00A1DE] text-white",
+        scrolled ? "shadow-lg shadow-black/10" : "shadow-md shadow-black/5"
       )}
     >
-      <div className="h-1 rwanda-flag-bar" />
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-3">
           {/* Logo */}
@@ -65,10 +64,10 @@ export function Navbar() {
               <FlagRwanda />
             </div>
             <div className="leading-tight">
-              <div className="font-black tracking-tight text-base sm:text-lg text-emerald-500">
-                Visit Rwanda
+              <div className="font-black tracking-tight text-base sm:text-lg text-white">
+                Visit <span className="text-emerald-400">Rwanda</span>
               </div>
-              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground hidden sm:block">
+              <div className="text-[10px] uppercase tracking-[0.18em] text-white/70 hidden sm:block">
                 Land of a Thousand Hills
               </div>
             </div>
@@ -80,7 +79,7 @@ export function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-accent/60 rounded-lg transition-colors"
+                className="px-3 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 rounded-lg transition-colors"
               >
                 {l.label}
               </Link>
@@ -92,10 +91,10 @@ export function Navbar() {
             {/* Persona switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-1.5 h-9">
-                  <CurrentIcon className="h-4 w-4 text-primary" />
+                <Button variant="outline" size="sm" className="gap-1.5 h-9 border-white/40 text-white bg-white/10 hover:bg-white/20 hover:text-white">
+                  <CurrentIcon className="h-4 w-4 text-white" />
                   <span className="hidden sm:inline">{currentPersona.label}</span>
-                  <ChevronDown className="h-3.5 w-3.5 opacity-60" />
+                  <ChevronDown className="h-3.5 w-3.5 opacity-80" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-64">
@@ -126,7 +125,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-9 w-9"
+              className="h-9 w-9 text-white hover:bg-white/15 hover:text-white"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
             >
@@ -140,7 +139,7 @@ export function Navbar() {
             {/* AI Concierge */}
             <Button
               size="sm"
-              className="gap-1.5 h-9 shadow-md"
+              className="gap-1.5 h-9 shadow-md bg-[#FAD201] text-[#20603D] hover:bg-[#FAD201]/90 hover:text-[#20603D]"
               onClick={() => setAiOpen(true)}
             >
               <Sparkles className="h-4 w-4" />
@@ -151,7 +150,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-9 w-9 lg:hidden"
+              className="h-9 w-9 lg:hidden text-white hover:bg-white/15 hover:text-white"
               onClick={() => setOpen((v) => !v)}
               aria-label="Menu"
             >
@@ -169,7 +168,7 @@ export function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-accent"
+                  className="px-3 py-2.5 text-sm font-medium rounded-lg text-white/90 hover:text-white hover:bg-white/15"
                 >
                   {l.label}
                 </Link>
@@ -178,6 +177,10 @@ export function Navbar() {
           </div>
         )}
       </nav>
+      {/* Flag accent: yellow + green bands at the bottom edge of the blue bar,
+          echoing the lower half of the Rwandan flag. */}
+      <div className="h-[3px] bg-[#FAD201]" />
+      <div className="h-[3px] bg-[#20603D]" />
     </header>
   );
 }
