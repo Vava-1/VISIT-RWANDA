@@ -10,7 +10,7 @@ import {
 // 30 requests/min, 14,400 requests/day on Llama 3.3 70B.
 // Get a free API key at https://console.groq.com/keys
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -80,13 +80,14 @@ export function buildRwandaKnowledge(persona?: string): string {
     (s) => `- ${s.name}: ${s.whyRwanda}`
   ).join("\n");
 
-  // Detailed institution knowledge so RWANDA can answer specific questions.
+  // Compact institution knowledge so RWANDA can answer specific questions.
+  // Keep only name, type, location, fees and contact — not full descriptions.
   const fmtInstitutions = (list: any[], label: string) =>
     `${label}:\n` +
     list
       .map(
         (i) =>
-          `- ${i.name} [${i.category}], ${i.location}. ${i.description} Fees: ${i.fees || "n/a"}. Contact: ${i.contact || "n/a"}. Web: ${i.website || "n/a"}.`
+          `- ${i.name} [${i.category}], ${i.location}. Fees: ${i.fees || "n/a"}. Contact: ${i.contact || "n/a"}. Web: ${i.website || "n/a"}.`
       )
       .join("\n");
 
@@ -96,20 +97,20 @@ export function buildRwandaKnowledge(persona?: string): string {
   const tourismSvc = fmtInstitutions(TOURISM_SERVICES, "TOURISM SERVICES (lodges, hotels, operators, official permits)");
   const investOpps = fmtInstitutions(INVESTMENT_OPPORTUNITIES, "INVESTMENT OPPORTUNITIES (zones, funds, official services)");
 
-  // Cities and transport
+  // Cities and transport (compact)
   const cities =
     "CITIES OF RWANDA (by province):\n" +
-    CITIES.map((c) => `- ${c.name} [${c.province}], population ${c.population}. ${c.description} Transport hub: ${c.transportHub}.`).join("\n");
+    CITIES.map((c) => `- ${c.name} [${c.province}], pop ${c.population}. Transport: ${c.transportHub}.`).join("\n");
   const transport =
     "TRANSPORT (buses, car hire, moto-taxis, ride-hailing, boats):\n" +
-    TRANSPORT.map((t) => `- ${t.name} [${t.type}], serves: ${t.citiesServed.join(", ")}. ${t.description} Price: ${t.priceFrom}. Notes: ${t.notes}`).join("\n");
+    TRANSPORT.map((t) => `- ${t.name} [${t.type}], serves: ${t.citiesServed.join(", ")}. Price: ${t.priceFrom}. Notes: ${t.notes}`).join("\n");
 
   // Health facilities + community life
   const health = fmtInstitutions(HEALTH_FACILITIES, "HEALTH FACILITIES (hospitals, clinics, pharmacies by location)");
   const community =
     "COMMUNITY LIFE & NATIONAL DAYS:\n" +
     COMMUNITY_LIFE.map(
-      (c) => `- ${c.name} [${c.kind}], ${c.frequency}. ${c.description} Impact: ${c.impact}`
+      (c) => `- ${c.name} [${c.kind}], ${c.frequency}. ${c.impact}`
     ).join("\n");
   const healthTips =
     "VISITOR HEALTH TIPS:\n" + HEALTH_TIPS.map((t) => `- ${t.title}: ${t.text}`).join("\n");
