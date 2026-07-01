@@ -11,7 +11,23 @@ let zaiInstance: Awaited<ReturnType<typeof ZAI.create>> | null = null;
 
 export async function getZAI() {
   if (!zaiInstance) {
-    zaiInstance = await ZAI.create();
+    // On Vercel (and any environment with ZAI_* env vars set), build the config
+    // directly from env vars, bypassing the config-file lookup (which doesn't
+    // work on serverless read-only filesystems). Locally, fall back to
+    // ZAI.create() which reads /etc/.z-ai-config or ./.z-ai-config.
+    const envBaseUrl = process.env.ZAI_BASE_URL;
+    const envApiKey = process.env.ZAI_API_KEY;
+    if (envBaseUrl && envApiKey) {
+      zaiInstance = new ZAI({
+        baseUrl: envBaseUrl,
+        apiKey: envApiKey,
+        token: process.env.ZAI_TOKEN || "",
+        userId: process.env.ZAI_USER_ID || "",
+        chatId: process.env.ZAI_CHAT_ID || "",
+      }) as Awaited<ReturnType<typeof ZAI.create>>;
+    } else {
+      zaiInstance = await ZAI.create();
+    }
   }
   return zaiInstance;
 }
