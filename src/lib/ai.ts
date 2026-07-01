@@ -17,17 +17,31 @@ export async function getZAI() {
     // ZAI.create() which reads /etc/.z-ai-config or ./.z-ai-config.
     const envBaseUrl = process.env.ZAI_BASE_URL;
     const envApiKey = process.env.ZAI_API_KEY;
+    let instance: any;
     if (envBaseUrl && envApiKey) {
-      zaiInstance = new ZAI({
+      instance = new ZAI({
         baseUrl: envBaseUrl,
         apiKey: envApiKey,
         token: process.env.ZAI_TOKEN || "",
         userId: process.env.ZAI_USER_ID || "",
         chatId: process.env.ZAI_CHAT_ID || "",
-      }) as Awaited<ReturnType<typeof ZAI.create>>;
+      });
     } else {
-      zaiInstance = await ZAI.create();
+      instance = await ZAI.create();
     }
+
+    // The public Z.ai API (api.z.ai) requires a "model" field in every chat
+    // completion request. The internal API doesn't need it. When ZAI_MODEL is
+    // set (e.g. "glm-4-flash"), inject it into every call so the public API
+    // works. Locally (no ZAI_MODEL), behavior is unchanged.
+    const model = process.env.ZAI_MODEL;
+    if (model && instance?.chat?.completions?.create) {
+      const originalCreate = instance.chat.completions.create.bind(instance);
+      instance.chat.completions.create = (body: any) =>
+        originalCreate({ model, ...body });
+    }
+
+    zaiInstance = instance as Awaited<ReturnType<typeof ZAI.create>>;
   }
   return zaiInstance;
 }
