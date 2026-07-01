@@ -7,6 +7,7 @@ import { PersonaZone } from "@/components/visit-rwanda/persona-zone";
 import { PersonaHub } from "@/components/visit-rwanda/persona-hub";
 import { Destinations } from "@/components/visit-rwanda/destinations";
 import { Experiences } from "@/components/visit-rwanda/experiences";
+import { CitiesTransport } from "@/components/visit-rwanda/cities-transport";
 import { Invest } from "@/components/visit-rwanda/invest";
 import { TravelEssentials } from "@/components/visit-rwanda/travel-essentials";
 import { HealthCommunity } from "@/components/visit-rwanda/health-community";
@@ -16,6 +17,7 @@ import { ItineraryPlanner } from "@/components/visit-rwanda/itinerary-planner";
 import { Footer } from "@/components/visit-rwanda/footer";
 import { AIConcierge } from "@/components/visit-rwanda/ai-concierge";
 import { FeedbackDialog } from "@/components/visit-rwanda/feedback-dialog";
+import { HotelBookingDialog } from "@/components/visit-rwanda/hotel-booking-dialog";
 import { useApp } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
@@ -41,6 +43,7 @@ function PageContent() {
   const pageMeta: Record<string, { title: string; subtitle: string }> = {
     discover: { title: "Discover Rwanda", subtitle: "Every place worth a thousand stories" },
     experiences: { title: "Signature Experiences", subtitle: "Moments that stay with you" },
+    cities: { title: "Cities & Transport", subtitle: "Every city, every way to get there" },
     invest: { title: "Invest in Rwanda", subtitle: "Africa's rising star for investment" },
     travel: { title: "Travel Essentials", subtitle: "Everything you need before you go" },
     health: { title: "Health & Community", subtitle: "Care for visitors, heart of the nation" },
@@ -82,6 +85,7 @@ function PageContent() {
         >
           {page === "discover" && <Destinations />}
           {page === "experiences" && <Experiences />}
+          {page === "cities" && <CitiesTransport />}
           {page === "invest" && <Invest />}
           {page === "travel" && <TravelEssentials />}
           {page === "health" && <HealthCommunity />}
@@ -116,6 +120,7 @@ export default function Home() {
       <Footer />
       <AIConcierge />
       <FeedbackDialog />
+      <HotelBookingDialog />
     </div>
   );
 }

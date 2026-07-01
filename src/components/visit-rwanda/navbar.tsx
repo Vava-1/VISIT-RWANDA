@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 const NAV_LINKS = [
   { page: "discover" as const, label: "Discover" },
   { page: "experiences" as const, label: "Experiences" },
+  { page: "cities" as const, label: "Cities" },
   { page: "invest" as const, label: "Invest" },
   { page: "travel" as const, label: "Travel" },
   { page: "health" as const, label: "Health" },

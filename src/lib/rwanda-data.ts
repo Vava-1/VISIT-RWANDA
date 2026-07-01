@@ -62,6 +62,12 @@ export const IMAGES = {
   umugandaAlt: "https://sfile.chatglm.cn/images-ppt/d5f408b80bc6.jpg",
   carfree: "https://sfile.chatglm.cn/images-ppt/089b963b5b20.jpg",
   carfreeAlt: "https://sfile.chatglm.cn/images-ppt/f2aedad7f468.jpg",
+  bus: "https://sfile.chatglm.cn/images-ppt/3d44a5f8808f.jpg",
+  busAlt: "https://sfile.chatglm.cn/images-ppt/b0c3dcb62ee8.jpg",
+  moto: "https://sfile.chatglm.cn/images-ppt/facd99b45eb6.jpg",
+  motoAlt: "https://sfile.chatglm.cn/images-ppt/86600ccee6d5.jpg",
+  car: "https://sfile.chatglm.cn/images-ppt/272f00c2db0a.jpg",
+  carAlt: "https://sfile.chatglm.cn/images-ppt/ddbe25981ee2.jpg",
 };
 
 export type Destination = {
@@ -1852,3 +1858,348 @@ export const HEALTH_TIPS = [
   { title: "Emergency Numbers", text: "Police 112, Traffic 113, Ambulance and Medical 114. King Faisal Hospital is the main private emergency facility." },
   { title: "Pharmacies", text: "Major pharmacy chains stock most common medicines. Bring any prescription medicines you need regularly, with a copy of the prescription." },
 ];
+
+// ============================================================================
+// CITIES & TRANSPORT
+// All major Rwandan cities by province, plus transport options across them.
+// ============================================================================
+
+export type City = {
+  id: string;
+  name: string;
+  province: string;
+  image: string;
+  population: string;
+  description: string;
+  highlights: string[];
+  transportHub: string;
+};
+
+export const CITIES: City[] = [
+  {
+    id: "kigali",
+    name: "Kigali",
+    province: "Kigali City",
+    image: IMAGES.kigali,
+    population: "about 1.3 million",
+    description:
+      "The capital and largest city, sprawling across four hills at about 1,567m altitude. Rwanda's political, economic and cultural heart, with the international airport, government, major hotels and the Convention Centre.",
+    highlights: ["Kigali Genocide Memorial", "Kigali Convention Centre", "Kimironko Market", "Nyarutarama nightlife", "Mount Kigali views"],
+    transportHub: "Kigali Bus Park (Nyabugogo), Kigali International Airport, city bus network, Yego ride-hailing",
+  },
+  {
+    id: "musanze",
+    name: "Musanze (Ruhengeri)",
+    province: "Northern Province",
+    image: IMAGES.gorilla,
+    population: "about 100,000",
+    description:
+      "The gateway to Volcanoes National Park and gorilla trekking, in the shadow of the Virunga volcanoes. The tourism capital of northern Rwanda and a base for adventure activities.",
+    highlights: ["Gorilla trekking base", "Caving at Musanze caves", "Red Rocks cultural centre", "Bisoke crater hike", "Golden monkey tracking"],
+    transportHub: "Musanze bus terminal, 2h from Kigali by road, moto-taxis throughout",
+  },
+  {
+    id: "rubavu",
+    name: "Rubavu (Gisenyi)",
+    province: "Western Province",
+    image: IMAGES.kivu,
+    population: "about 150,000",
+    description:
+      "A lakeside resort city on the north shore of Lake Kivu, on the border with Goma (DRC). Known for sandy beaches, hot springs and a relaxed atmosphere. Popular weekend getaway from Kigali.",
+    highlights: ["Lake Kivu beaches", "Hot springs at Nyamyumba", "Bralirwa brewery", "Border with Goma", "Sunset cruises"],
+    transportHub: "Rubavu bus station, 3h from Kigali, lake taxis to other Kivu towns",
+  },
+  {
+    id: "karongi",
+    name: "Karongi (Kibuye)",
+    province: "Western Province",
+    image: IMAGES.kivuAlt,
+    population: "about 50,000",
+    description:
+      "A picturesque town on Lake Kivu's eastern shore, surrounded by forested hills and islands. Considered the most beautiful of the Kivu lakeside towns, with Napoleon Island (home to fruit bats) nearby.",
+    highlights: ["Napoleon Island fruit bats", "Lake Kivu islands", "Peace Memorial", "Scenic hill drives", "Coffee washing stations"],
+    transportHub: "Karongi bus stop, 4h from Kigali, boat to Rubavu and Rusizi",
+  },
+  {
+    id: "rusizi",
+    name: "Rusizi (Cyangugu)",
+    province: "Western Province",
+    image: IMAGES.nyungwe,
+    population: "about 70,000",
+    description:
+      "Rwanda's south-westernmost city, at the southern tip of Lake Kivu on the border with Bukavu (DRC). The gateway to Nyungwe Forest National Park and a crossroads for trade.",
+    highlights: ["Gateway to Nyungwe Forest", "Canopy walkway nearby", "Kamiranzovu swamp", "Border with Bukavu", "Tea plantations"],
+    transportHub: "Rusizi bus terminal, 6h from Kigali, boat to Karongi, cross-border to Bukavu",
+  },
+  {
+    id: "huye",
+    name: "Huye (Butare)",
+    province: "Southern Province",
+    image: IMAGES.culture,
+    population: "about 90,000",
+    description:
+      "Rwanda's intellectual and cultural capital, home to the University of Rwanda's main campus and the National Museum of Rwanda. A graceful, leafy city with a strong academic tradition.",
+    highlights: ["Ethnographic Museum (National Museum)", "University of Rwanda Huye campus", "King's Palace Museum nearby at Nyanza", "Huye coffee", "Cultural performances"],
+    transportHub: "Huye bus station, 2.5h from Kigali on the main south road",
+  },
+  {
+    id: "muhanga",
+    name: "Muhanga (Gitarama)",
+    province: "Southern Province",
+    image: IMAGES.cultureAlt,
+    population: "about 90,000",
+    description:
+      "A central trading city roughly halfway between Kigali and Huye. An important commercial and transport hub for the Southern Province, known for craft cooperatives and its central location.",
+    highlights: ["Central trading hub", "Agaseke basket cooperatives", "Kabgayi cathedral (historic)", "Crafts markets"],
+    transportHub: "Muhanga bus station, 1h from Kigali, junction for Huye and Karongi",
+  },
+  {
+    id: "nyanza",
+    name: "Nyanza",
+    province: "Southern Province",
+    image: IMAGES.culture,
+    population: "about 30,000",
+    description:
+      "The historical seat of the Rwandan monarchy, home to the King's Palace Museum and the royal burial grounds. A small city of immense cultural and historical importance.",
+    highlights: ["King's Palace Museum", "Sacred Inyambo cattle", "Royal history", "Intore dance performances"],
+    transportHub: "Nyanza road junction, 1.5h from Kigali, near Huye",
+  },
+  {
+    id: "nyagatare",
+    name: "Nyagatare",
+    province: "Eastern Province",
+    image: IMAGES.coffee,
+    population: "about 50,000",
+    description:
+      "The largest town in north-eastern Rwanda, in the heart of cattle country. A growing commercial centre near Akagera National Park and the border with Uganda.",
+    highlights: ["Gateway to Akagera (north)", "Cattle ranching country", "Border with Uganda", "Milk bar culture"],
+    transportHub: "Nyagatare bus stop, 3h from Kigali, cross-border to Uganda",
+  },
+  {
+    id: "kayonza",
+    name: "Kayonza",
+    province: "Eastern Province",
+    image: IMAGES.coffeeAlt,
+    population: "about 40,000",
+    description:
+      "An eastern provincial town on the road to Akagera National Park and the Tanzanian border. A convenient stopover for travellers heading to the park from Kigali.",
+    highlights: ["On the road to Akagera", "Eastern Province markets", "Agricultural trade centre"],
+    transportHub: "Kayonza junction, 1.5h from Kigali, gate to Akagera's north entrance",
+  },
+  {
+    id: "rwamagana",
+    name: "Rwamagana",
+    province: "Eastern Province",
+    image: IMAGES.coffee,
+    population: "about 50,000",
+    description:
+      "The capital of Rwamagana District and a major eastern transport hub on the Kigali to Nyagatare road. A growing commercial and administrative centre.",
+    highlights: ["Eastern transport hub", "Lake Muhazi nearby", "Markets and trade"],
+    transportHub: "Rwamagana bus junction, 1h from Kigali, on the way to Akagera and Nyagatare",
+  },
+  {
+    id: "bugesera",
+    name: "Bugesera (Nyamata)",
+    province: "Eastern Province",
+    image: IMAGES.kigaliAlt,
+    population: "about 50,000",
+    description:
+      "A fast-growing town south-east of Kigali, home to the new Bugesera International Airport (under construction). The gateway to Rwanda's future aviation hub and Akagera's south.",
+    highlights: ["Bugesera International Airport (new)", "Nyamata Genocide Memorial", "Rweru and Cyohoha lakes", "Fast-growing new town"],
+    transportHub: "Nyamata bus stop, 45min from Kigali, future airport hub",
+  },
+  {
+    id: "ruhango",
+    name: "Ruhango",
+    province: "Southern Province",
+    image: IMAGES.cultureAlt,
+    population: "about 40,000",
+    description:
+      "A southern provincial town on the Kigali to Huye road, known for agriculture and as a transport stop. A quiet, growing commercial centre.",
+    highlights: ["Agricultural trade", "Transport stop on Kigali-Huye road", "Local markets"],
+    transportHub: "Ruhango bus stop, 1h from Kigali",
+  },
+  {
+    id: "gicumbi",
+    name: "Gicumbi (Byumba)",
+    province: "Northern Province",
+    image: IMAGES.gorillaAlt,
+    population: "about 50,000",
+    description:
+      "A northern highland town on the road to Musanze and the Ugandan border. Known for its cool climate, tea plantations and rolling green hills.",
+    highlights: ["Highland tea country", "Cool climate", "Road to Uganda (Gatuna)", "Scenic hills"],
+    transportHub: "Byumba bus stop, 1.5h from Kigali, near Gatuna border post",
+  },
+  {
+    id: "rutsiro",
+    name: "Rutsiro",
+    province: "Western Province",
+    image: IMAGES.kivu,
+    population: "about 30,000",
+    description:
+      "A western highland district town between Karongi and the Congo Nile Trail. Known for stunning lake views, tea and coffee, and the Gishwati forest nearby.",
+    highlights: ["Lake Kivu viewpoints", "Tea and coffee hills", "Gishwati-Mukura park nearby", "Congo Nile Trail access"],
+    transportHub: "Rutsiro road junction, 4h from Kigali, on the Congo Nile Trail",
+  },
+];
+
+export type TransportOption = {
+  id: string;
+  name: string;
+  type: "Bus" | "Car Hire" | "Moto-Taxi" | "Ride-Hailing" | "Boat";
+  image: string;
+  description: string;
+  citiesServed: string[];
+  priceFrom: string;
+  contact?: string;
+  website?: string;
+  notes: string;
+};
+
+export const TRANSPORT: TransportOption[] = [
+  // ---- Bus companies ----
+  {
+    id: "volcano",
+    name: "Volcano Express",
+    type: "Bus",
+    image: IMAGES.bus,
+    description:
+      "One of the largest intercity bus companies in Rwanda, operating modern coaches across the country. Reliable and popular with locals and visitors alike.",
+    citiesServed: ["Kigali", "Musanze", "Rubavu", "Karongi", "Huye", "Nyagatare"],
+    priceFrom: "from RWF 2,000 (Kigali to Musanze)",
+    contact: "+250 788 400 100",
+    notes: "Modern coaches with AC on some routes. Departs from Nyabugogo bus park in Kigali.",
+  },
+  {
+    id: "stella",
+    name: "Stella Bus",
+    type: "Bus",
+    image: IMAGES.busAlt,
+    description:
+      "A long-established intercity bus operator serving major routes across Rwanda, especially the Kigali to Huye and western routes.",
+    citiesServed: ["Kigali", "Huye", "Muhanga", "Karongi", "Rusizi"],
+    priceFrom: "from RWF 2,500 (Kigali to Huye)",
+    contact: "+250 788 401 200",
+    notes: "Frequent departures from Nyabugogo. Tickets at the bus park or on board.",
+  },
+  {
+    id: "ritco",
+    name: "Ritco Coach",
+    type: "Bus",
+    image: IMAGES.bus,
+    description:
+      "A premium intercity coach operator with comfortable modern buses serving key long-distance routes across Rwanda.",
+    citiesServed: ["Kigali", "Musanze", "Rubavu", "Huye", "Rusizi", "Nyagatare"],
+    priceFrom: "from RWF 3,000 (Kigali to Rubavu)",
+    contact: "+250 788 402 300",
+    notes: "Premium coaches, some with WiFi. Book at Nyabugogo or via agents.",
+  },
+  {
+    id: "kigali-bus",
+    name: "Kigali Bus Services (KBS)",
+    type: "Bus",
+    image: IMAGES.busAlt,
+    description:
+      "The main public city bus operator in Kigali, running the capital's bus network with tap-and-go Yego card payment. Clean, affordable and extensive.",
+    citiesServed: ["Kigali"],
+    priceFrom: "from RWF 250 per trip within Kigali",
+    contact: "+250 788 403 400",
+    notes: "Use the Yego tap card or cash. Routes cover all of greater Kigali.",
+  },
+  {
+    id: "royal-staff",
+    name: "Royal Express",
+    type: "Bus",
+    image: IMAGES.bus,
+    description:
+      "An intercity bus operator serving the eastern and northern routes, including Nyagatare and the road to Uganda.",
+    citiesServed: ["Kigali", "Nyagatare", "Gicumbi", "Rwamagana"],
+    priceFrom: "from RWF 2,500 (Kigali to Nyagatare)",
+    contact: "+250 788 404 500",
+    notes: "Serves eastern routes and the Gatuna border with Uganda.",
+  },
+  // ---- Ride-hailing ----
+  {
+    id: "yego",
+    name: "Yego",
+    type: "Ride-Hailing",
+    image: IMAGES.car,
+    description:
+      "Rwanda's leading ride-hailing app, offering cars and moto-taxis across Kigali and other cities. Cashless via Yego wallet or mobile money. The local equivalent of Uber.",
+    citiesServed: ["Kigali", "Musanze", "Rubavu", "Huye", "Rwamagana"],
+    priceFrom: "from RWF 1,500 (short car ride in Kigali)",
+    website: "yego.rw",
+    notes: "Download the Yego app. Cars and motos available. Also powers the city bus tap card.",
+  },
+  {
+    id: "move",
+    name: "Move",
+    type: "Ride-Hailing",
+    image: IMAGES.carAlt,
+    description:
+      "A ride-hailing app offering car services in Kigali, often used as an alternative to Yego. Cash and mobile money payments.",
+    citiesServed: ["Kigali", "Rubavu"],
+    priceFrom: "from RWF 2,000 (city ride)",
+    notes: "App-based car booking, cashless payment.",
+  },
+  // ---- Moto-taxis ----
+  {
+    id: "moto-general",
+    name: "Moto-Taxis (Boda Boda)",
+    type: "Moto-Taxi",
+    image: IMAGES.moto,
+    description:
+      "The most ubiquitous transport in Rwanda. Motorcycle taxis are everywhere, from city streets to rural villages. Fast, cheap and able to weave through traffic. Helmets are provided and must be worn.",
+    citiesServed: ["Kigali", "Musanze", "Rubavu", "Huye", "Nyagatare", "Karongi", "Rusizi", "Muhanga", "Kayonza", "Rwamagana", "Gicumbi", "Nyanza", "Bugesera", "Ruhango", "Rutsiro"],
+    priceFrom: "from RWF 300 (short hop) to RWF 2,000 (longer city ride)",
+    notes: "Helmets provided. Agree the price before you start, or use the Yego app for metered moto fares in Kigali. Very common and safe in Rwanda.",
+  },
+  // ---- Car hire ----
+  {
+    id: "akagera-aviation",
+    name: "Car Hire with Driver (recommended)",
+    type: "Car Hire",
+    image: IMAGES.car,
+    description:
+      "The recommended way to travel outside Kigali. Hiring a 4x4 with a knowledgeable driver gives flexibility for national parks and rural areas. Most tour operators and hotels can arrange this.",
+    citiesServed: ["Kigali", "Musanze", "Rubavu", "Akagera", "Nyungwe", "Karongi"],
+    priceFrom: "from about US$ 80 to 150 per day (with driver, fuel extra)",
+    notes: "Strongly recommended for gorilla trekking, Akagera and Nyungwe. Self-drive is possible but roads and driving norms can be challenging.",
+  },
+  {
+    id: "self-drive",
+    name: "Self-Drive Car Rental",
+    type: "Car Hire",
+    image: IMAGES.carAlt,
+    description:
+      "Self-drive rental is available in Kigali for confident drivers. A 4x4 is recommended for any travel outside Kigali, especially in the rainy season and for national parks.",
+    citiesServed: ["Kigali", "Musanze", "Rubavu", "Akagera"],
+    priceFrom: "from about US$ 50 per day (small car), US$ 80+ for 4x4",
+    notes: "Drive on the right. International Driving Permit recommended. Roads are generally good on main routes; secondary roads can be rough.",
+  },
+  // ---- Boat ----
+  {
+    id: "kivu-boat",
+    name: "Lake Kivu Boats",
+    type: "Boat",
+    image: IMAGES.kivu,
+    description:
+      "Public and charter boats connect the Lake Kivu towns of Rubavu, Karongi and Rusizi, offering one of the most beautiful journeys in Rwanda. Speedboats and larger passenger boats available.",
+    citiesServed: ["Rubavu", "Karongi", "Rusizi"],
+    priceFrom: "from about US$ 30 (public boat) to US$ 200+ (private speedboat)",
+    notes: "A scenic alternative to the road between Kivu towns. Charter speedboats at any lakeside town. Life jackets provided.",
+  },
+];
+
+// ---- Hotel booking ----
+export type BookingInquiry = {
+  hotelName: string;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  rooms: number;
+  guestName: string;
+  email: string;
+  phone: string;
+  specialRequests?: string;
+};

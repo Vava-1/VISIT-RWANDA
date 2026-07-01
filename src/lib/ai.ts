@@ -3,6 +3,7 @@ import {
   EDUCATION_INSTITUTIONS, SPORTS_INSTITUTIONS, ARTS_INSTITUTIONS,
   TOURISM_SERVICES, INVESTMENT_OPPORTUNITIES,
   HEALTH_FACILITIES, COMMUNITY_LIFE, HEALTH_TIPS,
+  CITIES, TRANSPORT,
 } from "./rwanda-data";
 
 // Groq API (OpenAI-compatible): free tier, no credit card needed.
@@ -95,6 +96,14 @@ export function buildRwandaKnowledge(persona?: string): string {
   const tourismSvc = fmtInstitutions(TOURISM_SERVICES, "TOURISM SERVICES (lodges, hotels, operators, official permits)");
   const investOpps = fmtInstitutions(INVESTMENT_OPPORTUNITIES, "INVESTMENT OPPORTUNITIES (zones, funds, official services)");
 
+  // Cities and transport
+  const cities =
+    "CITIES OF RWANDA (by province):\n" +
+    CITIES.map((c) => `- ${c.name} [${c.province}], population ${c.population}. ${c.description} Transport hub: ${c.transportHub}.`).join("\n");
+  const transport =
+    "TRANSPORT (buses, car hire, moto-taxis, ride-hailing, boats):\n" +
+    TRANSPORT.map((t) => `- ${t.name} [${t.type}], serves: ${t.citiesServed.join(", ")}. ${t.description} Price: ${t.priceFrom}. Notes: ${t.notes}`).join("\n");
+
   // Health facilities + community life
   const health = fmtInstitutions(HEALTH_FACILITIES, "HEALTH FACILITIES (hospitals, clinics, pharmacies by location)");
   const community =
@@ -135,6 +144,10 @@ ${tourismSvc}
 
 ${investOpps}
 
+${cities}
+
+${transport}
+
 ${health}
 
 ${community}
@@ -163,6 +176,8 @@ BEHAVIOUR RULES:
 - For expats/diaspora: mention safety, cost of living, housing, work permits, community.
 - For health questions: use the HEALTH FACILITIES list. Give location, services, emergency and contact for any named hospital, clinic or pharmacy (King Faisal, CHUK, CHUB, Ruhengeri, Kibungo, Rwanda Military, Muhima, Kigali Polyclinic of Excellence, Biomed, Carrefour de Sante, Bienne, Pharmacie de Kigali, Peace, ProPharma, etc.). Remind travellers to carry insurance and the emergency number 114.
 - For community and civic questions: use the COMMUNITY LIFE list. Explain Umuganda (last Saturday monthly), Car Free Day (Sundays), Kwita Izina, Umuganura, Liberation Day, Kwibuka, National Heroes Day, Independence Day, Christmas and World Environment Day, with their dates, meaning and how a visitor can take part or what to expect.
+- For city and transport questions: use the CITIES and TRANSPORT lists. Give details for all major Rwandan cities (Kigali, Musanze, Rubavu, Karongi, Rusizi, Huye, Muhanga, Nyanza, Nyagatare, Kayonza, Rwamagana, Bugesera, Ruhango, Gicumbi, Rutsiro) and transport options (Volcano Express, Stella Bus, Ritco Coach, KBS, Yego, Move, moto-taxis, car hire with driver, self-drive, Lake Kivu boats). Give routes, prices, travel times and how to book.
+- For hotel booking questions: tell users they can book directly through the platform's "Book Now" button on any lodge or hotel card, or ask you for recommendations by budget and location.
 - Never invent prices or permits that contradict the data above; clarify that gorilla permits are about US$ 1,500.
 - Keep replies focused and skimmable. Never produce walls of text.
 - Write like a real Rwandan travel expert, not like an AI. Do NOT use em dashes (the long dash character). Prefer commas, colons, full stops or parentheses. Avoid over-hyphenated compound adjectives (such as world-class, award-winning, game-changing, state-of-the-art). Use plain, warm, human phrasing.`;

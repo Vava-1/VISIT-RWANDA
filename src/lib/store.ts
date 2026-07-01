@@ -15,6 +15,7 @@ export type PageId =
   | "home"
   | "discover"
   | "experiences"
+  | "cities"
   | "invest"
   | "travel"
   | "health"
@@ -34,6 +35,10 @@ interface AppState {
   setAiSeed: (q: string | null) => void;
   feedbackOpen: boolean;
   setFeedbackOpen: (open: boolean) => void;
+  bookingOpen: boolean;
+  setBookingOpen: (open: boolean) => void;
+  bookingHotel: string | null;
+  setBookingHotel: (hotel: string | null) => void;
 }
 
 function genSessionId() {
@@ -54,6 +59,10 @@ export const useApp = create<AppState>()(
       setAiSeed: (aiSeed) => set({ aiSeed }),
       feedbackOpen: false,
       setFeedbackOpen: (feedbackOpen) => set({ feedbackOpen }),
+      bookingOpen: false,
+      setBookingOpen: (bookingOpen) => set({ bookingOpen }),
+      bookingHotel: null,
+      setBookingHotel: (bookingHotel) => set({ bookingHotel }),
     }),
     {
       name: "visit-rwanda-store",

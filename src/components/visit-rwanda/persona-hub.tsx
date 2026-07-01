@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin, BadgeDollarSign, Globe, Sparkles, Search, Building2,
   Plane, TrendingUp, GraduationCap, Palette, Trophy, Home as HomeIcon,
-  ExternalLink, type LucideIcon,
+  ExternalLink, Hotel, type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -24,7 +24,7 @@ const HUB_ICONS: Record<string, LucideIcon> = {
 };
 
 export function PersonaHub() {
-  const { persona, setAiOpen, setAiSeed } = useApp();
+  const { persona, setAiOpen, setAiSeed, setBookingOpen, setBookingHotel } = useApp() as any;
   const hub = PERSONA_HUBS[persona] ?? PERSONA_HUBS.tourist;
   const HubIcon = HUB_ICONS[hub.icon] ?? Building2;
 
@@ -65,6 +65,15 @@ export function PersonaHub() {
       `Give me detailed information about ${inst.name} in Rwanda: what it offers, location, fees/prices, how to apply or visit, contact and website, and anything else I should know.`
     );
     setAiOpen(true);
+  };
+
+  // Show "Book Now" for hotels, lodges, resorts and safari camps
+  const isBookable = (inst: Institution) =>
+    /lodge|hotel|resort|safari camp/i.test(inst.category);
+
+  const bookNow = (inst: Institution) => {
+    setBookingHotel(inst.name);
+    setBookingOpen(true);
   };
 
   return (
@@ -179,13 +188,23 @@ export function PersonaHub() {
                           >
                             Details
                           </Button>
-                          <Button
-                            size="sm"
-                            className="flex-1 gap-1.5"
-                            onClick={() => askAbout(inst)}
-                          >
-                            <Sparkles className="h-3.5 w-3.5" /> Ask RWANDA
-                          </Button>
+                          {isBookable(inst) ? (
+                            <Button
+                              size="sm"
+                              className="flex-1 gap-1.5"
+                              onClick={() => bookNow(inst)}
+                            >
+                              <Hotel className="h-3.5 w-3.5" /> Book Now
+                            </Button>
+                          ) : (
+                            <Button
+                              size="sm"
+                              className="flex-1 gap-1.5"
+                              onClick={() => askAbout(inst)}
+                            >
+                              <Sparkles className="h-3.5 w-3.5" /> Ask RWANDA
+                            </Button>
+                          )}
                         </div>
                       </CardContent>
                     </Card>
@@ -270,8 +289,13 @@ export function PersonaHub() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                    {isBookable(active) && (
+                      <Button className="flex-1 gap-2" onClick={() => bookNow(active)}>
+                        <Hotel className="h-4 w-4" /> Book Now
+                      </Button>
+                    )}
                     <Button className="flex-1 gap-2" onClick={() => askAbout(active)}>
-                      <Sparkles className="h-4 w-4" /> Ask RWANDA about {active.name}
+                      <Sparkles className="h-4 w-4" /> Ask RWANDA
                     </Button>
                     {active.website && (
                       <Button

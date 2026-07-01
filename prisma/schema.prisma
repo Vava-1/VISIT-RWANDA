@@ -59,3 +59,19 @@ model ChatMessage {
   content   String
   createdAt DateTime @default(now())
 }
+
+// Hotel booking inquiries
+model Booking {
+  id              String   @id @default(cuid())
+  hotelName       String
+  checkIn         String
+  checkOut        String
+  guests          Int
+  rooms           Int
+  guestName       String
+  email           String
+  phone           String
+  specialRequests String?
+  status          String   @default("pending") // pending | confirmed | cancelled
+  createdAt       DateTime @default(now())
+}
