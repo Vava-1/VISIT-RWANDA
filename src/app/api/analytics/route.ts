@@ -12,9 +12,11 @@ export async function POST(req: NextRequest) {
     const sessionId = (body.sessionId || "anon").toString().slice(0, 120);
     const meta = body.meta ? JSON.stringify(body.meta).slice(0, 1000) : null;
 
-    await db.analyticsEvent.create({
-      data: { type, target, sessionId, meta },
-    });
+    if (db) {
+      await db.analyticsEvent.create({
+        data: { type, target, sessionId, meta },
+      });
+    }
 
     return NextResponse.json({ success: true });
   } catch (err: any) {

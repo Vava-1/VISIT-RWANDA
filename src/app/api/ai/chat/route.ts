@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
+export const dynamic = "force-dynamic";
 
 const SYSTEM_FALLBACK =
   "You are the Visit Rwanda AI concierge. Be concise, accurate and warm. Use markdown.";
@@ -25,13 +26,15 @@ export async function POST(req: NextRequest) {
     const system = buildRwandaKnowledge(persona);
     const zai = await getZAI();
 
-    // Persist the user message (best-effort)
+    // Persist the user message (best-effort). DB is optional on serverless.
     try {
-      await db.chatMessage.create({
-        data: { sessionId, role: "user", content: message },
-      });
-    } catch {
-      /* ignore db errors */
+      if (db) {
+        await db.chatMessage.create({
+          data: { sessionId, role: "user", content: message },
+        });
+      }
+    } catch (e) {
+      /* ignore db errors - DB is optional on Vercel */
     }
 
     const messages: Array<{ role: string; content: string }> = [
@@ -54,18 +57,21 @@ export async function POST(req: NextRequest) {
 
     // Persist the assistant reply (best-effort)
     try {
-      await db.chatMessage.create({
-        data: { sessionId, role: "assistant", content: reply },
-      });
-    } catch {
+      if (db) {
+        await db.chatMessage.create({
+          data: { sessionId, role: "assistant", content: reply },
+        });
+      }
+    } catch (e) {
       /* ignore */
     }
 
     return NextResponse.json({ success: true, reply, persona });
   } catch (err: any) {
-    console.error("[/api/ai/chat] error:", err?.message);
+    const msg = err?.message || String(err);
+    console.error("[/api/ai/chat] error:", msg);
     return NextResponse.json(
-      { success: false, error: "The concierge is briefly unavailable. Please try again.", reply: null },
+      { success: false, error: msg, reply: null },
       { status: 500 }
     );
   }

@@ -17,6 +17,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
     }
 
+    if (!db) {
+      return NextResponse.json({ success: true, id: "ephemeral" });
+    }
+
     const fb = await db.feedback.create({
       data: { category, message, url, sessionId },
     });

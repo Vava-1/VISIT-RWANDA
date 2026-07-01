@@ -45,9 +45,11 @@ Include 1 realistic highlight per day, mention travel times between locations, a
 
     const title = `${days}-Day Rwanda Journey: ${persona}`;
     try {
-      await db.itinerary.create({
-        data: { sessionId, title, days, content: itinerary },
-      });
+      if (db) {
+        await db.itinerary.create({
+          data: { sessionId, title, days, content: itinerary },
+        });
+      }
     } catch {
       /* ignore */
     }
