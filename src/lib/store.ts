@@ -11,9 +11,22 @@ type PersonaId =
   | "athlete"
   | "expat";
 
+export type PageId =
+  | "home"
+  | "discover"
+  | "experiences"
+  | "invest"
+  | "travel"
+  | "health"
+  | "live"
+  | "connect"
+  | "planner";
+
 interface AppState {
   persona: PersonaId;
   setPersona: (p: PersonaId) => void;
+  page: PageId;
+  setPage: (p: PageId) => void;
   sessionId: string;
   aiOpen: boolean;
   setAiOpen: (open: boolean) => void;
@@ -32,6 +45,8 @@ export const useApp = create<AppState>()(
     (set) => ({
       persona: "tourist",
       setPersona: (persona) => set({ persona }),
+      page: "home",
+      setPage: (page) => set({ page }),
       sessionId: typeof window !== "undefined" ? genSessionId() : "rw-ssr",
       aiOpen: false,
       setAiOpen: (aiOpen) => set({ aiOpen }),

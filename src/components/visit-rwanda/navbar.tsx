@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import {
   Menu, X, Sparkles, Sun, Moon, Plane, TrendingUp, GraduationCap,
   Palette, Trophy, Home as HomeIcon, ChevronDown,
@@ -18,13 +17,14 @@ import { FlagRwanda } from "@/components/visit-rwanda/flag-rwanda";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "#discover", label: "Discover" },
-  { href: "#experiences", label: "Experiences" },
-  { href: "#invest", label: "Invest" },
-  { href: "#travel", label: "Travel" },
-  { href: "#health-community", label: "Health" },
-  { href: "#live", label: "Live" },
-  { href: "#connect", label: "Connect" },
+  { page: "discover" as const, label: "Discover" },
+  { page: "experiences" as const, label: "Experiences" },
+  { page: "invest" as const, label: "Invest" },
+  { page: "travel" as const, label: "Travel" },
+  { page: "health" as const, label: "Health" },
+  { page: "live" as const, label: "Live" },
+  { page: "connect" as const, label: "Connect" },
+  { page: "planner" as const, label: "Plan" },
 ];
 
 const PERSONA_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -41,7 +41,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
-  const { persona, setPersona, setAiOpen } = useApp();
+  const { persona, setPersona, setAiOpen, page, setPage } = useApp();
 
   React.useEffect(() => setMounted(true), []);
 
@@ -65,11 +65,14 @@ export function Navbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-3">
           {/* Logo */}
-          <Link href="#top" className="flex items-center gap-2.5 shrink-0 group">
+          <button
+            onClick={() => { setPage("home"); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="flex items-center gap-2.5 shrink-0 group cursor-pointer"
+          >
             <div className="relative h-9 w-12 overflow-hidden shadow-md ring-1 ring-black/5">
               <FlagRwanda />
             </div>
-            <div className="leading-tight">
+            <div className="leading-tight text-left">
               <div className="font-black tracking-tight text-base sm:text-lg text-white">
                 Visit <span className="text-emerald-400">Rwanda</span>
               </div>
@@ -77,18 +80,23 @@ export function Navbar() {
                 Land of a Thousand Hills
               </div>
             </div>
-          </Link>
+          </button>
 
           {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="px-3 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 rounded-lg transition-colors"
+              <button
+                key={l.page}
+                onClick={() => { setPage(l.page); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                className={cn(
+                  "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+                  page === l.page
+                    ? "bg-white/25 text-white"
+                    : "text-white/90 hover:text-white hover:bg-white/15"
+                )}
               >
                 {l.label}
-              </Link>
+              </button>
             ))}
           </div>
 
@@ -170,14 +178,18 @@ export function Navbar() {
           <div className="lg:hidden pb-4 animate-fade-up">
             <div className="grid gap-1">
               {NAV_LINKS.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="px-3 py-2.5 text-sm font-medium rounded-lg text-white/90 hover:text-white hover:bg-white/15"
+                <button
+                  key={l.page}
+                  onClick={() => { setPage(l.page); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                  className={cn(
+                    "px-3 py-2.5 text-sm font-medium rounded-lg text-left",
+                    page === l.page
+                      ? "bg-white/25 text-white"
+                      : "text-white/90 hover:text-white hover:bg-white/15"
+                  )}
                 >
                   {l.label}
-                </Link>
+                </button>
               ))}
             </div>
           </div>

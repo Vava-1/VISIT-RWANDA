@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import {
   Sparkles, LifeBuoy, ShieldCheck, Globe2, Mail, Phone, MapPin,
   Facebook, Twitter, Instagram, Youtube, Linkedin,
@@ -16,35 +15,34 @@ const LINKS = [
   {
     title: "Discover",
     links: [
-      { label: "Destinations", href: "#discover" },
-      { label: "Experiences", href: "#experiences" },
-      { label: "Live Hub", href: "#connect" },
-      { label: "Culture & Sport", href: "#live" },
+      { label: "Destinations", page: "discover" as const },
+      { label: "Experiences", page: "experiences" as const },
+      { label: "Live Hub", page: "connect" as const },
+      { label: "Culture & Sport", page: "live" as const },
     ],
   },
   {
     title: "Plan",
     links: [
-      { label: "Visa & Entry", href: "#travel" },
-      { label: "Health & Safety", href: "#travel" },
-      { label: "Hospitals & Community", href: "#health-community" },
-      { label: "Itinerary Planner", href: "#planner" },
-      { label: "Ask RWANDA", href: "#" },
+      { label: "Visa & Entry", page: "travel" as const },
+      { label: "Health & Safety", page: "health" as const },
+      { label: "Hospitals & Community", page: "health" as const },
+      { label: "Itinerary Planner", page: "planner" as const },
     ],
   },
   {
     title: "Opportunity",
     links: [
-      { label: "Invest in Rwanda", href: "#invest" },
-      { label: "Kigali Financial Centre", href: "#invest" },
-      { label: "Business News", href: "#connect" },
-      { label: "Education & Research", href: "#live" },
+      { label: "Invest in Rwanda", page: "invest" as const },
+      { label: "Kigali Financial Centre", page: "invest" as const },
+      { label: "Business News", page: "connect" as const },
+      { label: "Education & Research", page: "live" as const },
     ],
   },
   {
     title: "Country",
     links: [
-      { label: "Quick Facts", href: "#travel" },
+      { label: "Quick Facts", page: "travel" as const },
       { label: "Government Portal", href: "https://www.gov.rw" },
       { label: "Rwanda Development Board", href: "https://rdb.rw" },
       { label: "Visit Rwanda Official", href: "https://www.visitrwanda.com" },
@@ -149,14 +147,25 @@ export function Footer() {
               <div key={col.title}>
                 <h4 className="font-semibold text-sm mb-3 text-background">{col.title}</h4>
                 <ul className="space-y-2">
-                  {col.links.map((l) => (
+                  {col.links.map((l: any) => (
                     <li key={l.label}>
-                      <a
-                        href={l.href}
-                        className="text-sm text-background/65 hover:text-background transition-colors"
-                      >
-                        {l.label}
-                      </a>
+                      {"page" in l ? (
+                        <button
+                          onClick={() => { useApp.getState().setPage(l.page); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                          className="text-sm text-background/65 hover:text-background transition-colors text-left"
+                        >
+                          {l.label}
+                        </button>
+                      ) : (
+                        <a
+                          href={l.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-background/65 hover:text-background transition-colors"
+                        >
+                          {l.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

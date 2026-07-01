@@ -142,7 +142,8 @@ export function Hero() {
                   key={p.id}
                   onClick={() => {
                     setPersona(p.id as any);
-                    document.getElementById("persona-zone")?.scrollIntoView({ behavior: "smooth" });
+                    useApp.getState().setPage("home");
+                    setTimeout(() => document.getElementById("persona-zone")?.scrollIntoView({ behavior: "smooth" }), 50);
                   }}
                   className={cn(
                     "group relative rounded-full px-4 py-2 text-sm font-medium transition-all overflow-hidden",
