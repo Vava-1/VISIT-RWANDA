@@ -1,4 +1,3 @@
-import { GoogleGenAI } from "@google/genai";
 import {
   ECONOMY_STATS, QUICK_FACTS, DESTINATIONS, INVESTMENT_SECTORS,
   EDUCATION_INSTITUTIONS, SPORTS_INSTITUTIONS, ARTS_INSTITUTIONS,
@@ -6,59 +5,66 @@ import {
   HEALTH_FACILITIES, COMMUNITY_LIFE, HEALTH_TIPS,
 } from "./rwanda-data";
 
-// Google Gemini 2.0 Flash: free tier (15 req/min, 1500 req/day, no credit card).
-// Requires GEMINI_API_KEY env var (get one free at https://aistudio.google.com/apikey).
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash";
-
-let geminiInstance: GoogleGenAI | null = null;
-
-function getGemini(): GoogleGenAI {
-  if (!geminiInstance) {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      throw new Error(
-        "GEMINI_API_KEY is not set. Get a free key at https://aistudio.google.com/apikey and add it to your environment variables."
-      );
-    }
-    geminiInstance = new GoogleGenAI({ apiKey });
-  }
-  return geminiInstance;
-}
+// Groq API (OpenAI-compatible): free tier, no credit card needed.
+// 30 requests/min, 14,400 requests/day on Llama 3.3 70B.
+// Get a free API key at https://console.groq.com/keys
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
 /**
- * Generate a reply using Gemini 2.0 Flash.
- * @param messages  Conversation history (user + assistant turns). The system
- *                  prompt is passed separately via `systemInstruction`.
- * @param system    The system instruction (Rwanda knowledge pack).
+ * Generate a reply using Groq (Llama 3.3 70B).
+ * Groq's API is OpenAI-compatible, so we call it directly with fetch.
+ *
+ * @param messages  Conversation history (user + assistant turns).
+ * @param system    The system prompt (Rwanda knowledge pack).
  * @returns         The model's reply text.
  */
 export async function generateReply(
   messages: ChatMessage[],
   system: string
 ): Promise<string> {
-  const ai = getGemini();
+  if (!GROQ_API_KEY) {
+    throw new Error(
+      "GROQ_API_KEY is not set. Get a free key at https://console.groq.com/keys and add it to your environment variables."
+    );
+  }
 
-  // Gemini uses role "model" for assistant turns.
-  const contents = messages.map((m) => ({
-    role: m.role === "assistant" ? "model" : "user",
-    parts: [{ text: m.content }],
-  }));
+  // Build the OpenAI-compatible messages array.
+  const apiMessages = [
+    { role: "system", content: system },
+    ...messages.map((m) => ({
+      role: m.role,
+      content: m.content,
+    })),
+  ];
 
-  const response = await ai.models.generateContent({
-    model: GEMINI_MODEL,
-    contents,
-    config: {
-      systemInstruction: system,
-      temperature: 0.7,
-      maxOutputTokens: 2048,
+  const response = await fetch(GROQ_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${GROQ_API_KEY}`,
     },
+    body: JSON.stringify({
+      model: GROQ_MODEL,
+      messages: apiMessages,
+      temperature: 0.7,
+      max_tokens: 2048,
+    }),
   });
 
-  const text = response.text;
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Groq API error (${response.status}): ${errorBody.slice(0, 500)}`);
+  }
+
+  const data = await response.json();
+  const text = data?.choices?.[0]?.message?.content;
+
   if (!text) {
-    throw new Error("Gemini returned an empty response.");
+    throw new Error("Groq returned an empty response.");
   }
   return text.trim();
 }
