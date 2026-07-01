@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getZAI, buildRwandaKnowledge } from "@/lib/ai";
+import { generateReply, buildRwandaKnowledge } from "@/lib/ai";
 import { db } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
-
-const SYSTEM_FALLBACK =
-  "You are the Visit Rwanda AI concierge. Be concise, accurate and warm. Use markdown.";
 
 export async function POST(req: NextRequest) {
   try {
@@ -24,7 +21,6 @@ export async function POST(req: NextRequest) {
     }
 
     const system = buildRwandaKnowledge(persona);
-    const zai = await getZAI();
 
     // Persist the user message (best-effort). DB is optional on serverless.
     try {
@@ -37,23 +33,17 @@ export async function POST(req: NextRequest) {
       /* ignore db errors - DB is optional on Vercel */
     }
 
-    const messages: Array<{ role: string; content: string }> = [
-      { role: "assistant", content: system },
+    // Build conversation history (without the system prompt, which is passed
+    // separately to Gemini as systemInstruction).
+    const messages = [
       ...history.map((h) => ({
-        role: h.role === "user" ? "user" : "assistant",
+        role: (h.role === "user" ? "user" : "assistant") as "user" | "assistant",
         content: h.content,
       })),
-      { role: "user", content: message },
+      { role: "user" as const, content: message },
     ];
 
-    const completion = await zai.chat.completions.create({
-      messages: messages as any,
-      thinking: { type: "disabled" },
-    });
-
-    const reply =
-      completion?.choices?.[0]?.message?.content?.trim() ||
-      "I'm sorry, I couldn't generate a response. Please try rephrasing your question.";
+    const reply = await generateReply(messages, system);
 
     // Persist the assistant reply (best-effort)
     try {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getZAI, buildRwandaKnowledge } from "@/lib/ai";
+import { generateReply, buildRwandaKnowledge } from "@/lib/ai";
 import { db } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -14,8 +14,9 @@ export async function POST(req: NextRequest) {
     const budget: string = (body.budget ?? "mid-range").toString();
     const sessionId: string = (body.sessionId ?? "anon").toString();
 
-    const system = buildRwandaKnowledge(persona);
-    const zai = await getZAI();
+    const system =
+      buildRwandaKnowledge(persona) +
+      "\n\nYou are also an expert trip planner for Rwanda. Produce realistic, well paced itineraries.";
 
     const prompt = `Create a detailed ${days}-day Rwanda travel itinerary for a ${persona}.
 Interests: ${interests}.
@@ -30,18 +31,10 @@ Return STRICT markdown with this structure:
 
 Include 1 realistic highlight per day, mention travel times between locations, and respect Rwanda's geography (Kigali to Musanze/Volcanoes is about 2.5h; Kigali to Akagera is about 2.5h; Kigali to Nyungwe is about 5 to 6h; Lake Kivu towns along the west). End with a "## Practical Tips" section with visa, currency and seasonal notes. Keep it skimmable and inspiring. Do not use em dashes. Write like a real Rwandan trip planner.`;
 
-    const completion = await zai.chat.completions.create({
-      messages: [
-        { role: "assistant", content: system },
-        { role: "assistant", content: "You are also an expert trip planner for Rwanda. Produce realistic, well paced itineraries." },
-        { role: "user", content: prompt },
-      ] as any,
-      thinking: { type: "disabled" },
-    });
-
-    const itinerary =
-      completion?.choices?.[0]?.message?.content?.trim() ||
-      "Sorry, I couldn't build that itinerary right now. Please try again.";
+    const itinerary = await generateReply(
+      [{ role: "user", content: prompt }],
+      system
+    );
 
     const title = `${days}-Day Rwanda Journey: ${persona}`;
     try {

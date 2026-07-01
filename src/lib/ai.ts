@@ -1,4 +1,4 @@
-import ZAI from "z-ai-web-dev-sdk";
+import { GoogleGenAI } from "@google/genai";
 import {
   ECONOMY_STATS, QUICK_FACTS, DESTINATIONS, INVESTMENT_SECTORS,
   EDUCATION_INSTITUTIONS, SPORTS_INSTITUTIONS, ARTS_INSTITUTIONS,
@@ -6,44 +6,61 @@ import {
   HEALTH_FACILITIES, COMMUNITY_LIFE, HEALTH_TIPS,
 } from "./rwanda-data";
 
-// Reuse a single ZAI instance across requests
-let zaiInstance: Awaited<ReturnType<typeof ZAI.create>> | null = null;
+// Google Gemini 2.0 Flash: free tier (15 req/min, 1500 req/day, no credit card).
+// Requires GEMINI_API_KEY env var (get one free at https://aistudio.google.com/apikey).
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash";
 
-export async function getZAI() {
-  if (!zaiInstance) {
-    // On Vercel (and any environment with ZAI_* env vars set), build the config
-    // directly from env vars, bypassing the config-file lookup (which doesn't
-    // work on serverless read-only filesystems). Locally, fall back to
-    // ZAI.create() which reads /etc/.z-ai-config or ./.z-ai-config.
-    const envBaseUrl = process.env.ZAI_BASE_URL;
-    const envApiKey = process.env.ZAI_API_KEY;
-    let instance: any;
-    if (envBaseUrl && envApiKey) {
-      instance = new ZAI({
-        baseUrl: envBaseUrl,
-        apiKey: envApiKey,
-        token: process.env.ZAI_TOKEN || "",
-        userId: process.env.ZAI_USER_ID || "",
-        chatId: process.env.ZAI_CHAT_ID || "",
-      });
-    } else {
-      instance = await ZAI.create();
+let geminiInstance: GoogleGenAI | null = null;
+
+function getGemini(): GoogleGenAI {
+  if (!geminiInstance) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error(
+        "GEMINI_API_KEY is not set. Get a free key at https://aistudio.google.com/apikey and add it to your environment variables."
+      );
     }
-
-    // The public Z.ai API (api.z.ai) requires a "model" field in every chat
-    // completion request. The internal API doesn't need it. When ZAI_MODEL is
-    // set (e.g. "glm-4-flash"), inject it into every call so the public API
-    // works. Locally (no ZAI_MODEL), behavior is unchanged.
-    const model = process.env.ZAI_MODEL;
-    if (model && instance?.chat?.completions?.create) {
-      const originalCreate = instance.chat.completions.create.bind(instance);
-      instance.chat.completions.create = (body: any) =>
-        originalCreate({ model, ...body });
-    }
-
-    zaiInstance = instance as Awaited<ReturnType<typeof ZAI.create>>;
+    geminiInstance = new GoogleGenAI({ apiKey });
   }
-  return zaiInstance;
+  return geminiInstance;
+}
+
+export type ChatMessage = { role: "user" | "assistant"; content: string };
+
+/**
+ * Generate a reply using Gemini 2.0 Flash.
+ * @param messages  Conversation history (user + assistant turns). The system
+ *                  prompt is passed separately via `systemInstruction`.
+ * @param system    The system instruction (Rwanda knowledge pack).
+ * @returns         The model's reply text.
+ */
+export async function generateReply(
+  messages: ChatMessage[],
+  system: string
+): Promise<string> {
+  const ai = getGemini();
+
+  // Gemini uses role "model" for assistant turns.
+  const contents = messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }],
+  }));
+
+  const response = await ai.models.generateContent({
+    model: GEMINI_MODEL,
+    contents,
+    config: {
+      systemInstruction: system,
+      temperature: 0.7,
+      maxOutputTokens: 2048,
+    },
+  });
+
+  const text = response.text;
+  if (!text) {
+    throw new Error("Gemini returned an empty response.");
+  }
+  return text.trim();
 }
 
 // A compact knowledge pack injected into the system prompt so the concierge
