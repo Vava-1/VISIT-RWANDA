@@ -24,10 +24,24 @@ export async function GET(req: NextRequest) {
     const query = q || TOPIC_QUERIES[topic] || TOPIC_QUERIES.news;
     const zai = await getZAI();
 
-    const results: any[] = await zai.functions.invoke("web_search", {
-      query,
-      num,
-    });
+    let results: any[];
+    try {
+      results = await zai.functions.invoke("web_search", { query, num });
+    } catch (innerErr: any) {
+      // The web_search function is only available on the internal Z.ai platform.
+      // On the public API (api.z.ai) it returns an error. Return an empty
+      // success response so the frontend shows a graceful "no results" state
+      // rather than an error.
+      console.error("[/api/search] web_search unavailable:", innerErr?.message);
+      return NextResponse.json({
+        success: true,
+        topic,
+        query,
+        results: [],
+        generatedAt: new Date().toISOString(),
+        note: "Live web search is available in the full environment. Browse the curated content on this page instead.",
+      });
+    }
 
     const cleaned = (Array.isArray(results) ? results : []).map((r: any) => ({
       title: r.name || r.title || "Untitled",
