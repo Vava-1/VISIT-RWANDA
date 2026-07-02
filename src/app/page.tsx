@@ -20,7 +20,6 @@ import { AIConcierge } from "@/components/visit-rwanda/ai-concierge";
 import { FeedbackDialog } from "@/components/visit-rwanda/feedback-dialog";
 import { HotelBookingDialog } from "@/components/visit-rwanda/hotel-booking-dialog";
 import { EmergencySOS } from "@/components/visit-rwanda/emergency-sos";
-import { EntryGate } from "@/components/visit-rwanda/entry-gate";
 import { useApp } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
@@ -111,23 +110,17 @@ function PageContent() {
 }
 
 export default function Home() {
-  const { sessionId, persona, hasChosenPersona } = useApp();
+  const { sessionId, persona } = useApp();
 
   // Fire an anonymous page-view event (best-effort, never blocks UX).
   React.useEffect(() => {
-    if (!hasChosenPersona) return;
     fetch("/api/analytics", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "view", target: "/", sessionId, meta: { persona } }),
       keepalive: true,
     }).catch(() => {});
-  }, [sessionId, persona, hasChosenPersona]);
-
-  // Show the entry gate until the user has chosen a persona
-  if (!hasChosenPersona) {
-    return <EntryGate />;
-  }
+  }, [sessionId, persona]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
