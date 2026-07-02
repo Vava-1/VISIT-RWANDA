@@ -1,0 +1,25 @@
+{
+  "name": "Visit Rwanda - Land of a Thousand Hills",
+  "short_name": "Visit Rwanda",
+  "description": "An independent digital guide to Rwanda for tourists, investors, students, artists, athletes and diaspora.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#00A1DE",
+  "theme_color": "#00A1DE",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "tourism", "business", "education"]
+}

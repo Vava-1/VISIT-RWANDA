@@ -72,19 +72,20 @@ export function Navbar() {
             onClick={() => { setPage("home"); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             className="flex items-center gap-3 shrink-0 group cursor-pointer"
             aria-label="Visit Rwanda home"
+            title="Go to home page"
           >
-            <div className="relative h-10 w-14 shrink-0">
+            <div className="relative h-8 w-11 sm:h-10 sm:w-14 shrink-0">
               <div className="absolute inset-0 rounded-lg overflow-hidden shadow-lg ring-1 ring-white/20 group-hover:ring-white/40 transition-all">
                 <FlagRwanda />
               </div>
               <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="leading-tight text-left">
-              <div className="font-black tracking-tight text-base sm:text-lg text-white flex items-baseline gap-1">
+              <div className="font-black tracking-tight text-sm sm:text-lg text-white flex items-baseline gap-1">
                 <span>Visit</span>
                 <span className="text-emerald-400">Rwanda</span>
               </div>
-              <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 hidden sm:block font-medium">
+              <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 hidden md:block font-medium">
                 Land of a Thousand Hills
               </div>
             </div>
@@ -109,14 +110,14 @@ export function Navbar() {
           </div>
 
           {/* Right cluster */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-1.5">
             {/* Persona switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-1.5 h-9 border-white/40 text-white bg-white/10 hover:bg-white/20 hover:text-white">
-                  <CurrentIcon className="h-4 w-4 text-white" />
-                  <span className="hidden sm:inline">{currentPersona.label}</span>
-                  <ChevronDown className="h-3.5 w-3.5 opacity-80" />
+                <Button variant="outline" size="sm" title={`I am a ${currentPersona.label}. Click to change persona.`} className="gap-1 h-9 px-2 sm:px-3 border-white/40 text-white bg-white/10 hover:bg-white/20 hover:text-white">
+                  <CurrentIcon className="h-4 w-4 text-white shrink-0" />
+                  <span className="hidden md:inline">{currentPersona.label}</span>
+                  <ChevronDown className="h-3.5 w-3.5 opacity-80 shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-64">
@@ -143,12 +144,11 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Language switcher */}
+            {/* Language switcher - icon only on mobile */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="h-9 px-2 text-white hover:bg-white/15 gap-1">
+                <Button variant="ghost" size="icon" title="Change language (English / Kinyarwanda / French)" className="h-9 w-9 text-white hover:bg-white/15">
                   <Languages className="h-4 w-4" />
-                  <span className="text-xs font-semibold uppercase">{lang}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-44">
@@ -168,6 +168,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
+              title="Toggle light/dark theme"
               className="h-9 w-9 text-white hover:bg-white/15 hover:text-white"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
@@ -179,13 +180,15 @@ export function Navbar() {
               )}
             </Button>
 
-            {/* AI Concierge */}
+            {/* AI Concierge - icon only on small screens, full text on sm+ */}
             <Button
               size="sm"
-              className="gap-1.5 h-9 shadow-md bg-[#FAD201] text-[#20603D] hover:bg-[#FAD201]/90 hover:text-[#20603D]"
+              title="Ask RWANDA - your AI concierge for any question about Rwanda"
+              className="gap-1 h-9 px-2.5 shadow-md bg-[#FAD201] text-[#20603D] hover:bg-[#FAD201]/90 hover:text-[#20603D] shrink-0"
               onClick={() => setAiOpen(true)}
+              aria-label="Ask RWANDA AI concierge"
             >
-              <Sparkles className="h-4 w-4" />
+              <Sparkles className="h-4 w-4 shrink-0" />
               <span className="hidden sm:inline">Ask RWANDA</span>
             </Button>
 
@@ -193,6 +196,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
+              title="Open navigation menu"
               className="h-9 w-9 lg:hidden text-white hover:bg-white/15 hover:text-white"
               onClick={() => setOpen((v) => !v)}
               aria-label="Menu"

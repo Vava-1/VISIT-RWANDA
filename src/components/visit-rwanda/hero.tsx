@@ -47,7 +47,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16 sm:pb-20 w-full">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -66,10 +66,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]"
+            className="text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]"
           >
             Visit <span className="gradient-text">Rwanda</span>
-            <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-white/90 mt-3">
+            <span className="block text-xl sm:text-3xl lg:text-4xl font-bold text-white/90 mt-3">
               Land of a Thousand Hills
             </span>
           </motion.h1>
@@ -78,7 +78,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed"
+            className="mt-5 text-base sm:text-xl text-white/85 max-w-2xl leading-relaxed"
           >
             Your intelligent gateway to Rwanda, for tourists, investors, students,
             artists, athletes and diaspora. Discover destinations, plan trips,
@@ -98,11 +98,11 @@ export function Hero() {
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Ask anything about Rwanda: visas, gorillas, investing…"
-                className="pl-12 h-14 text-base rounded-2xl glass border-white/20 text-white placeholder:text-white/60"
+                placeholder="Ask about Rwanda: visas, gorillas, investing…"
+                className="pl-11 h-12 sm:h-14 text-sm sm:text-base rounded-2xl glass border-white/20 text-white placeholder:text-white/60"
               />
             </div>
-            <Button type="submit" size="lg" className="h-14 px-6 rounded-2xl gap-2 shadow-xl">
+            <Button type="submit" size="lg" className="h-12 sm:h-14 px-5 sm:px-6 rounded-2xl gap-2 shadow-xl shrink-0">
               <Sparkles className="h-5 w-5" />
               Ask RWANDA
             </Button>

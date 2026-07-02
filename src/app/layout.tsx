@@ -25,6 +25,12 @@ export const metadata: Metadata = {
     "Tour du Rwanda", "Rwanda visa guide",
   ],
   authors: [{ name: "Independent Project" }],
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Visit Rwanda",
+  },
   openGraph: {
     title: "Visit Rwanda, Land of a Thousand Hills",
     description: "An independent digital guide to Rwanda. Not affiliated with the Government of Rwanda.",
@@ -38,11 +44,22 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#00A1DE",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <link rel="icon" href="/icon-192.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
