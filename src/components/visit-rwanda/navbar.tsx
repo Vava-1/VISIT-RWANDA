@@ -3,7 +3,7 @@
 import * as React from "react";
 import {
   Menu, X, Sparkles, Sun, Moon, Plane, TrendingUp, GraduationCap,
-  Palette, Trophy, Home as HomeIcon, ChevronDown, Languages,
+  Palette, Trophy, Home as HomeIcon, ChevronDown, Languages, RefreshCw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -140,6 +140,14 @@ export function Navbar() {
                     </DropdownMenuItem>
                   );
                 })}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onSelect={() => useApp.setState({ hasChosenPersona: false })}
+                  className="gap-2.5 py-2.5 cursor-pointer text-muted-foreground"
+                >
+                  <RefreshCw className="h-4 w-4 shrink-0" />
+                  <span className="text-sm">Change persona / start over</span>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 

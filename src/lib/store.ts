@@ -26,6 +26,8 @@ export type PageId =
 interface AppState {
   persona: PersonaId;
   setPersona: (p: PersonaId) => void;
+  hasChosenPersona: boolean;
+  setHasChosenPersona: (v: boolean) => void;
   page: PageId;
   setPage: (p: PageId) => void;
   sessionId: string;
@@ -50,6 +52,8 @@ export const useApp = create<AppState>()(
     (set) => ({
       persona: "tourist",
       setPersona: (persona) => set({ persona }),
+      hasChosenPersona: false,
+      setHasChosenPersona: (hasChosenPersona) => set({ hasChosenPersona }),
       page: "home",
       setPage: (page) => set({ page }),
       sessionId: typeof window !== "undefined" ? genSessionId() : "rw-ssr",
@@ -66,7 +70,7 @@ export const useApp = create<AppState>()(
     }),
     {
       name: "visit-rwanda-store",
-      partialize: (s) => ({ persona: s.persona, sessionId: s.sessionId }),
+      partialize: (s) => ({ persona: s.persona, hasChosenPersona: s.hasChosenPersona, sessionId: s.sessionId }),
     }
   )
 );
