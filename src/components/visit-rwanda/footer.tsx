@@ -92,18 +92,23 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_2fr]">
           {/* Brand + newsletter */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="relative h-10 w-14 overflow-hidden ring-1 ring-white/20">
-                <FlagRwanda />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative h-11 w-14 shrink-0">
+                <div className="absolute inset-0 rounded-lg overflow-hidden shadow-lg ring-1 ring-white/20">
+                  <FlagRwanda />
+                </div>
               </div>
-              <div>
-                <div className="font-black text-lg text-emerald-400">Visit Rwanda</div>
-                <div className="text-xs text-background/60 uppercase tracking-wide">Land of a Thousand Hills</div>
+              <div className="leading-tight">
+                <div className="font-black text-lg flex items-baseline gap-1">
+                  <span className="text-background">Visit</span>
+                  <span className="text-emerald-400">Rwanda</span>
+                </div>
+                <div className="text-[10px] text-background/60 uppercase tracking-[0.2em] font-medium">Land of a Thousand Hills</div>
               </div>
             </div>
             <p className="text-sm text-background/70 max-w-sm leading-relaxed">
-              The intelligent digital gateway to the Republic of Rwanda, uniting tourism,
-              investment, culture, sport and learning in one trustworthy, intelligent platform.
+              An independent digital guide uniting tourism, investment, culture, sport and
+              learning for Rwanda. Not affiliated with the Government of Rwanda.
             </p>
 
             <div className="mt-5">

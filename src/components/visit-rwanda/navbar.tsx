@@ -70,16 +70,21 @@ export function Navbar() {
           {/* Logo */}
           <button
             onClick={() => { setPage("home"); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="flex items-center gap-2.5 shrink-0 group cursor-pointer"
+            className="flex items-center gap-3 shrink-0 group cursor-pointer"
+            aria-label="Visit Rwanda home"
           >
-            <div className="relative h-9 w-12 overflow-hidden shadow-md ring-1 ring-black/5">
-              <FlagRwanda />
+            <div className="relative h-10 w-14 shrink-0">
+              <div className="absolute inset-0 rounded-lg overflow-hidden shadow-lg ring-1 ring-white/20 group-hover:ring-white/40 transition-all">
+                <FlagRwanda />
+              </div>
+              <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="leading-tight text-left">
-              <div className="font-black tracking-tight text-base sm:text-lg text-white">
-                Visit <span className="text-emerald-400">Rwanda</span>
+              <div className="font-black tracking-tight text-base sm:text-lg text-white flex items-baseline gap-1">
+                <span>Visit</span>
+                <span className="text-emerald-400">Rwanda</span>
               </div>
-              <div className="text-[10px] uppercase tracking-[0.18em] text-white/70 hidden sm:block">
+              <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/60 hidden sm:block font-medium">
                 Land of a Thousand Hills
               </div>
             </div>

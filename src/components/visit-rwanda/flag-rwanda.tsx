@@ -16,9 +16,9 @@ export function FlagRwanda({
   // 24 sun rays, alternating long/short, generated procedurally.
   const cx = 74;
   const cy = 26;
-  const rInner = 7;
-  const rLong = 16;
-  const rShort = 12;
+  const rInner = 6.5;
+  const rLong = 17;
+  const rShort = 12.5;
   const rays: string[] = [];
   for (let i = 0; i < 24; i++) {
     const angle = (i * Math.PI) / 12;
@@ -46,12 +46,14 @@ export function FlagRwanda({
       {/* Green band (bottom quarter) */}
       <rect x="0" y="75" width="100" height="25" fill="#20603D" />
       {/* Sun: rays + disk */}
-      <g stroke="#FAD201" strokeWidth="2.2" strokeLinecap="round">
+      <g stroke="#FAD201" strokeWidth="2.4" strokeLinecap="round">
         {rays.map((d, i) => (
           <path key={i} d={d} />
         ))}
       </g>
       <circle cx={cx} cy={cy} r={rInner} fill="#FAD201" />
+      {/* Subtle inner highlight on the sun disk for depth */}
+      <circle cx={cx} cy={cy} r={rInner - 2} fill="none" stroke="#FFFFFF" strokeWidth="0.5" opacity="0.4" />
     </svg>
   );
 }
