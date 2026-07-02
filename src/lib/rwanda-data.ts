@@ -68,6 +68,26 @@ export const IMAGES = {
   motoAlt: "https://sfile.chatglm.cn/images-ppt/86600ccee6d5.jpg",
   car: "https://sfile.chatglm.cn/images-ppt/272f00c2db0a.jpg",
   carAlt: "https://sfile.chatglm.cn/images-ppt/ddbe25981ee2.jpg",
+  // Real distinct images per city (searched by city name)
+  cityKigali: "https://sfile.chatglm.cn/images-ppt/ab5081fdf0b2.jpg",
+  cityMusanze: "https://sfile.chatglm.cn/images-ppt/2cf648fbca72.jpg",
+  cityRubavu: "https://sfile.chatglm.cn/images-ppt/5f6be63a08cc.jpg",
+  cityKarongi: "https://sfile.chatglm.cn/images-ppt/85ae295f7aa3.jpg",
+  cityRusizi: "https://sfile.chatglm.cn/images-ppt/cbf7682bda33.jpg",
+  cityHuye: "https://sfile.chatglm.cn/images-ppt/e6e097511af1.jpg",
+  cityMuhanga: "https://sfile.chatglm.cn/images-ppt/fe5e3b611196.jpg",
+  cityNyanza: "https://sfile.chatglm.cn/images-ppt/a01d97160a03.jpg",
+  cityNyagatare: "https://sfile.chatglm.cn/images-ppt/581dcac201a4.jpg",
+  cityKayonza: "https://sfile.chatglm.cn/images-ppt/3b53cc5eee40.jpg",
+  cityRwamagana: "https://sfile.chatglm.cn/images-ppt/6472787819ec.jpg",
+  cityBugesera: "https://sfile.chatglm.cn/images-ppt/3f2d38332d97.jpg",
+  cityRuhango: "https://sfile.chatglm.cn/images-ppt/d5f3b8cc7b7b.jpg",
+  cityGicumbi: "https://sfile.chatglm.cn/images-ppt/584add4e3aff.jpg",
+  cityRutsiro: "https://sfile.chatglm.cn/images-ppt/5bcc683dd925.jpg",
+  // Extra transport images
+  busPremium: "https://sfile.chatglm.cn/images-ppt/d1873f10856e.png",
+  cityBus: "https://sfile.chatglm.cn/images-ppt/7e807b395a5b.jpg",
+  boatKivu: "https://sfile.chatglm.cn/images-ppt/04f376811076.jpg",
 };
 
 export type Destination = {
@@ -1880,7 +1900,7 @@ export const CITIES: City[] = [
     id: "kigali",
     name: "Kigali",
     province: "Kigali City",
-    image: IMAGES.kigali,
+    image: IMAGES.cityKigali,
     population: "about 1.3 million",
     description:
       "The capital and largest city, sprawling across four hills at about 1,567m altitude. Rwanda's political, economic and cultural heart, with the international airport, government, major hotels and the Convention Centre.",
@@ -1891,7 +1911,7 @@ export const CITIES: City[] = [
     id: "musanze",
     name: "Musanze (Ruhengeri)",
     province: "Northern Province",
-    image: IMAGES.gorilla,
+    image: IMAGES.cityMusanze,
     population: "about 100,000",
     description:
       "The gateway to Volcanoes National Park and gorilla trekking, in the shadow of the Virunga volcanoes. The tourism capital of northern Rwanda and a base for adventure activities.",
@@ -1902,7 +1922,7 @@ export const CITIES: City[] = [
     id: "rubavu",
     name: "Rubavu (Gisenyi)",
     province: "Western Province",
-    image: IMAGES.kivu,
+    image: IMAGES.cityRubavu,
     population: "about 150,000",
     description:
       "A lakeside resort city on the north shore of Lake Kivu, on the border with Goma (DRC). Known for sandy beaches, hot springs and a relaxed atmosphere. Popular weekend getaway from Kigali.",
@@ -1913,7 +1933,7 @@ export const CITIES: City[] = [
     id: "karongi",
     name: "Karongi (Kibuye)",
     province: "Western Province",
-    image: IMAGES.kivuAlt,
+    image: IMAGES.cityKarongi,
     population: "about 50,000",
     description:
       "A picturesque town on Lake Kivu's eastern shore, surrounded by forested hills and islands. Considered the most beautiful of the Kivu lakeside towns, with Napoleon Island (home to fruit bats) nearby.",
@@ -1924,7 +1944,7 @@ export const CITIES: City[] = [
     id: "rusizi",
     name: "Rusizi (Cyangugu)",
     province: "Western Province",
-    image: IMAGES.nyungwe,
+    image: IMAGES.cityRusizi,
     population: "about 70,000",
     description:
       "Rwanda's south-westernmost city, at the southern tip of Lake Kivu on the border with Bukavu (DRC). The gateway to Nyungwe Forest National Park and a crossroads for trade.",
@@ -1935,7 +1955,7 @@ export const CITIES: City[] = [
     id: "huye",
     name: "Huye (Butare)",
     province: "Southern Province",
-    image: IMAGES.culture,
+    image: IMAGES.cityHuye,
     population: "about 90,000",
     description:
       "Rwanda's intellectual and cultural capital, home to the University of Rwanda's main campus and the National Museum of Rwanda. A graceful, leafy city with a strong academic tradition.",
@@ -1946,7 +1966,7 @@ export const CITIES: City[] = [
     id: "muhanga",
     name: "Muhanga (Gitarama)",
     province: "Southern Province",
-    image: IMAGES.cultureAlt,
+    image: IMAGES.cityMuhanga,
     population: "about 90,000",
     description:
       "A central trading city roughly halfway between Kigali and Huye. An important commercial and transport hub for the Southern Province, known for craft cooperatives and its central location.",
@@ -1957,7 +1977,7 @@ export const CITIES: City[] = [
     id: "nyanza",
     name: "Nyanza",
     province: "Southern Province",
-    image: IMAGES.culture,
+    image: IMAGES.cityNyanza,
     population: "about 30,000",
     description:
       "The historical seat of the Rwandan monarchy, home to the King's Palace Museum and the royal burial grounds. A small city of immense cultural and historical importance.",
@@ -1968,7 +1988,7 @@ export const CITIES: City[] = [
     id: "nyagatare",
     name: "Nyagatare",
     province: "Eastern Province",
-    image: IMAGES.coffee,
+    image: IMAGES.cityNyagatare,
     population: "about 50,000",
     description:
       "The largest town in north-eastern Rwanda, in the heart of cattle country. A growing commercial centre near Akagera National Park and the border with Uganda.",
@@ -1979,7 +1999,7 @@ export const CITIES: City[] = [
     id: "kayonza",
     name: "Kayonza",
     province: "Eastern Province",
-    image: IMAGES.coffeeAlt,
+    image: IMAGES.cityKayonza,
     population: "about 40,000",
     description:
       "An eastern provincial town on the road to Akagera National Park and the Tanzanian border. A convenient stopover for travellers heading to the park from Kigali.",
@@ -1990,7 +2010,7 @@ export const CITIES: City[] = [
     id: "rwamagana",
     name: "Rwamagana",
     province: "Eastern Province",
-    image: IMAGES.coffee,
+    image: IMAGES.cityRwamagana,
     population: "about 50,000",
     description:
       "The capital of Rwamagana District and a major eastern transport hub on the Kigali to Nyagatare road. A growing commercial and administrative centre.",
@@ -2001,7 +2021,7 @@ export const CITIES: City[] = [
     id: "bugesera",
     name: "Bugesera (Nyamata)",
     province: "Eastern Province",
-    image: IMAGES.kigaliAlt,
+    image: IMAGES.cityBugesera,
     population: "about 50,000",
     description:
       "A fast-growing town south-east of Kigali, home to the new Bugesera International Airport (under construction). The gateway to Rwanda's future aviation hub and Akagera's south.",
@@ -2012,7 +2032,7 @@ export const CITIES: City[] = [
     id: "ruhango",
     name: "Ruhango",
     province: "Southern Province",
-    image: IMAGES.cultureAlt,
+    image: IMAGES.cityRuhango,
     population: "about 40,000",
     description:
       "A southern provincial town on the Kigali to Huye road, known for agriculture and as a transport stop. A quiet, growing commercial centre.",
@@ -2023,7 +2043,7 @@ export const CITIES: City[] = [
     id: "gicumbi",
     name: "Gicumbi (Byumba)",
     province: "Northern Province",
-    image: IMAGES.gorillaAlt,
+    image: IMAGES.cityGicumbi,
     population: "about 50,000",
     description:
       "A northern highland town on the road to Musanze and the Ugandan border. Known for its cool climate, tea plantations and rolling green hills.",
@@ -2034,7 +2054,7 @@ export const CITIES: City[] = [
     id: "rutsiro",
     name: "Rutsiro",
     province: "Western Province",
-    image: IMAGES.kivu,
+    image: IMAGES.cityRutsiro,
     population: "about 30,000",
     description:
       "A western highland district town between Karongi and the Congo Nile Trail. Known for stunning lake views, tea and coffee, and the Gishwati forest nearby.",
@@ -2086,7 +2106,7 @@ export const TRANSPORT: TransportOption[] = [
     id: "ritco",
     name: "Ritco Coach",
     type: "Bus",
-    image: IMAGES.bus,
+    image: IMAGES.busPremium,
     description:
       "A premium intercity coach operator with comfortable modern buses serving key long-distance routes across Rwanda.",
     citiesServed: ["Kigali", "Musanze", "Rubavu", "Huye", "Rusizi", "Nyagatare"],
@@ -2098,7 +2118,7 @@ export const TRANSPORT: TransportOption[] = [
     id: "kigali-bus",
     name: "Kigali Bus Services (KBS)",
     type: "Bus",
-    image: IMAGES.busAlt,
+    image: IMAGES.cityBus,
     description:
       "The main public city bus operator in Kigali, running the capital's bus network with tap-and-go Yego card payment. Clean, affordable and extensive.",
     citiesServed: ["Kigali"],
@@ -2182,7 +2202,7 @@ export const TRANSPORT: TransportOption[] = [
     id: "kivu-boat",
     name: "Lake Kivu Boats",
     type: "Boat",
-    image: IMAGES.kivu,
+    image: IMAGES.boatKivu,
     description:
       "Public and charter boats connect the Lake Kivu towns of Rubavu, Karongi and Rusizi, offering one of the most beautiful journeys in Rwanda. Speedboats and larger passenger boats available.",
     citiesServed: ["Rubavu", "Karongi", "Rusizi"],
