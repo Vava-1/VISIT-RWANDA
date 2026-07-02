@@ -253,7 +253,7 @@ export function AIConcierge() {
                   </Button>
                 </form>
                 <p className="text-[10px] text-muted-foreground text-center mt-2">
-                  RWANDA can make mistakes. Verify critical info via official sources.
+                  This is an independent guide. RWANDA can make mistakes. Always verify visas, permits, and prices at irembo.gov.rw and rdb.rw.
                 </p>
               </div>
             </motion.div>

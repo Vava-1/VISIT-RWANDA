@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import {
-  Sparkles, LifeBuoy, ShieldCheck, Globe2, Mail, Phone, MapPin,
+  Sparkles, LifeBuoy, ShieldCheck, Globe2, Mail, MapPin,
   Facebook, Twitter, Instagram, Youtube, Linkedin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -40,12 +40,13 @@ const LINKS = [
     ],
   },
   {
-    title: "Country",
+    title: "Verified official sources",
     links: [
-      { label: "Quick Facts", page: "travel" as const },
       { label: "Government Portal", href: "https://www.gov.rw" },
-      { label: "Rwanda Development Board", href: "https://rdb.rw" },
-      { label: "Visit Rwanda Official", href: "https://www.visitrwanda.com" },
+      { label: "Rwanda Development Board (RDB)", href: "https://rdb.rw" },
+      { label: "Visit Rwanda (official)", href: "https://www.visitrwanda.com" },
+      { label: "Irembo (visas & services)", href: "https://irembo.gov.rw" },
+      { label: "NISR (statistics)", href: "https://www.statistics.gov.rw" },
     ],
   },
 ];
@@ -71,9 +72,9 @@ export function Footer() {
       <div className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-background/80">
-            <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-400" /> Safe with your data</span>
-            <span className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-amber-400" /> Personalised for you</span>
-            <span className="flex items-center gap-1.5"><Globe2 className="h-4 w-4 text-sky-400" /> Always current</span>
+            <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-400" /> Independent project</span>
+            <span className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-amber-400" /> AI-assisted</span>
+            <span className="flex items-center gap-1.5"><Globe2 className="h-4 w-4 text-sky-400" /> Verify on official sources</span>
           </div>
           <Button
             variant="outline"
@@ -175,10 +176,16 @@ export function Footer() {
         </div>
 
         {/* Contact strip */}
-        <div className="mt-10 pt-6 border-t border-white/10 grid sm:grid-cols-3 gap-4 text-sm text-background/70">
-          <span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-amber-400" /> KG 9 Ave, Kigali, Rwanda</span>
-          <span className="flex items-center gap-2"><Phone className="h-4 w-4 text-amber-400" /> +250 788 300 000</span>
-          <span className="flex items-center gap-2"><Mail className="h-4 w-4 text-amber-400" /> info@visitrwanda.rw</span>
+        <div className="mt-10 pt-6 border-t border-white/10 grid sm:grid-cols-2 gap-4 text-sm text-background/70">
+          <span className="flex items-start gap-2"><MapPin className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" /> An independent project. For official Rwanda services, visit <a href="https://irembo.gov.rw" className="underline" target="_blank" rel="noopener noreferrer">irembo.gov.rw</a></span>
+          <span className="flex items-start gap-2"><Mail className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" /> This is a demo project. No official contact details are provided.</span>
+        </div>
+      </div>
+
+      {/* Disclaimer banner */}
+      <div className="border-t border-amber-500/30 bg-amber-500/5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 text-center text-[11px] text-amber-300/90 leading-relaxed">
+          This is an <strong>independent, unofficial project</strong>, not affiliated with or endorsed by the Government of Rwanda, RDB, or any official body. Always verify official information (visas, permits, fees) at the official sources below.
         </div>
       </div>
 
@@ -186,10 +193,9 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-background/60">
           <div>
-            © {new Date().getFullYear()} Visit Rwanda Platform · {QUICK_FACTS.officialName}
+            © {new Date().getFullYear()} An independent project · Not affiliated with the Republic of Rwanda
           </div>
           <div className="flex items-center gap-4">
-            <span>"{QUICK_FACTS.motto}"</span>
             <button onClick={() => setAiOpen(true)} className="hover:text-background flex items-center gap-1">
               <Sparkles className="h-3 w-3" /> Ask RWANDA
             </button>

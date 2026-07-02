@@ -173,7 +173,7 @@ export function Hero() {
           className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl"
         >
           {[
-            { icon: TrendingUp, value: "8.9%", label: "GDP growth (2024)", color: "text-emerald-300" },
+            { icon: TrendingUp, value: "8.9%", label: "GDP growth 2024 (NISR)", color: "text-emerald-300" },
             { icon: MapPin, value: "9.8%", label: "Tourism share of GDP", color: "text-amber-300" },
             { icon: ShieldCheck, value: "#1", label: "Safest in East Africa", color: "text-sky-300" },
             { icon: Sparkles, value: "1,000+", label: "Hills & experiences", color: "text-rose-300" },
