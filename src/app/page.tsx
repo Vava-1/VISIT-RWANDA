@@ -10,6 +10,7 @@ import { Experiences } from "@/components/visit-rwanda/experiences";
 import { CitiesTransport } from "@/components/visit-rwanda/cities-transport";
 import { Invest } from "@/components/visit-rwanda/invest";
 import { TravelEssentials } from "@/components/visit-rwanda/travel-essentials";
+import { CurrencyConverter } from "@/components/visit-rwanda/currency-converter";
 import { HealthCommunity } from "@/components/visit-rwanda/health-community";
 import { RealtimeHub } from "@/components/visit-rwanda/realtime-hub";
 import { LiveSection } from "@/components/visit-rwanda/live-section";
@@ -18,6 +19,7 @@ import { Footer } from "@/components/visit-rwanda/footer";
 import { AIConcierge } from "@/components/visit-rwanda/ai-concierge";
 import { FeedbackDialog } from "@/components/visit-rwanda/feedback-dialog";
 import { HotelBookingDialog } from "@/components/visit-rwanda/hotel-booking-dialog";
+import { EmergencySOS } from "@/components/visit-rwanda/emergency-sos";
 import { useApp } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
@@ -87,7 +89,16 @@ function PageContent() {
           {page === "experiences" && <Experiences />}
           {page === "cities" && <CitiesTransport />}
           {page === "invest" && <Invest />}
-          {page === "travel" && <TravelEssentials />}
+          {page === "travel" && (
+            <>
+              <TravelEssentials />
+              <div className="py-8 bg-muted/30">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                  <CurrencyConverter />
+                </div>
+              </div>
+            </>
+          )}
           {page === "health" && <HealthCommunity />}
           {page === "live" && <LiveSection />}
           {page === "connect" && <RealtimeHub />}
@@ -121,6 +132,7 @@ export default function Home() {
       <AIConcierge />
       <FeedbackDialog />
       <HotelBookingDialog />
+      <EmergencySOS />
     </div>
   );
 }

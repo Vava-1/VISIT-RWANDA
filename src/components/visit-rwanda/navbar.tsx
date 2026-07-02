@@ -3,7 +3,7 @@
 import * as React from "react";
 import {
   Menu, X, Sparkles, Sun, Moon, Plane, TrendingUp, GraduationCap,
-  Palette, Trophy, Home as HomeIcon, ChevronDown,
+  Palette, Trophy, Home as HomeIcon, ChevronDown, Languages,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,6 +14,7 @@ import { useTheme } from "next-themes";
 import { useApp } from "@/lib/store";
 import { PERSONAS } from "@/lib/rwanda-data";
 import { FlagRwanda } from "@/components/visit-rwanda/flag-rwanda";
+import { useLang, LANGS } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -43,6 +44,7 @@ export function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
   const { persona, setPersona, setAiOpen, page, setPage } = useApp();
+  const { lang, setLang } = useLang();
 
   React.useEffect(() => setMounted(true), []);
 
@@ -133,6 +135,27 @@ export function Navbar() {
                     </DropdownMenuItem>
                   );
                 })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Language switcher */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-9 px-2 text-white hover:bg-white/15 gap-1">
+                  <Languages className="h-4 w-4" />
+                  <span className="text-xs font-semibold uppercase">{lang}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-44">
+                {LANGS.map((l) => (
+                  <DropdownMenuItem
+                    key={l.id}
+                    onSelect={() => setLang(l.id)}
+                    className={cn("cursor-pointer", lang === l.id && "bg-accent")}
+                  >
+                    {l.native}
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
