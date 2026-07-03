@@ -33,7 +33,7 @@ export function Hero() {
   };
 
   return (
-    <section id="top" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -47,13 +47,13 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-12 sm:pb-20 w-full">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16 sm:pb-20 w-full">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="hidden sm:inline-flex items-center gap-2 rounded-full glass border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6"
+            className="inline-flex items-center gap-2 rounded-full glass border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
@@ -78,10 +78,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-4 text-sm sm:text-xl text-white/85 max-w-2xl leading-relaxed"
+            className="mt-5 text-base sm:text-xl text-white/85 max-w-2xl leading-relaxed"
           >
-            Your intelligent gateway to Rwanda, for tourists, investors,
-            students, artists, athletes and diaspora.
+            Your intelligent gateway to Rwanda, for tourists, investors, students,
+            artists, athletes and diaspora. Discover destinations, plan trips,
+            explore opportunities and connect with a nation on the rise.
           </motion.p>
 
           {/* AI search */}
@@ -112,15 +113,15 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-4 flex flex-wrap gap-2"
+            className="mt-5 flex flex-wrap gap-2"
           >
-            {AI_SUGGESTIONS.slice(0, 2).map((s) => (
+            {AI_SUGGESTIONS.slice(0, 4).map((s) => (
               <button
                 key={s}
                 onClick={() => ask(s)}
-                className="text-xs text-white/80 hover:text-white glass border border-white/20 hover:border-white/40 rounded-full px-3 py-1.5 transition-colors"
+                className="text-xs sm:text-sm text-white/80 hover:text-white glass border border-white/20 hover:border-white/40 rounded-full px-3.5 py-1.5 transition-colors"
               >
-                {s.length > 35 ? s.slice(0, 35) + "…" : s}
+                {s}
               </button>
             ))}
           </motion.div>
@@ -130,7 +131,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="mt-6 sm:mt-10"
+            className="mt-10"
           >
             <div className="text-xs uppercase tracking-[0.18em] text-white/60 mb-3 font-semibold">
               Personalise your experience
@@ -169,7 +170,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl mt-14"
+          className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl"
         >
           {[
             { icon: TrendingUp, value: "8.9%", label: "GDP growth 2024 (NISR)", color: "text-emerald-300" },

@@ -192,36 +192,40 @@ export function Navbar() {
               <span className="hidden sm:inline">Ask RWANDA</span>
             </Button>
 
-            {/* Mobile menu */}
+            {/* Mobile menu - larger and more prominent on mobile */}
             <Button
               variant="ghost"
               size="icon"
               title="Open navigation menu"
-              className="h-9 w-9 lg:hidden text-white hover:bg-white/15 hover:text-white"
+              className="h-11 w-11 lg:hidden text-white hover:bg-white/20 hover:text-white border border-white/30 rounded-lg shrink-0"
               onClick={() => setOpen((v) => !v)}
-              aria-label="Menu"
+              aria-label="Open navigation menu"
             >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile nav */}
         {open && (
-          <div className="lg:hidden pb-4 animate-fade-up">
+          <div className="lg:hidden pb-4 pt-2 animate-fade-up border-t border-white/20 mt-1">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold px-3 pb-2 pt-1">
+              Navigation
+            </div>
             <div className="grid gap-1">
               {NAV_LINKS.map((l) => (
                 <button
                   key={l.page}
                   onClick={() => { setPage(l.page); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                   className={cn(
-                    "px-3 py-2.5 text-sm font-medium rounded-lg text-left",
+                    "px-4 py-3 text-base font-medium rounded-lg text-left flex items-center justify-between",
                     page === l.page
                       ? "bg-white/25 text-white"
                       : "text-white/90 hover:text-white hover:bg-white/15"
                   )}
                 >
                   {l.label}
+                  <ChevronDown className="h-4 w-4 -rotate-90 opacity-50" />
                 </button>
               ))}
             </div>
