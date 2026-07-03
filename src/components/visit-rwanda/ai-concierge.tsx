@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useApp } from "@/lib/store";
+import { useLang } from "@/lib/i18n";
 import { AI_SUGGESTIONS, PERSONAS } from "@/lib/rwanda-data";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +18,7 @@ type Msg = { role: "user" | "assistant"; content: string };
 
 export function AIConcierge() {
   const { aiOpen, setAiOpen, aiSeed, setAiSeed, persona, sessionId } = useApp();
+  const { t } = useLang();
   const [messages, setMessages] = React.useState<Msg[]>([]);
   const [input, setInput] = React.useState("");
   const [loading, setLoading] = React.useState(false);
@@ -253,7 +255,7 @@ export function AIConcierge() {
                   </Button>
                 </form>
                 <p className="text-[10px] text-muted-foreground text-center mt-2">
-                  This is an independent guide. RWANDA can make mistakes. Always verify visas, permits, and prices at irembo.gov.rw and rdb.rw.
+                  {t("ai.disclaimer")}
                 </p>
               </div>
             </motion.div>

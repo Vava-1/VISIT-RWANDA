@@ -21,6 +21,7 @@ import { FeedbackDialog } from "@/components/visit-rwanda/feedback-dialog";
 import { HotelBookingDialog } from "@/components/visit-rwanda/hotel-booking-dialog";
 import { EmergencySOS } from "@/components/visit-rwanda/emergency-sos";
 import { useApp } from "@/lib/store";
+import { useLang } from "@/lib/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,6 +30,7 @@ import { Button } from "@/components/ui/button";
 // Each nav page maps to a single rendered component.
 function PageContent() {
   const { page, setPage } = useApp();
+  const { t } = useLang();
 
   // Home page: hero + persona zone + persona hub (the personalised directory)
   if (page === "home") {
@@ -43,15 +45,15 @@ function PageContent() {
 
   // Sub-pages: a slim header with back button, then the section content
   const pageMeta: Record<string, { title: string; subtitle: string }> = {
-    discover: { title: "Discover Rwanda", subtitle: "Every place worth a thousand stories" },
-    experiences: { title: "Signature Experiences", subtitle: "Moments that stay with you" },
-    cities: { title: "Cities & Transport", subtitle: "Every city, every way to get there" },
-    invest: { title: "Invest in Rwanda", subtitle: "Africa's rising star for investment" },
-    travel: { title: "Travel Essentials", subtitle: "Everything you need before you go" },
-    health: { title: "Health & Community", subtitle: "Care for visitors, heart of the nation" },
-    live: { title: "Culture, Sport & Learning", subtitle: "The living pulse of Rwanda" },
-    connect: { title: "Rwanda, Live", subtitle: "Always current, always Rwanda" },
-    planner: { title: "AI Itinerary Planner", subtitle: "Build your trip in seconds" },
+    discover: { title: t("page.discover.title"), subtitle: t("page.discover.subtitle") },
+    experiences: { title: t("page.experiences.title"), subtitle: t("page.experiences.subtitle") },
+    cities: { title: t("page.cities.title"), subtitle: t("page.cities.subtitle") },
+    invest: { title: t("page.invest.title"), subtitle: t("page.invest.subtitle") },
+    travel: { title: t("page.travel.title"), subtitle: t("page.travel.subtitle") },
+    health: { title: t("page.health.title"), subtitle: t("page.health.subtitle") },
+    live: { title: t("page.live.title"), subtitle: t("page.live.subtitle") },
+    connect: { title: t("page.connect.title"), subtitle: t("page.connect.subtitle") },
+    planner: { title: t("page.planner.title"), subtitle: t("page.planner.subtitle") },
   };
 
   const meta = pageMeta[page] ?? pageMeta.discover;
@@ -67,7 +69,7 @@ function PageContent() {
             className="mb-3 gap-1.5 text-muted-foreground hover:text-foreground"
             onClick={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
           >
-            <ArrowLeft className="h-4 w-4" /> Back to home
+            <ArrowLeft className="h-4 w-4" /> {t("cta.backHome")}
           </Button>
           <h1 className="text-2xl sm:text-4xl font-black tracking-tight">
             {meta.title}

@@ -8,12 +8,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useApp } from "@/lib/store";
+import { useLang } from "@/lib/i18n";
 import { QUICK_FACTS } from "@/lib/rwanda-data";
 import { FlagRwanda } from "@/components/visit-rwanda/flag-rwanda";
 
 const LINKS = [
   {
-    title: "Discover",
+    title: "footer.discover",
     links: [
       { label: "Destinations", page: "discover" as const },
       { label: "Experiences", page: "experiences" as const },
@@ -22,7 +23,7 @@ const LINKS = [
     ],
   },
   {
-    title: "Plan",
+    title: "footer.plan",
     links: [
       { label: "Visa & Entry", page: "travel" as const },
       { label: "Health & Safety", page: "health" as const },
@@ -31,7 +32,7 @@ const LINKS = [
     ],
   },
   {
-    title: "Opportunity",
+    title: "footer.opportunity",
     links: [
       { label: "Invest in Rwanda", page: "invest" as const },
       { label: "Kigali Financial Centre", page: "invest" as const },
@@ -40,7 +41,7 @@ const LINKS = [
     ],
   },
   {
-    title: "Verified official sources",
+    title: "footer.verifiedSources",
     links: [
       { label: "Government Portal", href: "https://www.gov.rw" },
       { label: "Rwanda Development Board (RDB)", href: "https://rdb.rw" },
@@ -61,6 +62,7 @@ const SOCIALS = [
 
 export function Footer() {
   const { setAiOpen, setFeedbackOpen } = useApp();
+  const { t } = useLang();
   const [email, setEmail] = React.useState("");
   const [subscribed, setSubscribed] = React.useState(false);
 
@@ -72,9 +74,9 @@ export function Footer() {
       <div className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-background/80">
-            <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-400" /> Independent project</span>
-            <span className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-amber-400" /> AI-assisted</span>
-            <span className="flex items-center gap-1.5"><Globe2 className="h-4 w-4 text-sky-400" /> Verify on official sources</span>
+            <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-400" />{t("footer.independent")}</span>
+            <span className="flex items-center gap-1.5"><Sparkles className="h-4 w-4 text-amber-400" />{t("footer.aiAssisted")}</span>
+            <span className="flex items-center gap-1.5"><Globe2 className="h-4 w-4 text-sky-400" />{t("footer.verifySources")}</span>
           </div>
           <Button
             variant="outline"
@@ -82,7 +84,7 @@ export function Footer() {
             className="bg-transparent border-white/20 text-background hover:bg-white/10 hover:text-background gap-1.5"
             onClick={() => setFeedbackOpen(true)}
           >
-            <LifeBuoy className="h-4 w-4" /> Report an issue
+            <LifeBuoy className="h-4 w-4" />{t("footer.reportIssue")}
           </Button>
         </div>
       </div>
@@ -107,12 +109,11 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-background/70 max-w-sm leading-relaxed">
-              An independent digital guide uniting tourism, investment, culture, sport and
-              learning for Rwanda. Not affiliated with the Government of Rwanda.
+              {t("footer.brandDesc")}
             </p>
 
             <div className="mt-5">
-              <Label2 text="Stay in the loop" />
+              <Label2 text={t("footer.stayLoop")} />
               <form
                 onSubmit={(e) => { e.preventDefault(); if (email.trim()) { setSubscribed(true); setEmail(""); } }}
                 className="flex gap-2 mt-2"
@@ -121,10 +122,10 @@ export function Footer() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@email.com"
+                  placeholder={t("footer.emailPlaceholder")}
                   className="bg-white/5 border-white/15 text-background placeholder:text-background/40"
                 />
-                <Button type="submit" size="sm" className="shrink-0">Subscribe</Button>
+                <Button type="submit" size="sm" className="shrink-0">{t("footer.subscribe")}</Button>
               </form>
               {subscribed && (
                 <p className="text-xs text-emerald-400 mt-2">Murakoze! You're on the list. 🇷🇼</p>
@@ -151,7 +152,7 @@ export function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {LINKS.map((col) => (
               <div key={col.title}>
-                <h4 className="font-semibold text-sm mb-3 text-background">{col.title}</h4>
+                <h4 className="font-semibold text-sm mb-3 text-background">{t(col.title)}</h4>
                 <ul className="space-y-2">
                   {col.links.map((l: any) => (
                     <li key={l.label}>
@@ -190,7 +191,7 @@ export function Footer() {
       {/* Disclaimer banner */}
       <div className="border-t border-amber-500/30 bg-amber-500/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 text-center text-[11px] text-amber-300/90 leading-relaxed">
-          This is an <strong>independent, unofficial project</strong>, not affiliated with or endorsed by the Government of Rwanda, RDB, or any official body. Always verify official information (visas, permits, fees) at the official sources below.
+          {t("footer.disclaimer")}
         </div>
       </div>
 
@@ -198,7 +199,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-background/60">
           <div>
-            © {new Date().getFullYear()} An independent project · Not affiliated with the Republic of Rwanda
+            © {new Date().getFullYear()} {t("footer.copyright")}
           </div>
           <div className="flex items-center gap-4">
             <button onClick={() => setAiOpen(true)} className="hover:text-background flex items-center gap-1">

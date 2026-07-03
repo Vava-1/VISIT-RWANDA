@@ -18,15 +18,15 @@ import { useLang, LANGS } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { page: "discover" as const, label: "Discover" },
-  { page: "experiences" as const, label: "Experiences" },
-  { page: "cities" as const, label: "Cities" },
-  { page: "invest" as const, label: "Invest" },
-  { page: "travel" as const, label: "Travel" },
-  { page: "health" as const, label: "Health" },
-  { page: "live" as const, label: "Live" },
-  { page: "connect" as const, label: "Connect" },
-  { page: "planner" as const, label: "Plan" },
+  { page: "discover" as const, key: "nav.discover" },
+  { page: "experiences" as const, key: "nav.experiences" },
+  { page: "cities" as const, key: "nav.cities" },
+  { page: "invest" as const, key: "nav.invest" },
+  { page: "travel" as const, key: "nav.travel" },
+  { page: "health" as const, key: "nav.health" },
+  { page: "live" as const, key: "nav.live" },
+  { page: "connect" as const, key: "nav.connect" },
+  { page: "planner" as const, key: "nav.plan" },
 ];
 
 const PERSONA_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -44,7 +44,7 @@ export function Navbar() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
   const { persona, setPersona, setAiOpen, page, setPage } = useApp();
-  const { lang, setLang } = useLang();
+  const { lang, setLang, t } = useLang();
 
   React.useEffect(() => setMounted(true), []);
 
@@ -104,7 +104,7 @@ export function Navbar() {
                     : "text-white/90 hover:text-white hover:bg-white/15"
                 )}
               >
-                {l.label}
+                {t(l.key)}
               </button>
             ))}
           </div>
@@ -189,19 +189,19 @@ export function Navbar() {
               aria-label="Ask RWANDA AI concierge"
             >
               <Sparkles className="h-4 w-4 shrink-0" />
-              <span className="hidden sm:inline">Ask RWANDA</span>
+              <span className="hidden sm:inline">{t("nav.askRwanda")}</span>
             </Button>
 
-            {/* Mobile menu - larger and more prominent on mobile */}
+            {/* Mobile menu - clearly visible with label on all devices */}
             <Button
               variant="ghost"
-              size="icon"
               title="Open navigation menu"
-              className="h-11 w-11 lg:hidden text-white hover:bg-white/20 hover:text-white border border-white/30 rounded-lg shrink-0"
+              className="lg:hidden text-white hover:bg-white/20 hover:text-white bg-white/10 border-2 border-white/40 rounded-lg shrink-0 flex items-center gap-2 px-3 h-11"
               onClick={() => setOpen((v) => !v)}
               aria-label="Open navigation menu"
             >
-              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              <span className="text-sm font-bold">{open ? t("nav.close") : t("nav.menu")}</span>
             </Button>
           </div>
         </div>
@@ -210,7 +210,7 @@ export function Navbar() {
         {open && (
           <div className="lg:hidden pb-4 pt-2 animate-fade-up border-t border-white/20 mt-1">
             <div className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-semibold px-3 pb-2 pt-1">
-              Navigation
+              {t("nav.navigation")}
             </div>
             <div className="grid gap-1">
               {NAV_LINKS.map((l) => (
@@ -224,7 +224,7 @@ export function Navbar() {
                       : "text-white/90 hover:text-white hover:bg-white/15"
                   )}
                 >
-                  {l.label}
+                  {t(l.key)}
                   <ChevronDown className="h-4 w-4 -rotate-90 opacity-50" />
                 </button>
               ))}

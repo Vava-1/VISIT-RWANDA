@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { IMAGES, PERSONAS, AI_SUGGESTIONS } from "@/lib/rwanda-data";
 import { useApp } from "@/lib/store";
+import { useLang } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const PERSONA_GRADIENTS: Record<string, string> = {
@@ -20,6 +21,7 @@ const PERSONA_GRADIENTS: Record<string, string> = {
 
 export function Hero() {
   const { setAiOpen, setAiSeed, persona, setPersona } = useApp();
+  const { t } = useLang();
   const [query, setQuery] = React.useState("");
 
   const ask = (q: string) => {
@@ -59,7 +61,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
             </span>
-            The Heart of Africa · Open for the World
+            {t("hero.tagline")}
           </motion.div>
 
           <motion.h1
@@ -68,9 +70,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]"
           >
-            Visit <span className="gradient-text">Rwanda</span>
+            {t("hero.title")} <span className="gradient-text">Rwanda</span>
             <span className="block text-xl sm:text-3xl lg:text-4xl font-bold text-white/90 mt-3">
-              Land of a Thousand Hills
+              {t("hero.subtitle")}
             </span>
           </motion.h1>
 
@@ -80,9 +82,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-5 text-base sm:text-xl text-white/85 max-w-2xl leading-relaxed"
           >
-            Your intelligent gateway to Rwanda, for tourists, investors, students,
-            artists, athletes and diaspora. Discover destinations, plan trips,
-            explore opportunities and connect with a nation on the rise.
+            {t("hero.body")}
           </motion.p>
 
           {/* AI search */}
@@ -98,13 +98,13 @@ export function Hero() {
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Ask about Rwanda: visas, gorillas, investing…"
+                placeholder={t("hero.searchPlaceholder")}
                 className="pl-11 h-12 sm:h-14 text-sm sm:text-base rounded-2xl glass border-white/20 text-white placeholder:text-white/60"
               />
             </div>
             <Button type="submit" size="lg" className="h-12 sm:h-14 px-5 sm:px-6 rounded-2xl gap-2 shadow-xl shrink-0">
               <Sparkles className="h-5 w-5" />
-              Ask RWANDA
+              {t("hero.searchButton")}
             </Button>
           </motion.form>
 
@@ -134,7 +134,7 @@ export function Hero() {
             className="mt-10"
           >
             <div className="text-xs uppercase tracking-[0.18em] text-white/60 mb-3 font-semibold">
-              Personalise your experience
+              {t("hero.personalise")}
             </div>
             <div className="flex flex-wrap gap-2">
               {PERSONAS.map((p) => (
@@ -173,10 +173,10 @@ export function Hero() {
           className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl"
         >
           {[
-            { icon: TrendingUp, value: "8.9%", label: "GDP growth 2024 (NISR)", color: "text-emerald-300" },
-            { icon: MapPin, value: "9.8%", label: "Tourism share of GDP", color: "text-amber-300" },
-            { icon: ShieldCheck, value: "#1", label: "Safest in East Africa", color: "text-sky-300" },
-            { icon: Sparkles, value: "1,000+", label: "Hills & experiences", color: "text-rose-300" },
+            { icon: TrendingUp, value: "8.9%", label: t("hero.gdpGrowth"), color: "text-emerald-300" },
+            { icon: MapPin, value: "9.8%", label: t("hero.tourismShare"), color: "text-amber-300" },
+            { icon: ShieldCheck, value: "#1", label: t("hero.safest"), color: "text-sky-300" },
+            { icon: Sparkles, value: "1,000+", label: t("hero.hills"), color: "text-rose-300" },
           ].map((s) => (
             <div
               key={s.label}
