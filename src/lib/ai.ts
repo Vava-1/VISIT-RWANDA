@@ -6,18 +6,60 @@ import {
   CITIES, TRANSPORT,
 } from "./rwanda-data";
 
-// Groq API (OpenAI-compatible): free tier, no credit card needed.
-// 30 requests/min, 14,400 requests/day on Llama 3.3 70B.
-// Get a free API key at https://console.groq.com/keys
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+// Google Gemini via the Generative Language API (free tier, no credit card).
+// Get an API key at https://aistudio.google.com/apikey
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.8-flash";
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+
+// Gemini returns 503 while a model is cold or capacity is tight, so retry
+// those a couple of times before surfacing an error to the visitor.
+const MAX_ATTEMPTS = 3;
+const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function requestOnce(body: string): Promise<string> {
+  const response = await fetch(GEMINI_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": GEMINI_API_KEY as string,
+    },
+    body,
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    const error = new Error(
+      `Gemini API error (${response.status}): ${errorBody.slice(0, 500)}`
+    ) as Error & { status?: number };
+    error.status = response.status;
+    throw error;
+  }
+
+  const data = await response.json();
+  const parts = data?.candidates?.[0]?.content?.parts;
+  const text = Array.isArray(parts)
+    ? parts.map((p: { text?: string }) => p?.text ?? "").join("")
+    : "";
+
+  if (!text) {
+    const blocked = data?.promptFeedback?.blockReason;
+    throw new Error(
+      blocked
+        ? `Gemini blocked the request (${blocked}).`
+        : "Gemini returned an empty response."
+    );
+  }
+  return text.trim();
+}
+
 /**
- * Generate a reply using Groq (Llama 3.3 70B).
- * Groq's API is OpenAI-compatible, so we call it directly with fetch.
+ * Generate a reply using Gemini.
+ * Called over plain REST so the project keeps a zero-dependency AI layer.
  *
  * @param messages  Conversation history (user + assistant turns).
  * @param system    The system prompt (Rwanda knowledge pack).
@@ -27,47 +69,37 @@ export async function generateReply(
   messages: ChatMessage[],
   system: string
 ): Promise<string> {
-  if (!GROQ_API_KEY) {
+  if (!GEMINI_API_KEY) {
     throw new Error(
-      "GROQ_API_KEY is not set. Get a free key at https://console.groq.com/keys and add it to your environment variables."
+      "GEMINI_API_KEY is not set. Get a free key at https://aistudio.google.com/apikey and add it to your environment variables."
     );
   }
 
-  // Build the OpenAI-compatible messages array.
-  const apiMessages = [
-    { role: "system", content: system },
-    ...messages.map((m) => ({
-      role: m.role,
-      content: m.content,
+  // Gemini calls the assistant turn "model" and takes the system prompt as a
+  // separate systemInstruction, so it stays out of the contents array.
+  const body = JSON.stringify({
+    systemInstruction: { parts: [{ text: system }] },
+    contents: messages.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
     })),
-  ];
-
-  const response = await fetch(GROQ_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${GROQ_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: GROQ_MODEL,
-      messages: apiMessages,
-      temperature: 0.7,
-      max_tokens: 2048,
-    }),
+    // Gemini 3 manages its own sampling, so temperature is deliberately omitted.
+    generationConfig: { maxOutputTokens: 2048 },
   });
 
-  if (!response.ok) {
-    const errorBody = await response.text();
-    throw new Error(`Groq API error (${response.status}): ${errorBody.slice(0, 500)}`);
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      return await requestOnce(body);
+    } catch (err: any) {
+      lastError = err;
+      if (attempt === MAX_ATTEMPTS || !RETRYABLE_STATUSES.has(err?.status)) {
+        throw err;
+      }
+      await sleep(400 * attempt);
+    }
   }
-
-  const data = await response.json();
-  const text = data?.choices?.[0]?.message?.content;
-
-  if (!text) {
-    throw new Error("Groq returned an empty response.");
-  }
-  return text.trim();
+  throw lastError;
 }
 
 // A compact knowledge pack injected into the system prompt so the concierge

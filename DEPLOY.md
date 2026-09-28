@@ -91,18 +91,21 @@ The app runs perfectly. Chat history, feedback and analytics won't survive serve
    ```
 7. Note: full Turso support needs the tiny migration in the "Turso migration" section below. The quick option needs no code change.
 
-### 4b. ZAI SDK credentials (required for the AI concierge, image search and live news)
+### 4b. Google Gemini API key (required for the AI concierge and the itinerary planner)
 
-The AI features depend on `z-ai-web-dev-sdk`. Locally it reads from a system config file; on Vercel you must provide the same values as env vars. Get them from your ZAI account / the local `/etc/.z-ai-config` file:
+The AI features call the Gemini API over plain REST, so no SDK is needed. Get a free key from Google AI Studio at https://aistudio.google.com/apikey and set it in Vercel (and in your local `.env`):
 
 ```
-ZAI_API_KEY = <your-zai-api-key>
-ZAI_BASE_URL = <your-zai-base-url>
-ZAI_TOKEN = <your-zai-token>
-ZAI_USER_ID = <your-zai-user-id>
+GEMINI_API_KEY = <your-gemini-api-key>
 ```
 
-Without these, the AI concierge and live news will return errors (the rest of the app still works).
+Optionally override the model, which defaults to `gemini-3.8-flash`:
+
+```
+GEMINI_MODEL = gemini-3.8-flash
+```
+
+Without this, the AI concierge and itinerary planner will return errors (the rest of the app still works).
 
 ---
 
