@@ -6,14 +6,14 @@ import {
   CITIES, TRANSPORT,
 } from "./rwanda-data";
 
-// Google Gemini via the Generative Language API (free tier, no credit card).
-// Get an API key at https://aistudio.google.com/apikey
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.8-flash";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+// Groq API (OpenAI-compatible): free tier, no credit card needed.
+// 30 requests/min on the free tier. Get a key at https://console.groq.com/keys
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
-// Gemini returns 503 while a model is cold or capacity is tight, so retry
-// those a couple of times before surfacing an error to the visitor.
+// The free tier is capped per minute, so a busy concierge can hit 429s. Retry
+// those briefly instead of failing the visitor's message.
 const MAX_ATTEMPTS = 3;
 const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
 
@@ -22,11 +22,11 @@ export type ChatMessage = { role: "user" | "assistant"; content: string };
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function requestOnce(body: string): Promise<string> {
-  const response = await fetch(GEMINI_URL, {
+  const response = await fetch(GROQ_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-goog-api-key": GEMINI_API_KEY as string,
+      Authorization: `Bearer ${GROQ_API_KEY}`,
     },
     body,
   });
@@ -34,32 +34,29 @@ async function requestOnce(body: string): Promise<string> {
   if (!response.ok) {
     const errorBody = await response.text();
     const error = new Error(
-      `Gemini API error (${response.status}): ${errorBody.slice(0, 500)}`
-    ) as Error & { status?: number };
+      `Groq API error (${response.status}): ${errorBody.slice(0, 500)}`
+    ) as Error & { status?: number; retryAfterMs?: number };
     error.status = response.status;
+    // Honour the server's own backoff hint when it sends one.
+    const hint = Number(response.headers.get("retry-after"));
+    if (Number.isFinite(hint) && hint > 0) {
+      error.retryAfterMs = hint * 1000;
+    }
     throw error;
   }
 
   const data = await response.json();
-  const parts = data?.candidates?.[0]?.content?.parts;
-  const text = Array.isArray(parts)
-    ? parts.map((p: { text?: string }) => p?.text ?? "").join("")
-    : "";
+  const text = data?.choices?.[0]?.message?.content;
 
   if (!text) {
-    const blocked = data?.promptFeedback?.blockReason;
-    throw new Error(
-      blocked
-        ? `Gemini blocked the request (${blocked}).`
-        : "Gemini returned an empty response."
-    );
+    throw new Error("Groq returned an empty response.");
   }
   return text.trim();
 }
 
 /**
- * Generate a reply using Gemini.
- * Called over plain REST so the project keeps a zero-dependency AI layer.
+ * Generate a reply using Groq.
+ * Groq's API is OpenAI-compatible, so we call it directly with fetch.
  *
  * @param messages  Conversation history (user + assistant turns).
  * @param system    The system prompt (Rwanda knowledge pack).
@@ -69,22 +66,20 @@ export async function generateReply(
   messages: ChatMessage[],
   system: string
 ): Promise<string> {
-  if (!GEMINI_API_KEY) {
+  if (!GROQ_API_KEY) {
     throw new Error(
-      "GEMINI_API_KEY is not set. Get a free key at https://aistudio.google.com/apikey and add it to your environment variables."
+      "GROQ_API_KEY is not set. Get a free key at https://console.groq.com/keys and add it to your environment variables."
     );
   }
 
-  // Gemini calls the assistant turn "model" and takes the system prompt as a
-  // separate systemInstruction, so it stays out of the contents array.
   const body = JSON.stringify({
-    systemInstruction: { parts: [{ text: system }] },
-    contents: messages.map((m) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content }],
-    })),
-    // Gemini 3 manages its own sampling, so temperature is deliberately omitted.
-    generationConfig: { maxOutputTokens: 2048 },
+    model: GROQ_MODEL,
+    messages: [
+      { role: "system", content: system },
+      ...messages.map((m) => ({ role: m.role, content: m.content })),
+    ],
+    temperature: 0.7,
+    max_tokens: 2048,
   });
 
   let lastError: unknown;
@@ -96,7 +91,7 @@ export async function generateReply(
       if (attempt === MAX_ATTEMPTS || !RETRYABLE_STATUSES.has(err?.status)) {
         throw err;
       }
-      await sleep(400 * attempt);
+      await sleep(err?.retryAfterMs ?? 1000 * attempt);
     }
   }
   throw lastError;

@@ -91,18 +91,20 @@ The app runs perfectly. Chat history, feedback and analytics won't survive serve
    ```
 7. Note: full Turso support needs the tiny migration in the "Turso migration" section below. The quick option needs no code change.
 
-### 4b. Google Gemini API key (required for the AI concierge and the itinerary planner)
+### 4b. Groq API key (required for the AI concierge and the itinerary planner)
 
-The AI features call the Gemini API over plain REST, so no SDK is needed. Get a free key from Google AI Studio at https://aistudio.google.com/apikey and set it in Vercel (and in your local `.env`):
-
-```
-GEMINI_API_KEY = <your-gemini-api-key>
-```
-
-Optionally override the model, which defaults to `gemini-3.8-flash`:
+The AI features call Groq's OpenAI-compatible API over plain REST, so no SDK is needed. Get a free key from https://console.groq.com/keys and set it in Vercel (and in your local `.env`):
 
 ```
-GEMINI_MODEL = gemini-3.8-flash
+GROQ_API_KEY = <your-groq-api-key>
+```
+
+The free tier allows 30 requests per minute. If your concierge sees traffic above that, upgrade the key's plan.
+
+Optionally override the model, which defaults to `openai/gpt-oss-120b`:
+
+```
+GROQ_MODEL = openai/gpt-oss-120b
 ```
 
 Without this, the AI concierge and itinerary planner will return errors (the rest of the app still works).
